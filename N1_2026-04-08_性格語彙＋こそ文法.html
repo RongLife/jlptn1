@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JLPT N1 學習教材｜2026.04.08</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+  :root {
+    --red: #e85d5d;
+    --blue: #4a7fd4;
+    --green: #4caf7d;
+    --yellow: #f5a623;
+    --bg: #f7f5f0;
+    --card: #ffffff;
+    --text: #2c2c2c;
+    --muted: #888;
+    --border: #e8e4dc;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    padding: 2rem 1rem;
+  }
+
+  .container { max-width: 820px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #2c3e6b 0%, #4a7fd4 100%);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    color: white;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.05em; }
+  .header .meta { font-size: 0.85rem; opacity: 0.75; margin-top: 0.4rem; }
+  .badge {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 50px;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  /* TTS notice */
+  .tts-notice {
+    border-radius: 10px;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.82rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #e8f0fe;
+    border: 1px solid #c5d8f8;
+    color: #2c5aa0;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+  }
+
+  /* Speak button */
+  .speak-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1.5px solid var(--border);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--muted);
+    transition: all 0.15s;
+    flex-shrink: 0;
+    padding: 0;
+    line-height: 1;
+  }
+  .speak-btn:hover { border-color: var(--blue); color: var(--blue); background: #e8f0fe; }
+  .speak-btn.playing {
+    border-color: var(--blue);
+    background: var(--blue);
+    color: white;
+    animation: pulse 0.8s ease-in-out infinite alternate;
+  }
+  @keyframes pulse {
+    from { transform: scale(1); box-shadow: 0 0 0 0 rgba(74,127,212,0.4); }
+    to   { transform: scale(1.1); box-shadow: 0 0 0 5px rgba(74,127,212,0); }
+  }
+
+  .play-all-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 50px;
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.2rem 0.8rem;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .play-all-btn:hover { background: rgba(255,255,255,0.35); }
+  .play-all-btn.playing { background: rgba(255,255,255,0.9); color: var(--blue); }
+
+  /* Section title */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 2rem 0 1rem;
+    color: var(--text);
+  }
+  .section-title .icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .icon-vocab { background: #fff3e0; }
+  .icon-grammar { background: #e8f0fe; }
+  .icon-drama { background: #e8f5e9; }
+
+  /* Card */
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  /* Vocab grid */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  @media (max-width: 600px) { .vocab-grid { grid-template-columns: 1fr; } }
+
+  .vocab-item {
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+    border-left: 3px solid transparent;
+    transition: transform 0.15s;
+    position: relative;
+  }
+  .vocab-item:hover { transform: translateY(-2px); }
+  .vocab-item.positive { border-color: var(--green); }
+  .vocab-item.negative { border-color: var(--red); }
+
+  .vocab-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+  .vocab-jp { font-size: 1.05rem; font-weight: 700; font-family: 'Noto Sans JP', sans-serif; }
+  .vocab-reading { font-size: 0.8rem; color: var(--blue); margin: 0.1rem 0; font-family: 'Noto Sans JP', sans-serif; }
+  .vocab-zh { font-size: 0.9rem; color: var(--text); }
+  .vocab-tip { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; }
+
+  .subsection-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+  }
+  .label-positive { background: #e8f5e9; color: #2e7d32; }
+  .label-negative { background: #ffebee; color: #c62828; }
+
+  /* Grammar cards */
+  .grammar-pattern {
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 0.9rem;
+    border-left: 4px solid var(--blue);
+  }
+  .grammar-num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+  }
+  .grammar-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #2c3e6b;
+    margin-bottom: 0.3rem;
+  }
+  .grammar-form {
+    font-size: 0.8rem;
+    background: #e8f0fe;
+    color: var(--blue);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .grammar-meaning {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0.6rem;
+  }
+  .grammar-example {
+    background: white;
+    border-radius: 7px;
+    padding: 0.7rem 1rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+  .grammar-example-text { flex: 1; }
+  .grammar-example .jp { color: var(--text); }
+  .grammar-example .hl { color: var(--blue); font-weight: 700; }
+  .grammar-example .zh { font-size: 0.82rem; color: var(--muted); display: block; margin-top: 0.2rem; font-family: 'Noto Sans TC', sans-serif; }
+
+  /* Drama */
+  .drama-scene {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 1.2rem;
+    overflow: hidden;
+  }
+  .drama-header {
+    background: linear-gradient(90deg, #4a7fd4 0%, #6c9ce8 100%);
+    color: white;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .drama-header .tag {
+    background: rgba(255,255,255,0.25);
+    padding: 0.15rem 0.6rem;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+  .drama-header-left { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; }
+  .drama-body { padding: 1.4rem 1.6rem; }
+
+  .dialogue { margin-bottom: 0.9rem; display: flex; gap: 0.8rem; align-items: flex-start; }
+  .speaker {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--blue);
+    min-width: 40px;
+    padding-top: 0.3rem;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .speech {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.85;
+    flex: 1;
+  }
+  .speech .vocab-hl { color: var(--green); font-weight: 700; }
+  .speech .grammar-hl { color: var(--blue); font-weight: 700; text-decoration: underline; text-decoration-color: rgba(74,127,212,0.4); }
+  .dialogue-speak { padding-top: 0.25rem; }
+
+  .tip-box {
+    background: #fffbf0;
+    border: 1px solid #ffe082;
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #5a4a1a;
+  }
+  .tip-box::before { content: "💡 "; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <h1>JLPT N1 學習教材</h1>
+      <div class="meta">2026年4月8日｜人の性格語彙 ＋ こそ文法</div>
+    </div>
+    <div class="badge">N1</div>
+  </div>
+
+  <div class="tts-notice" id="voice-status">
+    🔍 正在偵測日文語音…
+  </div>
+
+  <!-- ===== PART 1: VOCABULARY ===== -->
+  <div class="section-title">
+    <div class="icon icon-vocab">📖</div>
+    PART 1｜人の性格・個性を表す言葉
+  </div>
+
+  <div class="card">
+    <div class="subsection-label label-positive">✅ 良い意味</div>
+    <div class="vocab-grid">
+
+      <div class="vocab-item positive">
+        <div class="vocab-top">
+          <div>
+            <div class="vocab-jp">気さくな</div>
+            <div class="vocab-reading">きさくな</div>
+          </div>
+          <button class="speak-btn" onclick="speakJP('きさくな', this)" title="發音">🔊</button>
+        </div>
+        <div class="vocab-zh">隨和、沒架子</div>
+        <div class="vocab-tip">氣氛輕鬆→讓人覺得自在的人</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top">
+          <div>
+            <div class="vocab-jp">几帳面な</div>
+            <div class="vocab-reading">きちょうめんな</div>
+          </div>
+          <button class="speak-btn" onclick="speakJP('きちょうめんな', this)" title="發音">🔊</button>
+        </div>
+        <div class="vocab-zh">一絲不苟、仔細</div>
+        <div class="vocab-tip">几帳（屏風）→每格都摺得整齊</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top">
+          <div>
+            <div class="vocab-jp">粘り強い</div>
+            <div class="vocab-reading">ねばりづよい</div>
+          </div>
+          <button class="speak-btn" onclick="speakJP('ねばりづよい', this)" title="發音">🔊</button>
+        </div>
+        <div class="vocab-zh">有毅力、不放棄</div>
+        <div class="vocab-tip">粘り（黏性）→像口香糖一樣不鬆手</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top">
+          <div>
+            <div class="vocab-jp">情け深い</div>
+            <div class="vocab-reading">なさけぶかい</div>
+          </div>
+          <button class="speak-btn" onclick="speakJP('なさけぶかい', this)" title="發音">🔊</button>
+        </div>
+        <div class="vocab-zh">富同情心、有人情味</div>
+        <div class="vocab-tip">情け＝人情、憐憫之心</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top">
+          <div>
+            <div class="vocab-jp">たくましい</div>
+            <div class="vocab-reading">たくましい</div>
+          </div>
+          <button class="speak-btn" onclick="speakJP('たくましい', this)" title="發音">🔊</button>
+        </div>
+        <div class="vocab-zh">強壯、有韌性</div>
+        <div class="vocab-tip">身心都強壯，不只是體格</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top">
+          <div>
+            <div class="vocab-jp">純粋な</div>
+            <div class="vocab-reading">じゅんすいな</div>
+          </div>
+          <button class="speak-btn" onclick="speakJP('じゅんすいな', this)" title="發音">🔊</button>
+        </div>
+        <div class="vocab-zh">純粹、單純</div>
+        <div class="vocab-tip">漢字同中文，語感一致</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top">
+          <div>
+            <div class="vocab-jp">りりしい</div>
+            <div class="vocab-reading">りりしい</div>
+          </div>
+          <button class="speak-btn" onclick="speakJP('りりしい', this)" title="發音">🔊</button>
+        </div>
+        <div class="vocab-zh">英姿颯爽</div>
+        <div class="vocab-tip">多用於外表或態度帶來的氣勢感</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top">
+          <div>
+            <div class="vocab-jp">真面目な</div>
+            <div class="vocab-reading">まじめな</div>
+          </div>
+          <button class="speak-btn" onclick="speakJP('まじめな', this)" title="發音">🔊</button>
+        </div>
+        <div class="vocab-zh">認真、踏實</div>
+        <div class="vocab-tip">N2 就學過！最基本的正面詞</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="subsection-label label-negative">❌ 悪い意味</div>
+    <div class="vocab-grid">
+
+      <div class="vocab-item negative">
+        <div class="vocab-top">
+          <div>
+            <div class="vocab-jp">気難しい</div>
+            <div class="vocab-reading">きむずかしい</div>
+          </div>
+          <button class="speak-btn" onclick="speakJP('きむずかしい', this)" title="發音">🔊</button>
+        </div>
+        <div class="vocab-zh">難搞、難取悅</div>
+        <div class="vocab-tip">氣很難→難以相處</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top">
+          <div>
+            <div class="vocab-jp">なれなれしい</div>
+            <div class="vocab-reading">なれなれしい</div>
+          </div>
+          <button class="speak-btn" onclick="speakJP('なれなれしい', this)" title="發音">🔊</button>
+        </div>
+        <div class="vocab-zh">過度親近、沒分寸</div>
+        <div class="vocab-tip">慣れ慣れ→太習慣了→缺乏禮貌距離</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top">
+          <div>
+            <div class="vocab-jp">ずぼらな</div>
+            <div class="vocab-reading">ずぼらな</div>
+          </div>
+          <button class="speak-btn" onclick="speakJP('ずぼらな', this)" title="發音">🔊</button>
+        </div>
+        <div class="vocab-zh">邋遢、懶散</div>
+        <div class="vocab-tip">音感本身聽起來就很懶散</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top">
+          <div>
+            <div class="vocab-jp">でしゃばりな</div>
+            <div class="vocab-reading">でしゃばりな</div>
+          </div>
+          <button class="speak-btn" onclick="speakJP('でしゃばりな', this)" title="發音">🔊</button>
+        </div>
+        <div class="vocab-zh">愛出風頭、多管閒事</div>
+        <div class="vocab-tip">出る＋邪魔→硬插進來</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top">
+          <div>
+            <div class="vocab-jp">軽率な</div>
+            <div class="vocab-reading">けいそつな</div>
+          </div>
+          <button class="speak-btn" onclick="speakJP('けいそつな', this)" title="發音">🔊</button>
+        </div>
+        <div class="vocab-zh">輕率、冒失</div>
+        <div class="vocab-tip">軽（輕）＋率→做事不考慮後果</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top">
+          <div>
+            <div class="vocab-jp">ルーズな</div>
+            <div class="vocab-reading">ルーズな</div>
+          </div>
+          <button class="speak-btn" onclick="speakJP('ルーズな', this)" title="發音">🔊</button>
+        </div>
+        <div class="vocab-zh">散漫、不守時</div>
+        <div class="vocab-tip">英文 loose 的外來語</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top">
+          <div>
+            <div class="vocab-jp">神経質な</div>
+            <div class="vocab-reading">しんけいしつな</div>
+          </div>
+          <button class="speak-btn" onclick="speakJP('しんけいしつな', this)" title="發音">🔊</button>
+        </div>
+        <div class="vocab-zh">神經質、過度敏感</div>
+        <div class="vocab-tip">漢字同中文，語感一致</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top">
+          <div>
+            <div class="vocab-jp">いやしい</div>
+            <div class="vocab-reading">いやしい</div>
+          </div>
+          <button class="speak-btn" onclick="speakJP('いやしい', this)" title="發音">🔊</button>
+        </div>
+        <div class="vocab-zh">貪婪、下流、低俗</div>
+        <div class="vocab-tip">聽起來就充滿「嫌惡感」</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== PART 2: GRAMMAR ===== -->
+  <div class="section-title">
+    <div class="icon icon-grammar">✏️</div>
+    PART 2｜こそ 文法の四つのパターン
+  </div>
+
+  <div class="card">
+
+    <div class="grammar-pattern">
+      <div class="grammar-num">PATTERN 01</div>
+      <div class="grammar-title">Vてこそ</div>
+      <div class="grammar-form">動詞て形 ＋ こそ</div>
+      <div class="grammar-meaning">唯有⋯才能⋯｜強調「做了這件事，後面的結果才能成立」</div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <span class="jp">親になってこそ、子育ての大変さがわかる。</span>
+          <span class="zh">唯有成為父母，才能真正理解育兒的辛苦。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('親になってこそ、子育ての大変さがわかる。', this)" title="發音">🔊</button>
+      </div>
+    </div>
+
+    <div class="grammar-pattern">
+      <div class="grammar-num">PATTERN 02</div>
+      <div class="grammar-title">Nこそあれ</div>
+      <div class="grammar-form">名詞 ＋ こそあれ</div>
+      <div class="grammar-meaning">雖然有⋯但⋯｜承認某個負面狀況，後面話鋒一轉（≈ はあるけれど）</div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <span class="jp">苦労こそあれ、仕事にやりがいを感じる。</span>
+          <span class="zh">雖然辛苦，但工作很有意義。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('苦労こそあれ、仕事にやりがいを感じる。', this)" title="發音">🔊</button>
+      </div>
+    </div>
+
+    <div class="grammar-pattern">
+      <div class="grammar-num">PATTERN 03</div>
+      <div class="grammar-title">Vこそすれ</div>
+      <div class="grammar-form">動詞基本形 ＋ こそすれ</div>
+      <div class="grammar-meaning">只會⋯，絕不會⋯｜強烈否定反方向（語氣很強）</div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <span class="jp">感謝こそすれ、文句なんてありません。</span>
+          <span class="zh">只有感謝，絕不會有任何抱怨。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('感謝こそすれ、文句なんてありません。', this)" title="發音">🔊</button>
+      </div>
+    </div>
+
+    <div class="grammar-pattern">
+      <div class="grammar-num">PATTERN 04</div>
+      <div class="grammar-title">Nこそ〜が／けれど</div>
+      <div class="grammar-form">名詞 ＋ こそ ＋ 〜が</div>
+      <div class="grammar-meaning">⋯雖然⋯但⋯｜先讓步再反轉，こそ讓讓步語氣更強</div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <span class="jp">見た目こそ悪いが、味はとてもいい。</span>
+          <span class="zh">外觀雖然不好看，但味道非常棒。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('見た目こそ悪いが、味はとてもいい。', this)" title="發音">🔊</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== PART 3: DRAMA ===== -->
+  <div class="section-title">
+    <div class="icon icon-drama">🎭</div>
+    PART 3｜今日の語彙と文法を使った情境劇
+  </div>
+  <p style="font-size:0.85rem; color:var(--muted); margin-bottom:1rem;">同じ登場人物・同じ職場での出来事。<span style="color:var(--green);font-weight:700;">緑</span>は語彙・<span style="color:var(--blue);font-weight:700;">青</span>は文法</p>
+
+  <!-- Scene 1 -->
+  <div class="drama-scene">
+    <div class="drama-header">
+      <div class="drama-header-left">
+        <span>📍 場面一：お昼休み、同僚との会話</span>
+        <span class="tag">Vてこそ</span>
+      </div>
+      <button class="play-all-btn" onclick="playScene(this, 'scene1')" title="連續播放整段對話">▶ 全部播放</button>
+    </div>
+    <div class="drama-body" id="scene1">
+      <div class="dialogue">
+        <div class="speaker">佐藤</div>
+        <div class="speech" data-speak="ねえ、新しく来た山田さんって、どんな人だと思う？">ねえ、新しく来た山田さんって、どんな人だと思う？</div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">田中</div>
+        <div class="speech" data-speak="正直、最初は気難しい人かと思ったよ。あんまり笑わないし。">正直、最初は<span class="vocab-hl">気難しい</span>人かと思ったよ。あんまり笑わないし。</div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">佐藤</div>
+        <div class="speech" data-speak="でも一緒に働いてこそ、その人の本当の良さってわかるじゃない？">でも一緒に働い<span class="grammar-hl">てこそ</span>、その人の本当の良さってわかるじゃない？</div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">田中</div>
+        <div class="speech" data-speak="それはそうだね。実際に話してみたら気さくで、しかも仕事は几帳面だし、見直したよ。">それはそうだね。実際に話してみたら<span class="vocab-hl">気さく</span>で、しかも仕事は<span class="vocab-hl">几帳面</span>だし、見直したよ。</div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+      </div>
+      <div class="tip-box">「一緒に働いてこそ」＝唯有一起工作過，才能了解一個人。前面是必要條件，後面是才能得到的事。</div>
+    </div>
+  </div>
+
+  <!-- Scene 2 -->
+  <div class="drama-scene">
+    <div class="drama-header">
+      <div class="drama-header-left">
+        <span>📍 場面二：午後、プロジェクトの話</span>
+        <span class="tag">こそあれ／こそすれ</span>
+      </div>
+      <button class="play-all-btn" onclick="playScene(this, 'scene2')" title="連續播放整段對話">▶ 全部播放</button>
+    </div>
+    <div class="drama-body" id="scene2">
+      <div class="dialogue">
+        <div class="speaker">木村</div>
+        <div class="speech" data-speak="山田さん、今日のプレゼン大変そうだったね。">山田さん、今日のプレゼン大変そうだったね。</div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">佐藤</div>
+        <div class="speech" data-speak="苦労こそあれ、あの人は粘り強いから絶対諦めないよ。"><span class="grammar-hl">苦労こそあれ</span>、あの人は<span class="vocab-hl">粘り強い</span>から絶対諦めないよ。</div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">木村</div>
+        <div class="speech" data-speak="でも隣の鈴木さんってでしゃばりで、邪魔してくるよね。">でも隣の鈴木さんって<span class="vocab-hl">でしゃばり</span>で、邪魔してくるよね。</div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">田中</div>
+        <div class="speech" data-speak="山田さんは感謝こそすれ、絶対文句言わないと思う。情け深いから。">山田さんは<span class="grammar-hl">感謝こそすれ</span>、絶対文句言わないと思う。<span class="vocab-hl">情け深い</span>から。</div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+      </div>
+      <div class="tip-box">「こそあれ」は転折（雖然⋯）、「こそすれ」は強い否定（只會⋯絕不會⋯）。兩個こそ、語氣不同！</div>
+    </div>
+  </div>
+
+  <!-- Scene 3 -->
+  <div class="drama-scene">
+    <div class="drama-header">
+      <div class="drama-header-left">
+        <span>📍 場面三：帰り際、鈴木の話に</span>
+        <span class="tag">Nこそ〜が／てこそ</span>
+      </div>
+      <button class="play-all-btn" onclick="playScene(this, 'scene3')" title="連續播放整段對話">▶ 全部播放</button>
+    </div>
+    <div class="drama-body" id="scene3">
+      <div class="dialogue">
+        <div class="speaker">田中</div>
+        <div class="speech" data-speak="そういえば、鈴木さんって見た目こそ頼りなさそうだけど、実はかなりたくましいらしいよ。">そういえば、鈴木さんって<span class="grammar-hl">見た目こそ</span>頼りなさそうだけど、実はかなり<span class="vocab-hl">たくましい</span>らしいよ。</div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">佐藤</div>
+        <div class="speech" data-speak="え、意外。いつもルーズで軽率なイメージしかなかった。">え、意外。いつも<span class="vocab-hl">ルーズ</span>で<span class="vocab-hl">軽率</span>なイメージしかなかった。</div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">木村</div>
+        <div class="speech" data-speak="人って外見じゃわからないね。純粋に仕事が好きなんだって。">人って外見じゃわからないね。<span class="vocab-hl">純粋</span>に仕事が好きなんだって。</div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">田中</div>
+        <div class="speech" data-speak="社会に出てこそ見えてくるものがあるよね。気さくかどうかも、一緒に働いてこそわかるし。">社会に出<span class="grammar-hl">てこそ</span>見えてくるものがあるよね。<span class="vocab-hl">気さく</span>かどうかも、一緒に働い<span class="grammar-hl">てこそ</span>わかるし。</div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+      </div>
+      <div class="tip-box">「見た目こそ〜が」＝外觀雖然⋯但⋯。こそ讓讓步的語氣更強，比單純的「は〜が」更有強調感。</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    JLPT N1 學習教材｜2026.04.08 製作｜目標：年内N1合格！🎯
+  </div>
+
+</div>
+
+<script>
+  // ── Voice management ──────────────────────────────────────
+  let jaVoice = null;
+  let currentBtn = null;
+
+  function pickJapaneseVoice() {
+    const voices = speechSynthesis.getVoices();
+    // Prefer dedicated ja-JP voices; avoid voices with "Chinese" or "zh" in name/lang
+    return voices.find(v => v.lang === 'ja-JP' && !/zh|chinese/i.test(v.name))
+        || voices.find(v => v.lang === 'ja')
+        || voices.find(v => v.lang.startsWith('ja'))
+        || null;
+  }
+
+  function updateVoiceStatus() {
+    jaVoice = pickJapaneseVoice();
+    const el = document.getElementById('voice-status');
+    if (!el) return;
+    if (!window.speechSynthesis) {
+      el.textContent = '⚠️ 此瀏覽器不支援語音合成功能。';
+      el.style.cssText = 'background:#fff3e0;border-color:#ffcc02;color:#e65100';
+      return;
+    }
+    if (jaVoice) {
+      el.textContent = `✅ 日文語音已就緒（${jaVoice.name}）。點擊 🔊 聽發音，▶ 全部播放 連續聽整段對話。`;
+      el.style.cssText = 'background:#e8f5e9;border-color:#a5d6a7;color:#1b5e20';
+    } else {
+      el.innerHTML = '⚠️ <strong>找不到日文語音。</strong>請至 系統設定 → 語音（或 Accessibility → Spoken Content）→ 新增「日本語」語音後，重新整理頁面。';
+      el.style.cssText = 'background:#fff3e0;border-color:#ffcc02;color:#e65100';
+    }
+  }
+
+  if (window.speechSynthesis) {
+    speechSynthesis.onvoiceschanged = updateVoiceStatus;
+    updateVoiceStatus();
+  }
+
+  // ── Single utterance helper ────────────────────────────────
+  function makeUtter(text) {
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang  = 'ja-JP';
+    utter.rate  = 0.88;
+    utter.pitch = 1.0;
+    if (jaVoice) utter.voice = jaVoice;
+    return utter;
+  }
+
+  // ── Speak single item ──────────────────────────────────────
+  function speakJP(text, btn) {
+    if (!window.speechSynthesis) return;
+
+    if (currentBtn === btn && speechSynthesis.speaking) {
+      speechSynthesis.cancel();
+      btn.classList.remove('playing');
+      currentBtn = null;
+      return;
+    }
+
+    speechSynthesis.cancel();
+    if (currentBtn) { currentBtn.classList.remove('playing'); }
+
+    const utter = makeUtter(text);
+    currentBtn = btn;
+    btn.classList.add('playing');
+
+    utter.onend = utter.onerror = () => {
+      btn.classList.remove('playing');
+      if (currentBtn === btn) currentBtn = null;
+    };
+
+    speechSynthesis.speak(utter);
+  }
+
+  // ── Play entire scene sequentially ────────────────────────
+  function playScene(btn, sceneId) {
+    if (!window.speechSynthesis) return;
+
+    if (btn.classList.contains('playing')) {
+      speechSynthesis.cancel();
+      btn.classList.remove('playing');
+      btn.textContent = '▶ 全部播放';
+      if (currentBtn) { currentBtn.classList.remove('playing'); currentBtn = null; }
+      document.getElementById(sceneId)
+        .querySelectorAll('.dialogue').forEach(d => d.style.opacity = '1');
+      return;
+    }
+
+    speechSynthesis.cancel();
+    if (currentBtn) { currentBtn.classList.remove('playing'); currentBtn = null; }
+
+    const scene = document.getElementById(sceneId);
+    const lines = Array.from(scene.querySelectorAll('.speech[data-speak]'))
+                       .map(el => el.dataset.speak).filter(Boolean);
+    if (!lines.length) return;
+
+    btn.classList.add('playing');
+    btn.textContent = '■ 停止';
+
+    let idx = 0;
+
+    function speakNext() {
+      const allLines = scene.querySelectorAll('.dialogue');
+      if (idx >= lines.length || !btn.classList.contains('playing')) {
+        btn.classList.remove('playing');
+        btn.textContent = '▶ 全部播放';
+        allLines.forEach(d => d.style.opacity = '1');
+        return;
+      }
+      allLines.forEach((d, i) => d.style.opacity = i === idx ? '1' : '0.35');
+
+      const utter = makeUtter(lines[idx]);
+      utter.onend  = () => { idx++; speakNext(); };
+      utter.onerror = () => {
+        btn.classList.remove('playing');
+        btn.textContent = '▶ 全部播放';
+        allLines.forEach(d => d.style.opacity = '1');
+      };
+      speechSynthesis.speak(utter);
+    }
+
+    speakNext();
+  }
+</script>
+
+</body>
+</html>
