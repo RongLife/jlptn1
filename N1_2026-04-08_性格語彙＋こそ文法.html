@@ -8,15 +8,20 @@
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap');
 
   :root {
-    --red: #e85d5d;
-    --blue: #4a7fd4;
-    --green: #4caf7d;
-    --yellow: #f5a623;
-    --bg: #f7f5f0;
-    --card: #ffffff;
-    --text: #2c2c2c;
-    --muted: #888;
-    --border: #e8e4dc;
+    /* 暖色系主調 */
+    --blue:       #BA8E7A;   /* 主色（原藍色替換） */
+    --blue-pale:  #F5EAD8;   /* 淺底色 */
+    --primary-lt: #D7A184;   /* 較亮暖橙 */
+    --sand:       #D4C2AD;   /* 沙色中性 */
+    --cream:      #EFDFCC;   /* 最淺奶油 */
+    --red:        #C4755E;   /* 負面詞邊框 */
+    --green:      #7FA882;   /* 正面詞邊框 */
+    --yellow:     #C49A6C;
+    --bg:         #EFDFCC;
+    --card:       #FAF7F3;
+    --text:       #3D2B1F;
+    --muted:      #9A7B6C;
+    --border:     #D4C2AD;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,24 +38,33 @@
 
   /* Header */
   .header {
-    background: linear-gradient(135deg, #2c3e6b 0%, #4a7fd4 100%);
-    border-radius: 16px;
-    padding: 2rem 2.5rem;
+    background: linear-gradient(135deg, #BA8E7A 0%, #D7A184 100%);
+    border-radius: 20px;
+    padding: 1.8rem 2.5rem;
     color: white;
     margin-bottom: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  .header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.05em; }
-  .header .meta { font-size: 0.85rem; opacity: 0.75; margin-top: 0.4rem; }
+  .header-left { display: flex; align-items: center; gap: 1rem; }
+  .header-avatar {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.5);
+  }
+  .header h1 { font-size: 1.5rem; font-weight: 800; letter-spacing: 0.04em; }
+  .header .meta { font-size: 0.82rem; opacity: 0.8; margin-top: 0.3rem; }
   .badge {
-    background: rgba(255,255,255,0.2);
-    border: 1px solid rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.45);
     border-radius: 50px;
     padding: 0.4rem 1rem;
     font-size: 0.85rem;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 0.1em;
   }
 
@@ -62,11 +76,22 @@
     margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    background: #e8f0fe;
-    border: 1px solid #c5d8f8;
-    color: #2c5aa0;
+    gap: 0.6rem;
+    background: #F5EAD8;
+    border: 1px solid #D4C2AD;
+    color: #7A4F3A;
     transition: background 0.3s, color 0.3s, border-color 0.3s;
+  }
+  #voice-select {
+    margin-left: auto;
+    font-size: 0.78rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.2rem 0.5rem;
+    background: var(--card);
+    color: var(--text);
+    cursor: pointer;
+    max-width: 160px;
   }
 
   /* Speak button — pure CSS circle + triangle, no emoji */
@@ -95,7 +120,7 @@
     margin-left: 2px;
     transition: all 0.15s;
   }
-  .speak-btn:hover { background: #c5d8f8; }
+  .speak-btn:hover { background: #E8D5C4; }
   .speak-btn.playing {
     background: var(--blue);
     animation: pulse 0.8s ease-in-out infinite alternate;
@@ -109,8 +134,8 @@
     margin-left: 0;
   }
   @keyframes pulse {
-    from { transform: scale(1); box-shadow: 0 0 0 0 rgba(74,127,212,0.4); }
-    to   { transform: scale(1.1); box-shadow: 0 0 0 5px rgba(74,127,212,0); }
+    from { transform: scale(1); box-shadow: 0 0 0 0 rgba(186,142,122,0.45); }
+    to   { transform: scale(1.1); box-shadow: 0 0 0 5px rgba(186,142,122,0); }
   }
 
   .play-all-btn {
@@ -327,15 +352,19 @@
 
   <!-- Header -->
   <div class="header">
-    <div>
-      <h1>JLPT N1 學習教材</h1>
-      <div class="meta">2026年4月8日｜人の性格語彙 ＋ こそ文法</div>
+    <div class="header-left">
+      <img src="頭貼/my-notion-face-transparent.png" class="header-avatar" alt="Rong">
+      <div>
+        <h1>JLPT N1 學習教材</h1>
+        <div class="meta">2026年4月8日｜人の性格語彙 ＋ こそ文法</div>
+      </div>
     </div>
     <div class="badge">N1</div>
   </div>
 
   <div class="tts-notice" id="voice-status">
-    🔍 正在偵測日文語音…
+    <span id="voice-status-text">🔍 正在偵測日文語音…</span>
+    <select id="voice-select" style="display:none" title="選擇語音"></select>
   </div>
 
   <!-- ===== PART 1: VOCABULARY ===== -->
@@ -994,32 +1023,73 @@
   let jaVoice = null;
   let currentBtn = null;
 
-  function pickJapaneseVoice() {
-    const voices = speechSynthesis.getVoices();
-    // Prefer dedicated ja-JP voices; avoid voices with "Chinese" or "zh" in name/lang
-    return voices.find(v => v.lang === 'ja-JP' && !/zh|chinese/i.test(v.name))
-        || voices.find(v => v.lang === 'ja')
+  function getJapaneseVoices() {
+    return speechSynthesis.getVoices().filter(v =>
+      v.lang.startsWith('ja') && !/zh|chinese/i.test(v.name + v.lang)
+    );
+  }
+
+  function pickBestVoice(voices) {
+    return voices.find(v => /premium|enhanced|siri/i.test(v.name))
+        || voices.find(v => v.lang === 'ja-JP')
         || voices.find(v => v.lang.startsWith('ja'))
         || null;
   }
 
+  function populateVoiceDropdown() {
+    const sel = document.getElementById('voice-select');
+    if (!sel) return;
+    const voices = getJapaneseVoices();
+    sel.innerHTML = '';
+    voices.forEach((v, i) => {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = v.name.replace(/^Apple\s*/i, '');
+      sel.appendChild(opt);
+    });
+    // Mark current selection
+    if (jaVoice) {
+      const idx = voices.findIndex(v => v.name === jaVoice.name);
+      if (idx >= 0) sel.value = idx;
+    }
+    sel.style.display = voices.length > 1 ? '' : 'none';
+  }
+
   function updateVoiceStatus() {
-    jaVoice = pickJapaneseVoice();
+    const voices = getJapaneseVoices();
+    jaVoice = pickBestVoice(voices);
+    const statusText = document.getElementById('voice-status-text');
     const el = document.getElementById('voice-status');
-    if (!el) return;
+    if (!el || !statusText) return;
     if (!window.speechSynthesis) {
-      el.textContent = '⚠️ 此瀏覽器不支援語音合成功能。';
-      el.style.cssText = 'background:#fff3e0;border-color:#ffcc02;color:#e65100';
+      statusText.textContent = '⚠️ 此瀏覽器不支援語音合成。';
+      el.style.cssText = 'background:#fdf3e7;border-color:#D7A184;color:#7A4F3A';
       return;
     }
     if (jaVoice) {
-      el.textContent = `✅ 日文語音已就緒（${jaVoice.name}）。點擊圓形按鈕聽發音，▶ 全部播放 連續聽整段對話。`;
-      el.style.cssText = 'background:#e8f5e9;border-color:#a5d6a7;color:#1b5e20';
+      statusText.textContent = `✅ 日文語音（${jaVoice.name.replace(/^Apple\s*/i,'')}）`;
+      el.style.cssText = '';
+      populateVoiceDropdown();
     } else {
-      el.innerHTML = '⚠️ <strong>找不到日文語音。</strong>請至 系統設定 → 語音（或 Accessibility → Spoken Content）→ 新增「日本語」語音後，重新整理頁面。';
-      el.style.cssText = 'background:#fff3e0;border-color:#ffcc02;color:#e65100';
+      statusText.innerHTML = '⚠️ 找不到日文語音，請至系統設定新增「日本語」後重新整理。';
+      el.style.cssText = 'background:#fdf3e7;border-color:#D7A184;color:#7A4F3A';
     }
   }
+
+  // Handle manual voice selection
+  document.addEventListener('DOMContentLoaded', () => {
+    const sel = document.getElementById('voice-select');
+    if (sel) {
+      sel.addEventListener('change', () => {
+        const voices = getJapaneseVoices();
+        jaVoice = voices[parseInt(sel.value)] || jaVoice;
+        const statusText = document.getElementById('voice-status-text');
+        if (statusText && jaVoice) {
+          statusText.textContent = `✅ 日文語音（${jaVoice.name.replace(/^Apple\s*/i,'')}）`;
+        }
+      });
+    }
+  });
 
   if (window.speechSynthesis) {
     speechSynthesis.onvoiceschanged = updateVoiceStatus;
