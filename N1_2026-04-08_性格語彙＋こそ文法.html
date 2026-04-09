@@ -69,30 +69,44 @@
     transition: background 0.3s, color 0.3s, border-color 0.3s;
   }
 
-  /* Speak button */
+  /* Speak button — pure CSS circle + triangle, no emoji */
   .speak-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: none;
-    border: 1.5px solid var(--border);
+    background: #e8f0fe;
+    border: none;
     border-radius: 50%;
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     cursor: pointer;
-    font-size: 0.8rem;
-    color: var(--muted);
-    transition: all 0.15s;
+    font-size: 0;
+    transition: background 0.15s;
     flex-shrink: 0;
     padding: 0;
-    line-height: 1;
   }
-  .speak-btn:hover { border-color: var(--blue); color: var(--blue); background: #e8f0fe; }
+  .speak-btn::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 4px 0 4px 7px;
+    border-color: transparent transparent transparent var(--blue);
+    margin-left: 2px;
+    transition: all 0.15s;
+  }
+  .speak-btn:hover { background: #c5d8f8; }
   .speak-btn.playing {
-    border-color: var(--blue);
     background: var(--blue);
-    color: white;
     animation: pulse 0.8s ease-in-out infinite alternate;
+  }
+  .speak-btn.playing::before {
+    border: none;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 1px;
+    margin-left: 0;
   }
   @keyframes pulse {
     from { transform: scale(1); box-shadow: 0 0 0 0 rgba(74,127,212,0.4); }
@@ -327,210 +341,468 @@
   <!-- ===== PART 1: VOCABULARY ===== -->
   <div class="section-title">
     <div class="icon icon-vocab">📖</div>
-    PART 1｜人の性格・個性を表す言葉
+    PART 1｜人の性格・個性を表す言葉（全50語）
   </div>
 
   <div class="card">
-    <div class="subsection-label label-positive">✅ 良い意味</div>
+    <div class="subsection-label label-positive">✅ 良い意味（33語）</div>
     <div class="vocab-grid">
 
       <div class="vocab-item positive">
-        <div class="vocab-top">
-          <div>
-            <div class="vocab-jp">気さくな</div>
-            <div class="vocab-reading">きさくな</div>
-          </div>
-          <button class="speak-btn" onclick="speakJP('きさくな', this)" title="發音">🔊</button>
-        </div>
-        <div class="vocab-zh">隨和、沒架子</div>
-        <div class="vocab-tip">氣氛輕鬆→讓人覺得自在的人</div>
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">愛想がいい</div>
+          <div class="vocab-reading">あいそがいい</div>
+        </div><button class="speak-btn" onclick="speakJP('あいそがいい', this)"></button></div>
+        <div class="vocab-zh">友善、和藹可親</div>
+        <div class="vocab-tip">愛想（好感）→讓人覺得你好相處</div>
       </div>
 
       <div class="vocab-item positive">
-        <div class="vocab-top">
-          <div>
-            <div class="vocab-jp">几帳面な</div>
-            <div class="vocab-reading">きちょうめんな</div>
-          </div>
-          <button class="speak-btn" onclick="speakJP('きちょうめんな', this)" title="發音">🔊</button>
-        </div>
-        <div class="vocab-zh">一絲不苟、仔細</div>
-        <div class="vocab-tip">几帳（屏風）→每格都摺得整齊</div>
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">センスがいい</div>
+          <div class="vocab-reading">センスがいい</div>
+        </div><button class="speak-btn" onclick="speakJP('センスがいい', this)"></button></div>
+        <div class="vocab-zh">有品味、有時尚感</div>
+        <div class="vocab-tip">英文 sense，感覺很時髦</div>
       </div>
 
       <div class="vocab-item positive">
-        <div class="vocab-top">
-          <div>
-            <div class="vocab-jp">粘り強い</div>
-            <div class="vocab-reading">ねばりづよい</div>
-          </div>
-          <button class="speak-btn" onclick="speakJP('ねばりづよい', this)" title="發音">🔊</button>
-        </div>
-        <div class="vocab-zh">有毅力、不放棄</div>
-        <div class="vocab-tip">粘り（黏性）→像口香糖一樣不鬆手</div>
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">気立てがいい</div>
+          <div class="vocab-reading">きだてがいい</div>
+        </div><button class="speak-btn" onclick="speakJP('きだてがいい', this)"></button></div>
+        <div class="vocab-zh">性情好、個性好</div>
+        <div class="vocab-tip">気立て＝天生心地→天生的好性格</div>
       </div>
 
       <div class="vocab-item positive">
-        <div class="vocab-top">
-          <div>
-            <div class="vocab-jp">情け深い</div>
-            <div class="vocab-reading">なさけぶかい</div>
-          </div>
-          <button class="speak-btn" onclick="speakJP('なさけぶかい', this)" title="發音">🔊</button>
-        </div>
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">いさぎよい</div>
+          <div class="vocab-reading">いさぎよい</div>
+        </div><button class="speak-btn" onclick="speakJP('いさぎよい', this)"></button></div>
+        <div class="vocab-zh">乾脆、光明磊落</div>
+        <div class="vocab-tip">不拖泥帶水，敢於承擔責任</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">情け深い</div>
+          <div class="vocab-reading">なさけぶかい</div>
+        </div><button class="speak-btn" onclick="speakJP('なさけぶかい', this)"></button></div>
         <div class="vocab-zh">富同情心、有人情味</div>
         <div class="vocab-tip">情け＝人情、憐憫之心</div>
       </div>
 
       <div class="vocab-item positive">
-        <div class="vocab-top">
-          <div>
-            <div class="vocab-jp">たくましい</div>
-            <div class="vocab-reading">たくましい</div>
-          </div>
-          <button class="speak-btn" onclick="speakJP('たくましい', this)" title="發音">🔊</button>
-        </div>
-        <div class="vocab-zh">強壯、有韌性</div>
-        <div class="vocab-tip">身心都強壯，不只是體格</div>
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">用心深い</div>
+          <div class="vocab-reading">ようじんぶかい</div>
+        </div><button class="speak-btn" onclick="speakJP('ようじんぶかい', this)"></button></div>
+        <div class="vocab-zh">謹慎、小心翼翼</div>
+        <div class="vocab-tip">用心（注意）深→凡事都很謹慎</div>
       </div>
 
       <div class="vocab-item positive">
-        <div class="vocab-top">
-          <div>
-            <div class="vocab-jp">純粋な</div>
-            <div class="vocab-reading">じゅんすいな</div>
-          </div>
-          <button class="speak-btn" onclick="speakJP('じゅんすいな', this)" title="發音">🔊</button>
-        </div>
-        <div class="vocab-zh">純粹、單純</div>
-        <div class="vocab-tip">漢字同中文，語感一致</div>
-      </div>
-
-      <div class="vocab-item positive">
-        <div class="vocab-top">
-          <div>
-            <div class="vocab-jp">りりしい</div>
-            <div class="vocab-reading">りりしい</div>
-          </div>
-          <button class="speak-btn" onclick="speakJP('りりしい', this)" title="發音">🔊</button>
-        </div>
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">りりしい</div>
+          <div class="vocab-reading">りりしい</div>
+        </div><button class="speak-btn" onclick="speakJP('りりしい', this)"></button></div>
         <div class="vocab-zh">英姿颯爽</div>
         <div class="vocab-tip">多用於外表或態度帶來的氣勢感</div>
       </div>
 
       <div class="vocab-item positive">
-        <div class="vocab-top">
-          <div>
-            <div class="vocab-jp">真面目な</div>
-            <div class="vocab-reading">まじめな</div>
-          </div>
-          <button class="speak-btn" onclick="speakJP('まじめな', this)" title="發音">🔊</button>
-        </div>
-        <div class="vocab-zh">認真、踏實</div>
-        <div class="vocab-tip">N2 就學過！最基本的正面詞</div>
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">若々しい</div>
+          <div class="vocab-reading">わかわかしい</div>
+        </div><button class="speak-btn" onclick="speakJP('わかわかしい', this)"></button></div>
+        <div class="vocab-zh">充滿活力、顯年輕</div>
+        <div class="vocab-tip">若い重疊強調→非常年輕有活力</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">勇ましい</div>
+          <div class="vocab-reading">いさましい</div>
+        </div><button class="speak-btn" onclick="speakJP('いさましい', this)"></button></div>
+        <div class="vocab-zh">勇敢、英勇</div>
+        <div class="vocab-tip">勇（勇）+ましい→充滿勇氣</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">たくましい</div>
+          <div class="vocab-reading">たくましい</div>
+        </div><button class="speak-btn" onclick="speakJP('たくましい', this)"></button></div>
+        <div class="vocab-zh">強壯、有韌性</div>
+        <div class="vocab-tip">身心都強壯，不只是體格</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">思いやりがある</div>
+          <div class="vocab-reading">おもいやりがある</div>
+        </div><button class="speak-btn" onclick="speakJP('おもいやりがある', this)"></button></div>
+        <div class="vocab-zh">體貼、為他人著想</div>
+        <div class="vocab-tip">思いやり＝換位思考、體貼之心</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">気品がある</div>
+          <div class="vocab-reading">きひんがある</div>
+        </div><button class="speak-btn" onclick="speakJP('きひんがある', this)"></button></div>
+        <div class="vocab-zh">有氣質、高雅</div>
+        <div class="vocab-tip">気品（品格）→舉手投足有格調</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">色気がある</div>
+          <div class="vocab-reading">いろけがある</div>
+        </div><button class="speak-btn" onclick="speakJP('いろけがある', this)"></button></div>
+        <div class="vocab-zh">有魅力、有性感氣質</div>
+        <div class="vocab-tip">色気＝魅力、嫵媚感</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">しとやかな</div>
+          <div class="vocab-reading">しとやかな</div>
+        </div><button class="speak-btn" onclick="speakJP('しとやかな', this)"></button></div>
+        <div class="vocab-zh">溫柔嫻靜、端莊</div>
+        <div class="vocab-tip">多用於女性，動作輕柔優雅</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">チャーミングな</div>
+          <div class="vocab-reading">チャーミングな</div>
+        </div><button class="speak-btn" onclick="speakJP('チャーミングな', this)"></button></div>
+        <div class="vocab-zh">迷人、魅力十足</div>
+        <div class="vocab-tip">英文 charming 外來語</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">まめな</div>
+          <div class="vocab-reading">まめな</div>
+        </div><button class="speak-btn" onclick="speakJP('まめな', this)"></button></div>
+        <div class="vocab-zh">勤勞認真、做事細心</div>
+        <div class="vocab-tip">原義是小豆子→小而紮實→做事仔細</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">生真面目な</div>
+          <div class="vocab-reading">きまじめな</div>
+        </div><button class="speak-btn" onclick="speakJP('きまじめな', this)"></button></div>
+        <div class="vocab-zh">一板一眼、過度認真</div>
+        <div class="vocab-tip">生（raw）+真面目→認真過頭，可正可負</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">勤勉な</div>
+          <div class="vocab-reading">きんべんな</div>
+        </div><button class="speak-btn" onclick="speakJP('きんべんな', this)"></button></div>
+        <div class="vocab-zh">勤奮用功</div>
+        <div class="vocab-tip">勤+勉，漢字直接，語感同中文</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">誠実な</div>
+          <div class="vocab-reading">せいじつな</div>
+        </div><button class="speak-btn" onclick="speakJP('せいじつな', this)"></button></div>
+        <div class="vocab-zh">誠實、真誠</div>
+        <div class="vocab-tip">漢字同中文，語感一致</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">まともな</div>
+          <div class="vocab-reading">まともな</div>
+        </div><button class="speak-btn" onclick="speakJP('まともな', this)"></button></div>
+        <div class="vocab-zh">正經、正常、像樣</div>
+        <div class="vocab-tip">走正道，不偏離常軌</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">大柄な</div>
+          <div class="vocab-reading">おおがらな</div>
+        </div><button class="speak-btn" onclick="speakJP('おおがらな', this)"></button></div>
+        <div class="vocab-zh">體格高大、花紋大</div>
+        <div class="vocab-tip">大+柄（體型）→高大的體格</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">小柄な</div>
+          <div class="vocab-reading">こがらな</div>
+        </div><button class="speak-btn" onclick="speakJP('こがらな', this)"></button></div>
+        <div class="vocab-zh">身材嬌小</div>
+        <div class="vocab-tip">小+柄，與大柄な相對</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">活発な</div>
+          <div class="vocab-reading">かっぱつな</div>
+        </div><button class="speak-btn" onclick="speakJP('かっぱつな', this)"></button></div>
+        <div class="vocab-zh">活潑、積極</div>
+        <div class="vocab-tip">漢字同中文，活力十足</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">有望な</div>
+          <div class="vocab-reading">ゆうぼうな</div>
+        </div><button class="speak-btn" onclick="speakJP('ゆうぼうな', this)"></button></div>
+        <div class="vocab-zh">有前途、有希望</div>
+        <div class="vocab-tip">漢字同中文，語感一致</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">純朴な</div>
+          <div class="vocab-reading">じゅんぼくな</div>
+        </div><button class="speak-btn" onclick="speakJP('じゅんぼくな', this)"></button></div>
+        <div class="vocab-zh">純樸、老實</div>
+        <div class="vocab-tip">純+朴，比 純粋 更強調自然不做作</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">無邪気な</div>
+          <div class="vocab-reading">むじゃきな</div>
+        </div><button class="speak-btn" onclick="speakJP('むじゃきな', this)"></button></div>
+        <div class="vocab-zh">天真無邪</div>
+        <div class="vocab-tip">無+邪気（壞心思）→沒有算計</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">温和な</div>
+          <div class="vocab-reading">おんわな</div>
+        </div><button class="speak-btn" onclick="speakJP('おんわな', this)"></button></div>
+        <div class="vocab-zh">溫和、和氣</div>
+        <div class="vocab-tip">漢字同中文，語感一致</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">気さくな</div>
+          <div class="vocab-reading">きさくな</div>
+        </div><button class="speak-btn" onclick="speakJP('きさくな', this)"></button></div>
+        <div class="vocab-zh">隨和、沒架子</div>
+        <div class="vocab-tip">讓人覺得自在，不擺架子</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">おおらかな</div>
+          <div class="vocab-reading">おおらかな</div>
+        </div><button class="speak-btn" onclick="speakJP('おおらかな', this)"></button></div>
+        <div class="vocab-zh">豁達、開朗</div>
+        <div class="vocab-tip">海闊天空的感覺，不計小節</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">素朴な</div>
+          <div class="vocab-reading">そぼくな</div>
+        </div><button class="speak-btn" onclick="speakJP('そぼくな', this)"></button></div>
+        <div class="vocab-zh">樸素、質樸</div>
+        <div class="vocab-tip">強調自然不做作，比 純朴 更偏外表</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">デリケートな</div>
+          <div class="vocab-reading">デリケートな</div>
+        </div><button class="speak-btn" onclick="speakJP('デリケートな', this)"></button></div>
+        <div class="vocab-zh">纖細敏感、細心</div>
+        <div class="vocab-tip">英文 delicate 外來語</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">物好きな</div>
+          <div class="vocab-reading">ものずきな</div>
+        </div><button class="speak-btn" onclick="speakJP('ものずきな', this)"></button></div>
+        <div class="vocab-zh">好奇心強、什麼都想試</div>
+        <div class="vocab-tip">物（事物）+好き→好奇心旺盛</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">無口な</div>
+          <div class="vocab-reading">むくちな</div>
+        </div><button class="speak-btn" onclick="speakJP('むくちな', this)"></button></div>
+        <div class="vocab-zh">沉默寡言、話不多</div>
+        <div class="vocab-tip">無+口→不多說話，可正可負</div>
       </div>
 
     </div>
   </div>
 
   <div class="card">
-    <div class="subsection-label label-negative">❌ 悪い意味</div>
+    <div class="subsection-label label-negative">❌ 悪い意味（17語）</div>
     <div class="vocab-grid">
 
       <div class="vocab-item negative">
-        <div class="vocab-top">
-          <div>
-            <div class="vocab-jp">気難しい</div>
-            <div class="vocab-reading">きむずかしい</div>
-          </div>
-          <button class="speak-btn" onclick="speakJP('きむずかしい', this)" title="發音">🔊</button>
-        </div>
-        <div class="vocab-zh">難搞、難取悅</div>
-        <div class="vocab-tip">氣很難→難以相處</div>
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">気まぐれな</div>
+          <div class="vocab-reading">きまぐれな</div>
+        </div><button class="speak-btn" onclick="speakJP('きまぐれな', this)"></button></div>
+        <div class="vocab-zh">善變、任性</div>
+        <div class="vocab-tip">気+紛れ（分心）→心情飄忽不定</div>
       </div>
 
       <div class="vocab-item negative">
-        <div class="vocab-top">
-          <div>
-            <div class="vocab-jp">なれなれしい</div>
-            <div class="vocab-reading">なれなれしい</div>
-          </div>
-          <button class="speak-btn" onclick="speakJP('なれなれしい', this)" title="發音">🔊</button>
-        </div>
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">近寄りがたい</div>
+          <div class="vocab-reading">ちかよりがたい</div>
+        </div><button class="speak-btn" onclick="speakJP('ちかよりがたい', this)"></button></div>
+        <div class="vocab-zh">難以親近、令人望而生畏</div>
+        <div class="vocab-tip">近寄る（靠近）+難い→讓人不敢靠近</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">陰気な</div>
+          <div class="vocab-reading">いんきな</div>
+        </div><button class="speak-btn" onclick="speakJP('いんきな', this)"></button></div>
+        <div class="vocab-zh">陰沉、氣氛壓抑</div>
+        <div class="vocab-tip">陰+気（氣）→帶來負面氣場</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">孤独な</div>
+          <div class="vocab-reading">こどくな</div>
+        </div><button class="speak-btn" onclick="speakJP('こどくな', this)"></button></div>
+        <div class="vocab-zh">孤獨、孤立</div>
+        <div class="vocab-tip">漢字同中文，語感一致</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">臆病な</div>
+          <div class="vocab-reading">おくびょうな</div>
+        </div><button class="speak-btn" onclick="speakJP('おくびょうな', this)"></button></div>
+        <div class="vocab-zh">膽小、懦弱</div>
+        <div class="vocab-tip">臆（心縮）+病→因為恐懼而畏縮</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">なれなれしい</div>
+          <div class="vocab-reading">なれなれしい</div>
+        </div><button class="speak-btn" onclick="speakJP('なれなれしい', this)"></button></div>
         <div class="vocab-zh">過度親近、沒分寸</div>
         <div class="vocab-tip">慣れ慣れ→太習慣了→缺乏禮貌距離</div>
       </div>
 
       <div class="vocab-item negative">
-        <div class="vocab-top">
-          <div>
-            <div class="vocab-jp">ずぼらな</div>
-            <div class="vocab-reading">ずぼらな</div>
-          </div>
-          <button class="speak-btn" onclick="speakJP('ずぼらな', this)" title="發音">🔊</button>
-        </div>
-        <div class="vocab-zh">邋遢、懶散</div>
-        <div class="vocab-tip">音感本身聽起來就很懶散</div>
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">いやらしい</div>
+          <div class="vocab-reading">いやらしい</div>
+        </div><button class="speak-btn" onclick="speakJP('いやらしい', this)"></button></div>
+        <div class="vocab-zh">下流、猥瑣、令人不舒服</div>
+        <div class="vocab-tip">比 いやしい 更偏性意味或讓人噁心的感覺</div>
       </div>
 
       <div class="vocab-item negative">
-        <div class="vocab-top">
-          <div>
-            <div class="vocab-jp">でしゃばりな</div>
-            <div class="vocab-reading">でしゃばりな</div>
-          </div>
-          <button class="speak-btn" onclick="speakJP('でしゃばりな', this)" title="發音">🔊</button>
-        </div>
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">卑しい</div>
+          <div class="vocab-reading">いやしい</div>
+        </div><button class="speak-btn" onclick="speakJP('いやしい', this)"></button></div>
+        <div class="vocab-zh">貪婪、下賤、卑鄙</div>
+        <div class="vocab-tip">身份低賤或品格低劣</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">しぶとい</div>
+          <div class="vocab-reading">しぶとい</div>
+        </div><button class="speak-btn" onclick="speakJP('しぶとい', this)"></button></div>
+        <div class="vocab-zh">頑固、死纏爛打</div>
+        <div class="vocab-tip">不輕易放棄，但帶有負面的「黏人」感</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">荒っぽい</div>
+          <div class="vocab-reading">あらっぽい</div>
+        </div><button class="speak-btn" onclick="speakJP('あらっぽい', this)"></button></div>
+        <div class="vocab-zh">粗暴、魯莽</div>
+        <div class="vocab-tip">荒（粗）+っぽい（有點）→行事粗魯</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">金遣いが荒い</div>
+          <div class="vocab-reading">かねづかいがあらい</div>
+        </div><button class="speak-btn" onclick="speakJP('かねづかいがあらい', this)"></button></div>
+        <div class="vocab-zh">花錢大手大腳、揮霍</div>
+        <div class="vocab-tip">金遣い（用錢方式）+荒い（粗）→亂花錢</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">おせっかいな</div>
+          <div class="vocab-reading">おせっかいな</div>
+        </div><button class="speak-btn" onclick="speakJP('おせっかいな', this)"></button></div>
+        <div class="vocab-zh">多管閒事、愛管別人</div>
+        <div class="vocab-tip">お+節介（多餘的關心）→超出範圍的介入</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">おっちょこちょいな</div>
+          <div class="vocab-reading">おっちょこちょいな</div>
+        </div><button class="speak-btn" onclick="speakJP('おっちょこちょいな', this)"></button></div>
+        <div class="vocab-zh">毛毛躁躁、冒失鬼</div>
+        <div class="vocab-tip">發音本身就很慌亂，粗心大意的感覺</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">でしゃばりな</div>
+          <div class="vocab-reading">でしゃばりな</div>
+        </div><button class="speak-btn" onclick="speakJP('でしゃばりな', this)"></button></div>
         <div class="vocab-zh">愛出風頭、多管閒事</div>
-        <div class="vocab-tip">出る＋邪魔→硬插進來</div>
+        <div class="vocab-tip">出る+邪魔→硬要插進來</div>
       </div>
 
       <div class="vocab-item negative">
-        <div class="vocab-top">
-          <div>
-            <div class="vocab-jp">軽率な</div>
-            <div class="vocab-reading">けいそつな</div>
-          </div>
-          <button class="speak-btn" onclick="speakJP('けいそつな', this)" title="發音">🔊</button>
-        </div>
-        <div class="vocab-zh">輕率、冒失</div>
-        <div class="vocab-tip">軽（輕）＋率→做事不考慮後果</div>
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">きざな</div>
+          <div class="vocab-reading">きざな</div>
+        </div><button class="speak-btn" onclick="speakJP('きざな', this)"></button></div>
+        <div class="vocab-zh">裝模作樣、自以為是</div>
+        <div class="vocab-tip">帶著一種刻意表演的油膩感</div>
       </div>
 
       <div class="vocab-item negative">
-        <div class="vocab-top">
-          <div>
-            <div class="vocab-jp">ルーズな</div>
-            <div class="vocab-reading">ルーズな</div>
-          </div>
-          <button class="speak-btn" onclick="speakJP('ルーズな', this)" title="發音">🔊</button>
-        </div>
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">ルーズな</div>
+          <div class="vocab-reading">ルーズな</div>
+        </div><button class="speak-btn" onclick="speakJP('ルーズな', this)"></button></div>
         <div class="vocab-zh">散漫、不守時</div>
         <div class="vocab-tip">英文 loose 的外來語</div>
       </div>
 
       <div class="vocab-item negative">
-        <div class="vocab-top">
-          <div>
-            <div class="vocab-jp">神経質な</div>
-            <div class="vocab-reading">しんけいしつな</div>
-          </div>
-          <button class="speak-btn" onclick="speakJP('しんけいしつな', this)" title="發音">🔊</button>
-        </div>
-        <div class="vocab-zh">神經質、過度敏感</div>
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">無礼な</div>
+          <div class="vocab-reading">ぶれいな</div>
+        </div><button class="speak-btn" onclick="speakJP('ぶれいな', this)"></button></div>
+        <div class="vocab-zh">無禮、失禮</div>
         <div class="vocab-tip">漢字同中文，語感一致</div>
-      </div>
-
-      <div class="vocab-item negative">
-        <div class="vocab-top">
-          <div>
-            <div class="vocab-jp">いやしい</div>
-            <div class="vocab-reading">いやしい</div>
-          </div>
-          <button class="speak-btn" onclick="speakJP('いやしい', this)" title="發音">🔊</button>
-        </div>
-        <div class="vocab-zh">貪婪、下流、低俗</div>
-        <div class="vocab-tip">聽起來就充滿「嫌惡感」</div>
       </div>
 
     </div>
@@ -554,7 +826,7 @@
           <span class="jp">親になってこそ、子育ての大変さがわかる。</span>
           <span class="zh">唯有成為父母，才能真正理解育兒的辛苦。</span>
         </div>
-        <button class="speak-btn" onclick="speakJP('親になってこそ、子育ての大変さがわかる。', this)" title="發音">🔊</button>
+        <button class="speak-btn" onclick="speakJP('親になってこそ、子育ての大変さがわかる。', this)" title="發音"></button>
       </div>
     </div>
 
@@ -568,7 +840,7 @@
           <span class="jp">苦労こそあれ、仕事にやりがいを感じる。</span>
           <span class="zh">雖然辛苦，但工作很有意義。</span>
         </div>
-        <button class="speak-btn" onclick="speakJP('苦労こそあれ、仕事にやりがいを感じる。', this)" title="發音">🔊</button>
+        <button class="speak-btn" onclick="speakJP('苦労こそあれ、仕事にやりがいを感じる。', this)" title="發音"></button>
       </div>
     </div>
 
@@ -582,7 +854,7 @@
           <span class="jp">感謝こそすれ、文句なんてありません。</span>
           <span class="zh">只有感謝，絕不會有任何抱怨。</span>
         </div>
-        <button class="speak-btn" onclick="speakJP('感謝こそすれ、文句なんてありません。', this)" title="發音">🔊</button>
+        <button class="speak-btn" onclick="speakJP('感謝こそすれ、文句なんてありません。', this)" title="發音"></button>
       </div>
     </div>
 
@@ -596,7 +868,7 @@
           <span class="jp">見た目こそ悪いが、味はとてもいい。</span>
           <span class="zh">外觀雖然不好看，但味道非常棒。</span>
         </div>
-        <button class="speak-btn" onclick="speakJP('見た目こそ悪いが、味はとてもいい。', this)" title="發音">🔊</button>
+        <button class="speak-btn" onclick="speakJP('見た目こそ悪いが、味はとてもいい。', this)" title="發音"></button>
       </div>
     </div>
 
@@ -622,22 +894,22 @@
       <div class="dialogue">
         <div class="speaker">佐藤</div>
         <div class="speech" data-speak="ねえ、新しく来た山田さんって、どんな人だと思う？">ねえ、新しく来た山田さんって、どんな人だと思う？</div>
-        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
       </div>
       <div class="dialogue">
         <div class="speaker">田中</div>
         <div class="speech" data-speak="正直、最初は気難しい人かと思ったよ。あんまり笑わないし。">正直、最初は<span class="vocab-hl">気難しい</span>人かと思ったよ。あんまり笑わないし。</div>
-        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
       </div>
       <div class="dialogue">
         <div class="speaker">佐藤</div>
         <div class="speech" data-speak="でも一緒に働いてこそ、その人の本当の良さってわかるじゃない？">でも一緒に働い<span class="grammar-hl">てこそ</span>、その人の本当の良さってわかるじゃない？</div>
-        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
       </div>
       <div class="dialogue">
         <div class="speaker">田中</div>
         <div class="speech" data-speak="それはそうだね。実際に話してみたら気さくで、しかも仕事は几帳面だし、見直したよ。">それはそうだね。実際に話してみたら<span class="vocab-hl">気さく</span>で、しかも仕事は<span class="vocab-hl">几帳面</span>だし、見直したよ。</div>
-        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
       </div>
       <div class="tip-box">「一緒に働いてこそ」＝唯有一起工作過，才能了解一個人。前面是必要條件，後面是才能得到的事。</div>
     </div>
@@ -656,22 +928,22 @@
       <div class="dialogue">
         <div class="speaker">木村</div>
         <div class="speech" data-speak="山田さん、今日のプレゼン大変そうだったね。">山田さん、今日のプレゼン大変そうだったね。</div>
-        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
       </div>
       <div class="dialogue">
         <div class="speaker">佐藤</div>
         <div class="speech" data-speak="苦労こそあれ、あの人は粘り強いから絶対諦めないよ。"><span class="grammar-hl">苦労こそあれ</span>、あの人は<span class="vocab-hl">粘り強い</span>から絶対諦めないよ。</div>
-        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
       </div>
       <div class="dialogue">
         <div class="speaker">木村</div>
         <div class="speech" data-speak="でも隣の鈴木さんってでしゃばりで、邪魔してくるよね。">でも隣の鈴木さんって<span class="vocab-hl">でしゃばり</span>で、邪魔してくるよね。</div>
-        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
       </div>
       <div class="dialogue">
         <div class="speaker">田中</div>
         <div class="speech" data-speak="山田さんは感謝こそすれ、絶対文句言わないと思う。情け深いから。">山田さんは<span class="grammar-hl">感謝こそすれ</span>、絶対文句言わないと思う。<span class="vocab-hl">情け深い</span>から。</div>
-        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
       </div>
       <div class="tip-box">「こそあれ」は転折（雖然⋯）、「こそすれ」は強い否定（只會⋯絕不會⋯）。兩個こそ、語氣不同！</div>
     </div>
@@ -690,22 +962,22 @@
       <div class="dialogue">
         <div class="speaker">田中</div>
         <div class="speech" data-speak="そういえば、鈴木さんって見た目こそ頼りなさそうだけど、実はかなりたくましいらしいよ。">そういえば、鈴木さんって<span class="grammar-hl">見た目こそ</span>頼りなさそうだけど、実はかなり<span class="vocab-hl">たくましい</span>らしいよ。</div>
-        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
       </div>
       <div class="dialogue">
         <div class="speaker">佐藤</div>
         <div class="speech" data-speak="え、意外。いつもルーズで軽率なイメージしかなかった。">え、意外。いつも<span class="vocab-hl">ルーズ</span>で<span class="vocab-hl">軽率</span>なイメージしかなかった。</div>
-        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
       </div>
       <div class="dialogue">
         <div class="speaker">木村</div>
         <div class="speech" data-speak="人って外見じゃわからないね。純粋に仕事が好きなんだって。">人って外見じゃわからないね。<span class="vocab-hl">純粋</span>に仕事が好きなんだって。</div>
-        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
       </div>
       <div class="dialogue">
         <div class="speaker">田中</div>
         <div class="speech" data-speak="社会に出てこそ見えてくるものがあるよね。気さくかどうかも、一緒に働いてこそわかるし。">社会に出<span class="grammar-hl">てこそ</span>見えてくるものがあるよね。<span class="vocab-hl">気さく</span>かどうかも、一緒に働い<span class="grammar-hl">てこそ</span>わかるし。</div>
-        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音">🔊</button>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
       </div>
       <div class="tip-box">「見た目こそ〜が」＝外觀雖然⋯但⋯。こそ讓讓步的語氣更強，比單純的「は〜が」更有強調感。</div>
     </div>
@@ -741,7 +1013,7 @@
       return;
     }
     if (jaVoice) {
-      el.textContent = `✅ 日文語音已就緒（${jaVoice.name}）。點擊 🔊 聽發音，▶ 全部播放 連續聽整段對話。`;
+      el.textContent = `✅ 日文語音已就緒（${jaVoice.name}）。點擊圓形按鈕聽發音，▶ 全部播放 連續聽整段對話。`;
       el.style.cssText = 'background:#e8f5e9;border-color:#a5d6a7;color:#1b5e20';
     } else {
       el.innerHTML = '⚠️ <strong>找不到日文語音。</strong>請至 系統設定 → 語音（或 Accessibility → Spoken Content）→ 新增「日本語」語音後，重新整理頁面。';
