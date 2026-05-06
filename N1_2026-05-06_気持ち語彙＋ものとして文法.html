@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JLPT N1 學習教材｜2026.05.06</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+  :root {
+    --blue:       #BA8E7A;
+    --blue-pale:  #F5EAD8;
+    --primary-lt: #D7A184;
+    --sand:       #D4C2AD;
+    --cream:      #EFDFCC;
+    --red:        #C4755E;
+    --green:      #7FA882;
+    --yellow:     #C49A6C;
+    --bg:         #EFDFCC;
+    --card:       #FAF7F3;
+    --text:       #3D2B1F;
+    --muted:      #9A7B6C;
+    --border:     #D4C2AD;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    padding: 2rem 1rem;
+  }
+
+  .container { max-width: 820px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #BA8E7A 0%, #D7A184 100%);
+    border-radius: 20px;
+    padding: 1.8rem 2.5rem;
+    color: white;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header-left { display: flex; align-items: center; gap: 1rem; }
+  .header-avatar {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.5);
+  }
+  .header h1 { font-size: 1.5rem; font-weight: 800; letter-spacing: 0.04em; }
+  .header .meta { font-size: 0.82rem; opacity: 0.8; margin-top: 0.3rem; }
+  .badge {
+    background: rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.45);
+    border-radius: 50px;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+  }
+
+  /* TTS notice */
+  .tts-notice {
+    border-radius: 10px;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.82rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #F5EAD8;
+    border: 1px solid #D4C2AD;
+    color: #7A4F3A;
+  }
+  #voice-select {
+    margin-left: auto;
+    font-size: 0.78rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.2rem 0.5rem;
+    background: var(--card);
+    color: var(--text);
+    cursor: pointer;
+    max-width: 160px;
+  }
+
+  .speak-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f0fe;
+    border: none;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    font-size: 0;
+    transition: background 0.15s;
+    flex-shrink: 0;
+    padding: 0;
+  }
+  .speak-btn::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 4px 0 4px 7px;
+    border-color: transparent transparent transparent var(--blue);
+    margin-left: 2px;
+    transition: all 0.15s;
+  }
+  .speak-btn:hover { background: #E8D5C4; }
+  .speak-btn.playing {
+    background: var(--blue);
+    animation: pulse 0.8s ease-in-out infinite alternate;
+  }
+  .speak-btn.playing::before {
+    border: none;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 1px;
+    margin-left: 0;
+  }
+  @keyframes pulse {
+    from { transform: scale(1); box-shadow: 0 0 0 0 rgba(186,142,122,0.45); }
+    to   { transform: scale(1.1); box-shadow: 0 0 0 5px rgba(186,142,122,0); }
+  }
+
+  .play-all-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 50px;
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.2rem 0.8rem;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .play-all-btn:hover { background: rgba(255,255,255,0.35); }
+  .play-all-btn.playing { background: rgba(255,255,255,0.9); color: var(--blue); }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 2rem 0 1rem;
+    color: var(--text);
+  }
+  .section-title .icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .icon-vocab { background: #fff3e0; }
+  .icon-grammar { background: #e8f0fe; }
+  .icon-drama { background: #e8f5e9; }
+
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  /* Vocab grid */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  @media (max-width: 600px) { .vocab-grid { grid-template-columns: 1fr; } }
+
+  .vocab-item {
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+    border-left: 3px solid transparent;
+    transition: transform 0.15s;
+    position: relative;
+  }
+  .vocab-item:hover { transform: translateY(-2px); }
+  .vocab-item.positive { border-color: var(--green); }
+  .vocab-item.negative { border-color: var(--red); }
+  .vocab-item.neutral  { border-color: var(--sand); }
+
+  .vocab-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+  .vocab-jp { font-size: 1.05rem; font-weight: 700; font-family: 'Noto Sans JP', sans-serif; }
+  .vocab-reading { font-size: 0.8rem; color: var(--blue); margin: 0.1rem 0; font-family: 'Noto Sans JP', sans-serif; }
+  .vocab-zh { font-size: 0.9rem; color: var(--text); }
+  .vocab-tip { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; }
+  .vocab-ex { font-size: 0.82rem; color: #6b5a4a; margin-top: 0.3rem; font-family: 'Noto Sans JP', sans-serif; padding-left: 0.5rem; border-left: 2px solid var(--cream); }
+
+  .subsection-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+  }
+  .label-positive { background: #e8f5e9; color: #2e7d32; }
+  .label-negative { background: #ffebee; color: #c62828; }
+  .label-neutral  { background: #f5eedc; color: #7A4F3A; }
+
+  /* Grammar */
+  .grammar-pattern {
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 0.9rem;
+    border-left: 4px solid var(--blue);
+  }
+  .grammar-num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+  }
+  .grammar-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #2c3e6b;
+    margin-bottom: 0.3rem;
+  }
+  .grammar-form {
+    font-size: 0.8rem;
+    background: #e8f0fe;
+    color: var(--blue);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .grammar-meaning {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0.6rem;
+  }
+  .grammar-example {
+    background: white;
+    border-radius: 7px;
+    padding: 0.7rem 1rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+  }
+  .grammar-example-text { flex: 1; }
+  .grammar-example .jp { color: var(--text); }
+  .grammar-example .hl { color: var(--blue); font-weight: 700; }
+  .grammar-example .zh { font-size: 0.82rem; color: var(--muted); display: block; margin-top: 0.2rem; font-family: 'Noto Sans TC', sans-serif; }
+
+  /* Drama */
+  .drama-scene {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 1.2rem;
+    overflow: hidden;
+  }
+  .drama-header {
+    background: linear-gradient(90deg, #4a7fd4 0%, #6c9ce8 100%);
+    color: white;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .drama-header .tag {
+    background: rgba(255,255,255,0.25);
+    padding: 0.15rem 0.6rem;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+  .drama-header-left { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; }
+  .drama-body { padding: 1.4rem 1.6rem; }
+
+  .dialogue { margin-bottom: 0.9rem; display: flex; gap: 0.8rem; align-items: flex-start; }
+  .speaker {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--blue);
+    min-width: 40px;
+    padding-top: 0.3rem;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .speech {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.85;
+    flex: 1;
+  }
+  .speech .vocab-hl { color: var(--green); font-weight: 700; }
+  .speech .grammar-hl { color: var(--blue); font-weight: 700; text-decoration: underline; text-decoration-color: rgba(74,127,212,0.4); }
+  .dialogue-speak { padding-top: 0.25rem; }
+  .speech-zh { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; font-family: 'Noto Sans TC', sans-serif; line-height: 1.5; display: block; }
+
+  ruby { ruby-position: over; }
+  rt { font-size: 0.55em; color: var(--blue); font-weight: 400; }
+
+  .tip-box {
+    background: #fffbf0;
+    border: 1px solid #ffe082;
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #5a4a1a;
+  }
+  .tip-box::before { content: "💡 "; }
+
+  .footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <img src="頭貼/my-notion-face-transparent.png" class="header-avatar" alt="Rong" onerror="this.style.display='none'">
+      <div>
+        <h1>JLPT N1 學習教材</h1>
+        <div class="meta">2026年5月6日｜気持ちを表す言葉 ＋ ものとして／くらいなら文法</div>
+      </div>
+    </div>
+    <div class="badge">N1</div>
+  </div>
+
+  <div class="tts-notice" id="voice-status">
+    <span id="voice-status-text">🔍 正在偵測日文語音…</span>
+    <select id="voice-select" style="display:none" title="選擇語音"></select>
+  </div>
+
+  <!-- ===== PART 1: VOCABULARY ===== -->
+  <div class="section-title">
+    <div class="icon icon-vocab">📖</div>
+    PART 1｜人の<ruby>気持<rt>きも</rt></ruby>ちを<ruby>表<rt>あらわ</rt></ruby>す<ruby>言葉<rt>ことば</rt></ruby>（全32語）
+  </div>
+
+  <!-- 正面情緒 -->
+  <div class="card">
+    <div class="subsection-label label-positive">✅ ポジティブ・心地よい（8語）</div>
+    <div class="vocab-grid">
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">望ましい</div>
+          <div class="vocab-reading">のぞましい</div>
+        </div><button class="speak-btn" onclick="speakJP('のぞましい', this)"></button></div>
+        <div class="vocab-zh">理想的、值得期待的</div>
+        <div class="vocab-tip">客觀上希望這樣，多用於建議</div>
+        <div class="vocab-ex">運動は毎日続けることが望ましい。</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">好ましい</div>
+          <div class="vocab-reading">このましい</div>
+        </div><button class="speak-btn" onclick="speakJP('このましい', this)"></button></div>
+        <div class="vocab-zh">令人好感、合適</div>
+        <div class="vocab-tip">主觀感覺很好，較含蓄的「好き」</div>
+        <div class="vocab-ex">好ましい服装でお越しください。</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">申し分ない</div>
+          <div class="vocab-reading">もうしぶんない</div>
+        </div><button class="speak-btn" onclick="speakJP('もうしぶんない', this)"></button></div>
+        <div class="vocab-zh">無可挑剔、完美</div>
+        <div class="vocab-tip">「申し分」＝可挑剔之處→沒得嫌</div>
+        <div class="vocab-ex">申し分のない作品ですね。</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">快い</div>
+          <div class="vocab-reading">こころよい</div>
+        </div><button class="speak-btn" onclick="speakJP('こころよい', this)"></button></div>
+        <div class="vocab-zh">爽快、樂意</div>
+        <div class="vocab-tip">心情舒暢，常用於「快く〜する」</div>
+        <div class="vocab-ex">申し出を快く承諾する。</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">すがすがしい</div>
+          <div class="vocab-reading">すがすがしい</div>
+        </div><button class="speak-btn" onclick="speakJP('すがすがしい', this)"></button></div>
+        <div class="vocab-zh">清爽、清新</div>
+        <div class="vocab-tip">空氣、心情皆可，多用早晨</div>
+        <div class="vocab-ex">すがすがしい朝ですね。</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">爽快</div>
+          <div class="vocab-reading">そうかい</div>
+        </div><button class="speak-btn" onclick="speakJP('そうかい', this)"></button></div>
+        <div class="vocab-zh">爽快、神清氣爽（ナ形）</div>
+        <div class="vocab-tip">運動後、洗澡後的暢快感</div>
+        <div class="vocab-ex">気分爽快！</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">心強い</div>
+          <div class="vocab-reading">こころづよい</div>
+        </div><button class="speak-btn" onclick="speakJP('こころづよい', this)"></button></div>
+        <div class="vocab-zh">放心、有底氣</div>
+        <div class="vocab-tip">有可靠的人在身旁的安心感</div>
+        <div class="vocab-ex">あなたと一緒だと心強い。</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">待ち遠しい</div>
+          <div class="vocab-reading">まちどおしい</div>
+        </div><button class="speak-btn" onclick="speakJP('まちどおしい', this)"></button></div>
+        <div class="vocab-zh">迫不及待、引頸期盼</div>
+        <div class="vocab-tip">等到心癢，正面期待感</div>
+        <div class="vocab-ex">春の訪れが待ち遠しい。</div>
+      </div>
+
+      <div class="vocab-item positive">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">ふさわしい</div>
+          <div class="vocab-reading">ふさわしい</div>
+        </div><button class="speak-btn" onclick="speakJP('ふさわしい', this)"></button></div>
+        <div class="vocab-zh">合適、相稱</div>
+        <div class="vocab-tip">人或物與場合相符</div>
+        <div class="vocab-ex">彼はリーダーとしてふさわしい。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 負面情緒 -->
+  <div class="card">
+    <div class="subsection-label label-negative">⚠️ ネガティブ・嫌な気持ち（15語）</div>
+    <div class="vocab-grid">
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">情けない</div>
+          <div class="vocab-reading">なさけない</div>
+        </div><button class="speak-btn" onclick="speakJP('なさけない', this)"></button></div>
+        <div class="vocab-zh">丟臉、可悲、令人失望</div>
+        <div class="vocab-tip">對自己失望時最常用</div>
+        <div class="vocab-ex">また負けてしまって情けない。</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">心細い</div>
+          <div class="vocab-reading">こころぼそい</div>
+        </div><button class="speak-btn" onclick="speakJP('こころぼそい', this)"></button></div>
+        <div class="vocab-zh">心裡發毛、不安</div>
+        <div class="vocab-tip">心強い的反義詞，孤獨無助</div>
+        <div class="vocab-ex">一人では心細い。</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">空しい</div>
+          <div class="vocab-reading">むなしい</div>
+        </div><button class="speak-btn" onclick="speakJP('むなしい', this)"></button></div>
+        <div class="vocab-zh">空虛、徒勞</div>
+        <div class="vocab-tip">沒有意義、白費力氣的失落感</div>
+        <div class="vocab-ex">喜びが何もない空しい生活。</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">切ない</div>
+          <div class="vocab-reading">せつない</div>
+        </div><button class="speak-btn" onclick="speakJP('せつない', this)"></button></div>
+        <div class="vocab-zh">心酸、難過</div>
+        <div class="vocab-tip">胸口悶悶的離愁感</div>
+        <div class="vocab-ex">彼と離れるのはとても切ない。</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">物足りない</div>
+          <div class="vocab-reading">ものたりない</div>
+        </div><button class="speak-btn" onclick="speakJP('ものたりない', this)"></button></div>
+        <div class="vocab-zh">不夠、有所欠缺</div>
+        <div class="vocab-tip">客觀上不滿足，差一點點</div>
+        <div class="vocab-ex">食事の量が物足りない。</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">わずらわしい</div>
+          <div class="vocab-reading">わずらわしい</div>
+        </div><button class="speak-btn" onclick="speakJP('わずらわしい', this)"></button></div>
+        <div class="vocab-zh">麻煩、繁瑣</div>
+        <div class="vocab-tip">人際關係或手續複雜的煩躁</div>
+        <div class="vocab-ex">隣人との付き合いがわずらわしい。</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">うっとうしい</div>
+          <div class="vocab-reading">うっとうしい</div>
+        </div><button class="speak-btn" onclick="speakJP('うっとうしい', this)"></button></div>
+        <div class="vocab-zh">陰沉、煩人</div>
+        <div class="vocab-tip">天氣陰鬱或人糾纏的悶感</div>
+        <div class="vocab-ex">うっとうしい天気が続く。</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">うざい</div>
+          <div class="vocab-reading">うざい</div>
+        </div><button class="speak-btn" onclick="speakJP('うざい', this)"></button></div>
+        <div class="vocab-zh">煩死了（俗語）</div>
+        <div class="vocab-tip">＝うっとうしい+わずらわしい，年輕人用</div>
+        <div class="vocab-ex">あの人、ほんとうざい。</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">ばかばかしい</div>
+          <div class="vocab-reading">ばかばかしい</div>
+        </div><button class="speak-btn" onclick="speakJP('ばかばかしい', this)"></button></div>
+        <div class="vocab-zh">荒謬、愚蠢</div>
+        <div class="vocab-tip">不值一提，覺得太蠢</div>
+        <div class="vocab-ex">ばかばかしい話だ。</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">痛ましい</div>
+          <div class="vocab-reading">いたましい</div>
+        </div><button class="speak-btn" onclick="speakJP('いたましい', this)"></button></div>
+        <div class="vocab-zh">慘不忍睹、令人心痛</div>
+        <div class="vocab-tip">看到悲劇現場時的痛心</div>
+        <div class="vocab-ex">痛ましい事故現場だった。</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">きまり悪い</div>
+          <div class="vocab-reading">きまりわるい</div>
+        </div><button class="speak-btn" onclick="speakJP('きまりわるい', this)"></button></div>
+        <div class="vocab-zh">尷尬、難為情</div>
+        <div class="vocab-tip">場面失態的羞愧感</div>
+        <div class="vocab-ex">会議に遅れてきまりが悪かった。</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">あさましい</div>
+          <div class="vocab-reading">あさましい</div>
+        </div><button class="speak-btn" onclick="speakJP('あさましい', this)"></button></div>
+        <div class="vocab-zh">下流、卑劣</div>
+        <div class="vocab-tip">道德上看不起的卑微樣</div>
+        <div class="vocab-ex">彼は根性があさましい。</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">おっかない</div>
+          <div class="vocab-reading">おっかない</div>
+        </div><button class="speak-btn" onclick="speakJP('おっかない', this)"></button></div>
+        <div class="vocab-zh">可怕、令人害怕</div>
+        <div class="vocab-tip">＝怖い，較口語</div>
+        <div class="vocab-ex">夜になるとおっかない。</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">見苦しい</div>
+          <div class="vocab-reading">みぐるしい</div>
+        </div><button class="speak-btn" onclick="speakJP('みぐるしい', this)"></button></div>
+        <div class="vocab-zh">難看、不像話</div>
+        <div class="vocab-tip">舉止失格讓人不忍直視</div>
+        <div class="vocab-ex">見苦しい態度はやめなさい。</div>
+      </div>
+
+      <div class="vocab-item negative">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">心苦しい</div>
+          <div class="vocab-reading">こころぐるしい</div>
+        </div><button class="speak-btn" onclick="speakJP('こころぐるしい', this)"></button></div>
+        <div class="vocab-zh">過意不去、心裡難受</div>
+        <div class="vocab-tip">給人添麻煩時的歉疚感</div>
+        <div class="vocab-ex">こんなことを頼むのは心苦しい。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 動詞類 -->
+  <div class="card">
+    <div class="subsection-label label-neutral">🎬 気持ちを表す動詞（8語）</div>
+    <div class="vocab-grid">
+
+      <div class="vocab-item neutral">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">焦る</div>
+          <div class="vocab-reading">あせる</div>
+        </div><button class="speak-btn" onclick="speakJP('あせる', this)"></button></div>
+        <div class="vocab-zh">著急、慌張</div>
+        <div class="vocab-tip">時間或狀況逼人的焦慮</div>
+        <div class="vocab-ex">時間がなくて焦った。</div>
+      </div>
+
+      <div class="vocab-item neutral">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">あきれる</div>
+          <div class="vocab-reading">あきれる</div>
+        </div><button class="speak-btn" onclick="speakJP('あきれる', this)"></button></div>
+        <div class="vocab-zh">傻眼、無語</div>
+        <div class="vocab-tip">超出常識，啞口無言</div>
+        <div class="vocab-ex">あまりに高い値段にあきれた。</div>
+      </div>
+
+      <div class="vocab-item neutral">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">気に障る</div>
+          <div class="vocab-reading">きにさわる</div>
+        </div><button class="speak-btn" onclick="speakJP('きにさわる', this)"></button></div>
+        <div class="vocab-zh">惹人不快、刺耳</div>
+        <div class="vocab-tip">某句話、某動作觸怒對方</div>
+        <div class="vocab-ex">気に障るようなことを言ってはいけない。</div>
+      </div>
+
+      <div class="vocab-item neutral">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">しゃくに障る</div>
+          <div class="vocab-reading">しゃくにさわる</div>
+        </div><button class="speak-btn" onclick="speakJP('しゃくにさわる', this)"></button></div>
+        <div class="vocab-zh">惱火、火大</div>
+        <div class="vocab-tip">＝かんに障る，自己火大時用</div>
+        <div class="vocab-ex">彼の態度がしゃくに障った。</div>
+      </div>
+
+      <div class="vocab-item neutral">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">気兼ねする</div>
+          <div class="vocab-reading">きがねする</div>
+        </div><button class="speak-btn" onclick="speakJP('きがねする', this)"></button></div>
+        <div class="vocab-zh">顧慮、放不開</div>
+        <div class="vocab-tip">怕造成別人困擾而拘束</div>
+        <div class="vocab-ex">ホームステイの家族に気兼ねする。</div>
+      </div>
+
+      <div class="vocab-item neutral">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">すねる</div>
+          <div class="vocab-reading">すねる</div>
+        </div><button class="speak-btn" onclick="speakJP('すねる', this)"></button></div>
+        <div class="vocab-zh">鬧彆扭、撒嬌生氣</div>
+        <div class="vocab-tip">小孩、戀人鬧情緒</div>
+        <div class="vocab-ex">子どもがすねている。</div>
+      </div>
+
+      <div class="vocab-item neutral">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">むかつく</div>
+          <div class="vocab-reading">むかつく</div>
+        </div><button class="speak-btn" onclick="speakJP('むかつく', this)"></button></div>
+        <div class="vocab-zh">①火大 ②反胃</div>
+        <div class="vocab-tip">心情或胃部都通用</div>
+        <div class="vocab-ex">船に酔って胸がむかつく。</div>
+      </div>
+
+      <div class="vocab-item neutral">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">恥をかく</div>
+          <div class="vocab-reading">はじをかく</div>
+        </div><button class="speak-btn" onclick="speakJP('はじをかく', this)"></button></div>
+        <div class="vocab-zh">出醜、丟臉</div>
+        <div class="vocab-tip">在眾人面前出糗的固定搭配</div>
+        <div class="vocab-ex">みんなの前で恥をかいた。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== PART 2: GRAMMAR ===== -->
+  <div class="section-title">
+    <div class="icon icon-grammar">📐</div>
+    PART 2｜<ruby>文法<rt>ぶんぽう</rt></ruby>「ものとして／くらいなら」（4文型）
+  </div>
+
+  <div class="card">
+
+    <div class="grammar-pattern">
+      <div class="grammar-num">GRAMMAR 1</div>
+      <div class="grammar-title">〜くらいなら／ぐらいなら</div>
+      <div class="grammar-form">V る + くらいなら ／ ぐらいなら</div>
+      <div class="grammar-meaning">與其...不如... ｜ 表達「那樣做的話太討厭了，倒不如選擇後者」</div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp">そんなことを<span class="hl">するくらいなら</span>、死んだほうがましだ。</div>
+          <span class="zh">與其做那種事，倒不如死了還比較好。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('そんなことをするくらいなら、死んだほうがましだ。', this)"></button>
+      </div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp">友達を<span class="hl">傷つけるくらいなら</span>、自分が我慢したほうがいい。</div>
+          <span class="zh">與其傷害朋友，不如自己忍耐。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('友達を傷つけるくらいなら、自分が我慢したほうがいい。', this)"></button>
+      </div>
+      <div class="tip-box">後面常接「〜ほうがましだ／ほうがいい／なさい」。「ましだ」是負面選項中比較不那麼糟的意思，記住這個搭配考試很常出！</div>
+    </div>
+
+    <div class="grammar-pattern">
+      <div class="grammar-num">GRAMMAR 2</div>
+      <div class="grammar-title">〜ぐらいのものだ／なものだ</div>
+      <div class="grammar-form">（〜のは）N + くらい/ぐらい + のものだ／なものだ</div>
+      <div class="grammar-meaning">只有...沒有別人 ｜ 強調「能夠...的，僅限這個人/這個範圍」</div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp">彼が仕事を辞めないように説得できるのは、<span class="hl">君ぐらいのものだ</span>。</div>
+          <span class="zh">能勸他不要辭職的人，只有你了。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('彼が仕事を辞めないように説得できるのは、君ぐらいのものだ。', this)"></button>
+      </div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp">君が受かるのは、<span class="hl">このランクの大学ぐらいのものだ</span>。</div>
+          <span class="zh">你能考上的，頂多就是這個層級的大學。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('君が受かるのは、このランクの大学ぐらいのものだ。', this)"></button>
+      </div>
+      <div class="tip-box">＝「〜しかない」。語感上比「しかない」更口語、更帶有「就這麼一個了」的限定感。要注意這裡的「ぐらい」不是「大概」的意思。</div>
+    </div>
+
+    <div class="grammar-pattern">
+      <div class="grammar-num">GRAMMAR 3</div>
+      <div class="grammar-title">〜ものとして</div>
+      <div class="grammar-form">V／A／なA(である)／N(である) + ものとして</div>
+      <div class="grammar-meaning">假定／當作...（と考えて）｜ 把某情況視為前提來行動</div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp">中級漢字は<span class="hl">できるものとして</span>、上級漢字のクラスを取った。</div>
+          <span class="zh">當作中級漢字已經會了，所以選了高級漢字班。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('中級漢字はできるものとして、上級漢字のクラスを取った。', this)"></button>
+      </div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp">田中さんはもう<span class="hl">来ないものとして</span>、始めましょう。</div>
+          <span class="zh">就當田中不會來了，我們開始吧。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('田中さんはもう来ないものとして、始めましょう。', this)"></button>
+      </div>
+      <div class="tip-box">語感是「(雖然不確定真假) 我先當作這樣，繼續下一步」。常用於假設、推進工作。注意名詞、ナ形容詞要加「である」。</div>
+    </div>
+
+    <div class="grammar-pattern">
+      <div class="grammar-num">GRAMMAR 4</div>
+      <div class="grammar-title">〜ものとする</div>
+      <div class="grammar-form">V る + ものとする</div>
+      <div class="grammar-meaning">規定／決定...（と決める）｜ 多用於契約書、規章等正式文件</div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp">採用試験は、毎年10月に<span class="hl">行うものとする</span>。</div>
+          <span class="zh">錄用考試規定每年10月舉行。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('さいようしけんは、まいねんじゅうがつにおこなうものとする。', this)"></button>
+      </div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp">契約の延長は、双方の同意による<span class="hl">ものとする</span>。</div>
+          <span class="zh">契約的延長須經雙方同意。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('けいやくのえんちょうは、そうほうのどういによるものとする。', this)"></button>
+      </div>
+      <div class="tip-box">「ものとして」vs「ものとする」一字之差，意思大不同！<br>・ものと<b>して</b>＝（我）當作是這樣（前提）<br>・ものと<b>する</b>＝（規定）就這樣決定（規則）</div>
+    </div>
+
+  </div>
+
+  <!-- ===== PART 3: DRAMA ===== -->
+  <div class="section-title">
+    <div class="icon icon-drama">🎭</div>
+    PART 3｜<ruby>今日<rt>きょう</rt></ruby>の<ruby>語彙<rt>ごい</rt></ruby>と<ruby>文法<rt>ぶんぽう</rt></ruby>を<ruby>使<rt>つか</rt></ruby>った<ruby>情境劇<rt>じょうきょうげき</rt></ruby>
+  </div>
+  <p style="font-size:0.85rem; color:var(--muted); margin-bottom:1rem;">登場人物：<b>美咲</b>（後輩）／<b>佐藤先輩</b>／<b>部長</b>。<span style="color:var(--green);font-weight:700;">綠</span>=語彙・<span style="color:var(--blue);font-weight:700;">藍</span>=文法</p>
+
+  <!-- Scene 1 -->
+  <div class="drama-scene">
+    <div class="drama-header">
+      <div class="drama-header-left">
+        <span>📍 <ruby>場面<rt>ばめん</rt></ruby><ruby>一<rt>いち</rt></ruby>：<ruby>資格<rt>しかく</rt></ruby><ruby>試験<rt>しけん</rt></ruby><ruby>前<rt>まえ</rt></ruby>のオフィス</span>
+        <span class="tag">焦る／心強い／くらいなら／ものとして</span>
+      </div>
+      <button class="play-all-btn" onclick="playScene(this, 'scene1')" title="連續播放整段對話">▶ 全部播放</button>
+    </div>
+    <div class="drama-body" id="scene1">
+      <div class="dialogue">
+        <div class="speaker">美咲</div>
+        <div class="speech" data-speak="先輩、来週の試験、もうダメです…時間がなくて焦ってばかりで、本当に情けない。">
+          <ruby>先輩<rt>せんぱい</rt></ruby>、<ruby>来週<rt>らいしゅう</rt></ruby>の<ruby>試験<rt>しけん</rt></ruby>、もうダメです…<ruby>時間<rt>じかん</rt></ruby>がなくて<span class="vocab-hl">焦って</span>ばかりで、<ruby>本当<rt>ほんとう</rt></ruby>に<span class="vocab-hl">情けない</span>。
+          <span class="speech-zh">前輩，下週的考試我已經不行了…一直焦躁不安，真的很丟臉。</span>
+        </div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">佐藤</div>
+        <div class="speech" data-speak="諦めるくらいなら、最後まで足掻いたほうがましだよ。一人だと心細いだろうけど、私もついてるから。">
+          <ruby>諦<rt>あきら</rt></ruby>める<span class="grammar-hl">くらいなら</span>、<ruby>最後<rt>さいご</rt></ruby>まで<ruby>足掻<rt>あが</rt></ruby>いたほうがましだよ。<ruby>一人<rt>ひとり</rt></ruby>だと<span class="vocab-hl">心細い</span>だろうけど、<ruby>私<rt>わたし</rt></ruby>もついてるから。
+          <span class="speech-zh">與其放棄，不如掙扎到最後還比較好。一個人會不安吧，我也會陪著你的。</span>
+        </div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">美咲</div>
+        <div class="speech" data-speak="先輩がいてくれると本当に心強いです。でも、私が受かるなんて、運がよかったぐらいのものですよ…。">
+          <ruby>先輩<rt>せんぱい</rt></ruby>がいてくれると<ruby>本当<rt>ほんとう</rt></ruby>に<span class="vocab-hl">心強い</span>です。でも、<ruby>私<rt>わたし</rt></ruby>が<ruby>受<rt>う</rt></ruby>かるなんて、<ruby>運<rt>うん</rt></ruby>がよかった<span class="grammar-hl">ぐらいのもの</span>ですよ…。
+          <span class="speech-zh">前輩在旁邊真的讓人很安心。不過我會考上，頂多就是運氣好罷了…。</span>
+        </div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">佐藤</div>
+        <div class="speech" data-speak="そんな弱気な…もう合格するものとして、面接の準備も始めようよ。発表の日が待ち遠しいね。">
+          そんな<ruby>弱気<rt>よわき</rt></ruby>な…もう<ruby>合格<rt>ごうかく</rt></ruby>する<span class="grammar-hl">ものとして</span>、<ruby>面接<rt>めんせつ</rt></ruby>の<ruby>準備<rt>じゅんび</rt></ruby>も<ruby>始<rt>はじ</rt></ruby>めようよ。<ruby>発表<rt>はっぴょう</rt></ruby>の<ruby>日<rt>ひ</rt></ruby>が<span class="vocab-hl">待ち遠しい</span>ね。
+          <span class="speech-zh">怎麼這麼沒自信…就當作妳已經考上了，面試準備也開始吧。我都迫不及待等放榜了呢。</span>
+        </div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
+      </div>
+      <div class="tip-box">「諦めるくらいなら〜ほうがましだ」是非常常見的鼓勵句型；後半的「合格するものとして」是把「會合格」當前提，幫助對方建立信心。先輩的關心方式一次用上四個今天的單字！</div>
+    </div>
+  </div>
+
+  <!-- Scene 2 -->
+  <div class="drama-scene">
+    <div class="drama-header">
+      <div class="drama-header-left">
+        <span>📍 <ruby>場面<rt>ばめん</rt></ruby><ruby>二<rt>に</rt></ruby>：<ruby>休憩<rt>きゅうけい</rt></ruby><ruby>室<rt>しつ</rt></ruby>でグチる</span>
+        <span class="tag">うっとうしい／むかつく／気兼ね／ぐらいのものだ</span>
+      </div>
+      <button class="play-all-btn" onclick="playScene(this, 'scene2')" title="連續播放整段對話">▶ 全部播放</button>
+    </div>
+    <div class="drama-body" id="scene2">
+      <div class="dialogue">
+        <div class="speaker">美咲</div>
+        <div class="speech" data-speak="隣の課の田村さん、あの言い方、本当に気に障るんです。会議で人を見下す感じで、むかつきます。">
+          <ruby>隣<rt>となり</rt></ruby>の<ruby>課<rt>か</rt></ruby>の<ruby>田村<rt>たむら</rt></ruby>さん、あの<ruby>言<rt>い</rt></ruby>い<ruby>方<rt>かた</rt></ruby>、<ruby>本当<rt>ほんとう</rt></ruby>に<span class="vocab-hl">気に障る</span>んです。<ruby>会議<rt>かいぎ</rt></ruby>で<ruby>人<rt>ひと</rt></ruby>を<ruby>見下<rt>みくだ</rt></ruby>す<ruby>感<rt>かん</rt></ruby>じで、<span class="vocab-hl">むかつき</span>ます。
+          <span class="speech-zh">隔壁課的田村先生，那種說話方式真的很刺耳。在會議上一臉看不起人的，我火大死了。</span>
+        </div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">佐藤</div>
+        <div class="speech" data-speak="わかる。あの人と打ち合わせするくらいなら、徹夜して資料を作り直したほうがましだよ。">
+          わかる。あの<ruby>人<rt>ひと</rt></ruby>と<ruby>打<rt>う</rt></ruby>ち<ruby>合<rt>あ</rt></ruby>わせする<span class="grammar-hl">くらいなら</span>、<ruby>徹夜<rt>てつや</rt></ruby>して<ruby>資料<rt>しりょう</rt></ruby>を<ruby>作<rt>つく</rt></ruby>り<ruby>直<rt>なお</rt></ruby>したほうがましだよ。
+          <span class="speech-zh">我懂。與其跟那個人開會，不如熬夜重做資料還比較好。</span>
+        </div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">美咲</div>
+        <div class="speech" data-speak="それに、あの人がいると気兼ねして発言できないし、空気がうっとうしくなって…。">
+          それに、あの<ruby>人<rt>ひと</rt></ruby>がいると<span class="vocab-hl">気兼ね</span>して<ruby>発言<rt>はつげん</rt></ruby>できないし、<ruby>空気<rt>くうき</rt></ruby>が<span class="vocab-hl">うっとうしく</span>なって…。
+          <span class="speech-zh">而且那個人在的話，我會不敢開口，氣氛也變得很沉悶…。</span>
+        </div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">佐藤</div>
+        <div class="speech" data-speak="あんなに偉そうにできるのは、うちの会社で田村さんぐらいのものだよ。あきれるよね。">
+          あんなに<ruby>偉<rt>えら</rt></ruby>そうにできるのは、うちの<ruby>会社<rt>かいしゃ</rt></ruby>で<ruby>田村<rt>たむら</rt></ruby>さん<span class="grammar-hl">ぐらいのものだ</span>よ。<span class="vocab-hl">あきれる</span>よね。
+          <span class="speech-zh">公司裡能擺架子擺成那樣的，也只有田村先生一個了。真讓人傻眼。</span>
+        </div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
+      </div>
+      <div class="tip-box">吐槽場面也是練「ぐらいのものだ」的好機會：「能...的，只有...」帶有強烈的限定+諷刺感。配上「うっとうしい」「むかつく」「気兼ねする」三連發，把職場壓力刻畫得超寫實。</div>
+    </div>
+  </div>
+
+  <!-- Scene 3 -->
+  <div class="drama-scene">
+    <div class="drama-header">
+      <div class="drama-header-left">
+        <span>📍 <ruby>場面<rt>ばめん</rt></ruby><ruby>三<rt>さん</rt></ruby>：<ruby>部長<rt>ぶちょう</rt></ruby>との<ruby>契約<rt>けいやく</rt></ruby>ミーティング</span>
+        <span class="tag">ものとする／ふさわしい／申し分ない／心苦しい</span>
+      </div>
+      <button class="play-all-btn" onclick="playScene(this, 'scene3')" title="連續播放整段對話">▶ 全部播放</button>
+    </div>
+    <div class="drama-body" id="scene3">
+      <div class="dialogue">
+        <div class="speaker">部長</div>
+        <div class="speech" data-speak="新しい契約書には「採用試験は毎年10月に行うものとする」と明記しよう。">
+          <ruby>新<rt>あたら</rt></ruby>しい<ruby>契約書<rt>けいやくしょ</rt></ruby>には「<ruby>採用<rt>さいよう</rt></ruby><ruby>試験<rt>しけん</rt></ruby>は<ruby>毎年<rt>まいねん</rt></ruby><ruby>10<rt>じゅう</rt></ruby><ruby>月<rt>がつ</rt></ruby>に<span class="grammar-hl">行うものとする</span>」と<ruby>明記<rt>めいき</rt></ruby>しよう。
+          <span class="speech-zh">新的契約書要載明「錄用考試規定每年10月舉行」。</span>
+        </div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">佐藤</div>
+        <div class="speech" data-speak="承知しました。それから契約延長は双方の同意によるものとする、という条項も入れておきます。">
+          <ruby>承知<rt>しょうち</rt></ruby>しました。それから<ruby>契約<rt>けいやく</rt></ruby><ruby>延長<rt>えんちょう</rt></ruby>は<ruby>双方<rt>そうほう</rt></ruby>の<ruby>同意<rt>どうい</rt></ruby>による<span class="grammar-hl">ものとする</span>、という<ruby>条項<rt>じょうこう</rt></ruby>も<ruby>入<rt>い</rt></ruby>れておきます。
+          <span class="speech-zh">了解。我會把「契約延長須經雙方同意」這條也加進去。</span>
+        </div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">部長</div>
+        <div class="speech" data-speak="それと、来月のプロジェクトリーダーは美咲さんに任せようと思う。彼女ならふさわしいし、能力も申し分ない。">
+          それと、<ruby>来月<rt>らいげつ</rt></ruby>のプロジェクトリーダーは<ruby>美咲<rt>みさき</rt></ruby>さんに<ruby>任<rt>まか</rt></ruby>せようと<ruby>思<rt>おも</rt></ruby>う。<ruby>彼女<rt>かのじょ</rt></ruby>なら<span class="vocab-hl">ふさわしい</span>し、<ruby>能力<rt>のうりょく</rt></ruby>も<span class="vocab-hl">申し分ない</span>。
+          <span class="speech-zh">還有，下個月的專案組長想交給美咲。她很適合，能力也無可挑剔。</span>
+        </div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">佐藤</div>
+        <div class="speech" data-speak="同感です。ただ、こんな急に伝えるのは美咲さんに心苦しいので、私から打診するものとしてもいいですか？">
+          <ruby>同感<rt>どうかん</rt></ruby>です。ただ、こんな<ruby>急<rt>きゅう</rt></ruby>に<ruby>伝<rt>つた</rt></ruby>えるのは<ruby>美咲<rt>みさき</rt></ruby>さんに<span class="vocab-hl">心苦しい</span>ので、<ruby>私<rt>わたし</rt></ruby>から<ruby>打診<rt>だしん</rt></ruby>する<span class="grammar-hl">ものとして</span>もいいですか？
+          <span class="speech-zh">我同感。不過這麼突然通知她，我有點過意不去，可不可以當作由我先去探她口風？</span>
+        </div>
+        <button class="speak-btn dialogue-speak" onclick="speakJP(this.previousElementSibling.dataset.speak, this)" title="發音"></button>
+      </div>
+      <div class="tip-box">這場戲完美對比「ものと<b>する</b>（規定）」與「ものと<b>して</b>（當作前提）」：契約書條文用「する」，個人作法的前提用「して」。考試出現換句話說題型，這個對比一定要分清楚！</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    JLPT N1 學習教材｜2026.05.06 製作｜目標：年内 N1 合格！🎯
+  </div>
+
+</div>
+
+<script>
+  let jaVoice = null;
+  let currentBtn = null;
+
+  function getJapaneseVoices() {
+    return speechSynthesis.getVoices().filter(v =>
+      v.lang.startsWith('ja') && !/zh|chinese/i.test(v.name + v.lang)
+    );
+  }
+
+  function pickBestVoice(voices) {
+    return voices.find(v => /premium|enhanced|siri/i.test(v.name))
+        || voices.find(v => v.lang === 'ja-JP')
+        || voices.find(v => v.lang.startsWith('ja'))
+        || null;
+  }
+
+  function populateVoiceDropdown() {
+    const sel = document.getElementById('voice-select');
+    if (!sel) return;
+    const voices = getJapaneseVoices();
+    sel.innerHTML = '';
+    voices.forEach((v, i) => {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = v.name.replace(/^Apple\s*/i, '');
+      sel.appendChild(opt);
+    });
+    if (jaVoice) {
+      const idx = voices.findIndex(v => v.name === jaVoice.name);
+      if (idx >= 0) sel.value = idx;
+    }
+    sel.style.display = voices.length > 1 ? '' : 'none';
+  }
+
+  function updateVoiceStatus() {
+    const voices = getJapaneseVoices();
+    jaVoice = pickBestVoice(voices);
+    const statusText = document.getElementById('voice-status-text');
+    const el = document.getElementById('voice-status');
+    if (!el || !statusText) return;
+    if (!window.speechSynthesis) {
+      statusText.textContent = '⚠️ 此瀏覽器不支援語音合成。';
+      el.style.cssText = 'background:#fdf3e7;border-color:#D7A184;color:#7A4F3A';
+      return;
+    }
+    if (jaVoice) {
+      statusText.textContent = `✅ 日文語音（${jaVoice.name.replace(/^Apple\s*/i,'')}）`;
+      el.style.cssText = '';
+      populateVoiceDropdown();
+    } else {
+      statusText.innerHTML = '⚠️ 找不到日文語音，請至系統設定新增「日本語」後重新整理。';
+      el.style.cssText = 'background:#fdf3e7;border-color:#D7A184;color:#7A4F3A';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const sel = document.getElementById('voice-select');
+    if (sel) {
+      sel.addEventListener('change', () => {
+        const voices = getJapaneseVoices();
+        jaVoice = voices[parseInt(sel.value)] || jaVoice;
+        const statusText = document.getElementById('voice-status-text');
+        if (statusText && jaVoice) {
+          statusText.textContent = `✅ 日文語音（${jaVoice.name.replace(/^Apple\s*/i,'')}）`;
+        }
+      });
+    }
+  });
+
+  if (window.speechSynthesis) {
+    speechSynthesis.onvoiceschanged = updateVoiceStatus;
+    updateVoiceStatus();
+  }
+
+  function makeUtter(text) {
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang  = 'ja-JP';
+    utter.rate  = 0.88;
+    utter.pitch = 1.0;
+    if (jaVoice) utter.voice = jaVoice;
+    return utter;
+  }
+
+  function speakJP(text, btn) {
+    if (!window.speechSynthesis) return;
+
+    if (currentBtn === btn && speechSynthesis.speaking) {
+      speechSynthesis.cancel();
+      btn.classList.remove('playing');
+      currentBtn = null;
+      return;
+    }
+
+    speechSynthesis.cancel();
+    if (currentBtn) { currentBtn.classList.remove('playing'); }
+
+    const utter = makeUtter(text);
+    currentBtn = btn;
+    btn.classList.add('playing');
+
+    utter.onend = utter.onerror = () => {
+      btn.classList.remove('playing');
+      if (currentBtn === btn) currentBtn = null;
+    };
+
+    speechSynthesis.speak(utter);
+  }
+
+  function playScene(btn, sceneId) {
+    if (!window.speechSynthesis) return;
+
+    if (btn.classList.contains('playing')) {
+      speechSynthesis.cancel();
+      btn.classList.remove('playing');
+      btn.textContent = '▶ 全部播放';
+      if (currentBtn) { currentBtn.classList.remove('playing'); currentBtn = null; }
+      document.getElementById(sceneId)
+        .querySelectorAll('.dialogue').forEach(d => d.style.opacity = '1');
+      return;
+    }
+
+    speechSynthesis.cancel();
+    if (currentBtn) { currentBtn.classList.remove('playing'); currentBtn = null; }
+
+    const scene = document.getElementById(sceneId);
+    const lines = Array.from(scene.querySelectorAll('.speech[data-speak]'))
+                       .map(el => el.dataset.speak).filter(Boolean);
+    if (!lines.length) return;
+
+    btn.classList.add('playing');
+    btn.textContent = '■ 停止';
+
+    let idx = 0;
+
+    function speakNext() {
+      const allLines = scene.querySelectorAll('.dialogue');
+      if (idx >= lines.length || !btn.classList.contains('playing')) {
+        btn.classList.remove('playing');
+        btn.textContent = '▶ 全部播放';
+        allLines.forEach(d => d.style.opacity = '1');
+        return;
+      }
+      allLines.forEach((d, i) => d.style.opacity = i === idx ? '1' : '0.35');
+
+      const utter = makeUtter(lines[idx]);
+      utter.onend  = () => { idx++; speakNext(); };
+      utter.onerror = () => {
+        btn.classList.remove('playing');
+        btn.textContent = '▶ 全部播放';
+        allLines.forEach(d => d.style.opacity = '1');
+      };
+      speechSynthesis.speak(utter);
+    }
+    speakNext();
+  }
+</script>
+</body>
+</html>
