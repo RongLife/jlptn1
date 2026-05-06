@@ -1,4 +1,4 @@
-const CACHE = 'n1-study-v1';
+const CACHE = 'n1-study-v2';
 const OFFLINE_URLS = ['./index.html', './manifest.json', './lessons.json'];
 
 self.addEventListener('install', e => {
