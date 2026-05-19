@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JLPT N1 學習教材｜2026.05.16 W1D3</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+  :root {
+    --blue:       #BA8E7A;
+    --blue-pale:  #F5EAD8;
+    --primary-lt: #D7A184;
+    --sand:       #D4C2AD;
+    --cream:      #EFDFCC;
+    --red:        #C4755E;
+    --green:      #7FA882;
+    --yellow:     #C49A6C;
+    --purple:     #A186C0;
+    --bg:         #EFDFCC;
+    --card:       #FAF7F3;
+    --text:       #3D2B1F;
+    --muted:      #9A7B6C;
+    --border:     #D4C2AD;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    padding: 2rem 1rem;
+  }
+  body.self-check .vocab-zh,
+  body.self-check .vocab-tip,
+  body.self-check .speech-zh,
+  body.self-check .grammar-meaning,
+  body.self-check .grammar-example .zh { visibility: hidden; }
+  body.self-check .vocab-zh:hover,
+  body.self-check .vocab-tip:hover,
+  body.self-check .speech-zh:hover,
+  body.self-check .grammar-meaning:hover,
+  body.self-check .grammar-example .zh:hover { visibility: visible; }
+
+  .container { max-width: 820px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #BA8E7A 0%, #D7A184 100%);
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .header-left { display: flex; align-items: center; gap: 1rem; }
+  .header-avatar {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.5);
+  }
+  .header h1 { font-size: 1.35rem; font-weight: 800; letter-spacing: 0.04em; }
+  .header .meta { font-size: 0.78rem; opacity: 0.85; margin-top: 0.3rem; }
+  .header-right { display: flex; align-items: center; gap: 0.5rem; }
+  .badge {
+    background: rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.45);
+    border-radius: 50px;
+    padding: 0.4rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+  }
+  .badge-week {
+    background: rgba(0,0,0,0.15);
+    border-color: rgba(255,255,255,0.55);
+  }
+
+  /* Top controls bar */
+  .top-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+  }
+  .control-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 0.45rem 1rem;
+    font-size: 0.82rem;
+    color: var(--text);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .control-btn:hover { background: var(--cream); }
+  .control-btn.active {
+    background: var(--blue);
+    color: white;
+    border-color: var(--blue);
+  }
+  .voice-mini {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+  #voice-select {
+    font-size: 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.15rem 0.4rem;
+    background: var(--card);
+    color: var(--text);
+    max-width: 130px;
+  }
+
+  /* Speak buttons */
+  .speak-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f0fe;
+    border: none;
+    border-radius: 50%;
+    width: 26px; height: 26px;
+    cursor: pointer;
+    font-size: 0;
+    transition: background 0.15s;
+    flex-shrink: 0;
+    padding: 0;
+  }
+  .speak-btn::before {
+    content: '';
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 4px 0 4px 7px;
+    border-color: transparent transparent transparent var(--blue);
+    margin-left: 2px;
+    transition: all 0.15s;
+  }
+  .speak-btn:hover { background: #E8D5C4; }
+  .speak-btn.playing {
+    background: var(--blue);
+    animation: pulse 0.8s ease-in-out infinite alternate;
+  }
+  .speak-btn.playing::before {
+    border: none;
+    width: 6px; height: 6px;
+    background: white;
+    border-radius: 1px;
+    margin-left: 0;
+  }
+  @keyframes pulse {
+    from { transform: scale(1); box-shadow: 0 0 0 0 rgba(186,142,122,0.45); }
+    to   { transform: scale(1.1); box-shadow: 0 0 0 5px rgba(186,142,122,0); }
+  }
+
+  .play-all-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 50px;
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.2rem 0.8rem;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .play-all-btn:hover { background: rgba(255,255,255,0.35); }
+  .play-all-btn.playing { background: rgba(255,255,255,0.9); color: var(--blue); }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 2rem 0 1rem;
+    color: var(--text);
+  }
+  .section-title .icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .icon-vocab { background: #fff3e0; }
+  .icon-grammar { background: #e8f0fe; }
+  .icon-drama { background: #e8f5e9; }
+  .icon-check { background: #f3e5f5; }
+  .icon-review { background: #fce4ec; }
+
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  /* Vocab grid */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  @media (max-width: 600px) { .vocab-grid { grid-template-columns: 1fr; } }
+
+  .vocab-item {
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    border-left: 3px solid transparent;
+    transition: transform 0.15s;
+    position: relative;
+  }
+  .vocab-item:hover { transform: translateY(-2px); }
+
+  .vocab-item.body-head { border-color: var(--green); }
+  .vocab-item.body-eye  { border-color: #6c9ce8; }
+  .vocab-item.body-mouth{ border-color: var(--purple); }
+  .vocab-item.body-hand { border-color: var(--yellow); }
+  .vocab-item.body-body { border-color: var(--red); }
+
+  .vocab-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+  .vocab-jp { font-size: 1.05rem; font-weight: 700; font-family: 'Noto Sans JP', sans-serif; }
+  .vocab-reading { font-size: 0.78rem; color: var(--blue); margin: 0.1rem 0; font-family: 'Noto Sans JP', sans-serif; }
+  .vocab-zh { font-size: 0.88rem; color: var(--text); }
+  .vocab-tip { font-size: 0.76rem; color: var(--muted); margin-top: 0.2rem; }
+  .vocab-ex { font-size: 0.8rem; color: #6b5a4a; margin-top: 0.3rem; font-family: 'Noto Sans JP', sans-serif; padding-left: 0.5rem; border-left: 2px solid var(--cream); }
+
+  /* Mastery dots */
+  .mastery {
+    display: flex;
+    gap: 4px;
+    margin-top: 0.4rem;
+    align-items: center;
+  }
+  .mastery-dot {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid var(--sand);
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.12s;
+  }
+  .mastery-dot:hover { transform: scale(1.15); }
+  .mastery-dot[data-level="known"].active   { background: #6c9ce8; border-color: #2c5fb0; }
+  .mastery-dot[data-level="fuzzy"].active   { background: #f5c25b; border-color: #b88006; }
+  .mastery-dot[data-level="unknown"].active { background: #e85d5d; border-color: #a83333; }
+  .mastery-label {
+    font-size: 0.66rem;
+    color: var(--muted);
+    margin-left: 0.4rem;
+  }
+
+  .subsection-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+  }
+  .label-head  { background: #e8f5e9; color: #2e7d32; }
+  .label-eye   { background: #e8f0fe; color: #185FA5; }
+  .label-mouth { background: #f3e5f5; color: #5e35b1; }
+  .label-hand  { background: #fff3e0; color: #c66200; }
+  .label-body  { background: #ffebee; color: #c62828; }
+
+  /* Grammar */
+  .grammar-pattern {
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 1.1rem 1.3rem;
+    margin-bottom: 0.9rem;
+    border-left: 4px solid var(--blue);
+  }
+  .grammar-num {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+  }
+  .grammar-title {
+    font-size: 1.12rem;
+    font-weight: 700;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #2c3e6b;
+    margin-bottom: 0.3rem;
+  }
+  .grammar-tag {
+    display: inline-block;
+    background: #ffebee;
+    color: #c62828;
+    font-size: 0.68rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    font-weight: 700;
+  }
+  .grammar-form {
+    font-size: 0.78rem;
+    background: #e8f0fe;
+    color: var(--blue);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .grammar-meaning {
+    font-size: 0.88rem;
+    color: #555;
+    margin-bottom: 0.6rem;
+  }
+  .grammar-example {
+    background: white;
+    border-radius: 7px;
+    padding: 0.7rem 1rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.93rem;
+    line-height: 1.85;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+  }
+  .grammar-example-text { flex: 1; }
+  .grammar-example .jp { color: var(--text); }
+  .grammar-example .hl { color: var(--blue); font-weight: 700; }
+  .grammar-example .zh { font-size: 0.8rem; color: var(--muted); display: block; margin-top: 0.2rem; font-family: 'Noto Sans TC', sans-serif; }
+
+  /* Drama */
+  .drama-scene {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 1.2rem;
+    overflow: hidden;
+  }
+  .drama-header {
+    background: linear-gradient(90deg, #4a7fd4 0%, #6c9ce8 100%);
+    color: white;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .drama-header .tag {
+    background: rgba(255,255,255,0.25);
+    padding: 0.15rem 0.6rem;
+    border-radius: 50px;
+    font-size: 0.76rem;
+    white-space: nowrap;
+  }
+  .drama-header-left { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; }
+  .drama-body { padding: 1.3rem 1.5rem; }
+
+  .dialogue { margin-bottom: 0.9rem; display: flex; gap: 0.8rem; align-items: flex-start; }
+  .speaker {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--blue);
+    min-width: 48px;
+    padding-top: 0.3rem;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .speech {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.93rem;
+    line-height: 1.85;
+    flex: 1;
+  }
+  .speech .vocab-hl { color: var(--green); font-weight: 700; }
+  .speech .grammar-hl { color: var(--blue); font-weight: 700; text-decoration: underline; text-decoration-color: rgba(74,127,212,0.4); }
+  .dialogue-speak { padding-top: 0.25rem; }
+  .speech-zh { font-size: 0.76rem; color: var(--muted); margin-top: 0.2rem; font-family: 'Noto Sans TC', sans-serif; line-height: 1.5; display: block; }
+
+  ruby { ruby-position: over; }
+  rt { font-size: 0.55em; color: var(--blue); font-weight: 400; }
+
+  .tip-box {
+    background: #fffbf0;
+    border: 1px solid #ffe082;
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    margin-top: 1rem;
+    font-size: 0.84rem;
+    color: #5a4a1a;
+  }
+  .tip-box::before { content: "💡 "; }
+
+  /* PART 5 - Review schedule */
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+  }
+  .review-cell {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 0.7rem 0.4rem;
+    text-align: center;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .review-cell.done {
+    background: #e8f5e9;
+    border-color: var(--green);
+  }
+  .review-cell.due {
+    background: #fff3e0;
+    border-color: #C49A6C;
+  }
+  .review-interval { font-size: 0.72rem; color: var(--muted); }
+  .review-date { font-size: 0.85rem; font-weight: 700; margin-top: 0.15rem; }
+  .review-status { font-size: 0.68rem; margin-top: 0.2rem; }
+  .review-cell.done .review-status { color: var(--green); }
+  .review-cell.due  .review-status { color: #b46c1a; font-weight: 700; }
+
+  .footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .footer a { color: var(--blue); text-decoration: none; }
+
+  /* Mastery summary bar */
+  .mastery-summary {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.7rem 1.1rem;
+    display: flex;
+    gap: 1rem;
+    font-size: 0.82rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .mastery-summary .label { color: var(--muted); }
+  .mastery-summary .mt-known   { color: #2c5fb0; font-weight: 700; }
+  .mastery-summary .mt-fuzzy   { color: #b88006; font-weight: 700; }
+  .mastery-summary .mt-unknown { color: #a83333; font-weight: 700; }
+  .mastery-summary .mt-total   { margin-left: auto; color: var(--muted); }
+</style>
+</head>
+<body data-lesson-id="2026-05-16_W1D3">
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <img src="頭貼/my-notion-face-transparent.png" class="header-avatar" alt="Rong" onerror="this.style.display='none'">
+      <div>
+        <h1>JLPT N1 學習教材</h1>
+        <div class="meta">2026年5月16日｜動作語彙 ＋ こと系文型</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="badge badge-week">W1 D3</div>
+      <div class="badge">N1</div>
+    </div>
+  </div>
+
+  <!-- Top controls -->
+  <div class="top-bar">
+    <button class="control-btn" id="self-check-btn" onclick="toggleSelfCheck()">
+      <span id="self-check-icon">👁</span>
+      <span id="self-check-label">遮中文（自我檢測）</span>
+    </button>
+    <a class="control-btn" href="index.html">
+      📚 回首頁
+    </a>
+    <span class="voice-mini" id="voice-status-text">🔍 偵測語音中…</span>
+    <select id="voice-select" style="display:none" title="選擇語音"></select>
+  </div>
+
+  <!-- Mastery summary -->
+  <div class="mastery-summary">
+    <span class="label">掌握度：</span>
+    <span class="mt-known">🔵 已會 <span id="mt-count-known">0</span></span>
+    <span class="mt-fuzzy">🟡 模糊 <span id="mt-count-fuzzy">0</span></span>
+    <span class="mt-unknown">🔴 不會 <span id="mt-count-unknown">0</span></span>
+    <span class="mt-total">／ 共 <span id="mt-count-total">0</span> 個單字</span>
+  </div>
+
+  <!-- ===== PART 1: VOCABULARY ===== -->
+  <div class="section-title">
+    <div class="icon icon-vocab">📖</div>
+    PART 1｜<ruby>人<rt>ひと</rt></ruby>の<ruby>動作<rt>どうさ</rt></ruby>を<ruby>表<rt>あらわ</rt></ruby>す<ruby>言葉<rt>ことば</rt></ruby>（全38語・按身體部位分類）
+  </div>
+
+  <!-- 頭 -->
+  <div class="card">
+    <div class="subsection-label label-head">🟢 〈頭〉系（2語）</div>
+    <div class="vocab-grid">
+
+      <div class="vocab-item body-head" data-vocab="うつむく">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">うつむく</div>
+          <div class="vocab-reading">うつむく</div>
+        </div><button class="speak-btn" onclick="speakJP('うつむく', this)"></button></div>
+        <div class="vocab-zh">低頭、垂下視線</div>
+        <div class="vocab-tip">情緒低落、害羞、思考時的動作</div>
+        <div class="vocab-ex">彼女は恥ずかしそうにうつむいた。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-head" data-vocab="うなずく">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">うなずく</div>
+          <div class="vocab-reading">うなずく</div>
+        </div><button class="speak-btn" onclick="speakJP('うなずく', this)"></button></div>
+        <div class="vocab-zh">點頭表示同意</div>
+        <div class="vocab-tip">うつむく 的反義動作，肯定意</div>
+        <div class="vocab-ex">私の意見に深くうなずいた。</div>
+        <div class="mastery"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 目 -->
+  <div class="card">
+    <div class="subsection-label label-eye">🔵 〈目〉系（2語）</div>
+    <div class="vocab-grid">
+
+      <div class="vocab-item body-eye" data-vocab="まばたきする">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">まばたき(を)する</div>
+          <div class="vocab-reading">まばたきする</div>
+        </div><button class="speak-btn" onclick="speakJP('まばたきをする', this)"></button></div>
+        <div class="vocab-zh">眨眼</div>
+        <div class="vocab-tip">「瞬き」也寫作「瞬きする」</div>
+        <div class="vocab-ex">驚いてまばたきをした。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-eye" data-vocab="目をつぶる">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">目をつぶる</div>
+          <div class="vocab-reading">めをつぶる</div>
+        </div><button class="speak-btn" onclick="speakJP('めをつぶる', this)"></button></div>
+        <div class="vocab-zh">閉眼；睜一隻眼閉一隻眼</div>
+        <div class="vocab-tip">引申義：對某事不追究</div>
+        <div class="vocab-ex">今回は目をつぶってあげよう。</div>
+        <div class="mastery"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 口 -->
+  <div class="card">
+    <div class="subsection-label label-mouth">🟣 〈口〉系（5語）</div>
+    <div class="vocab-grid">
+
+      <div class="vocab-item body-mouth" data-vocab="つぶやく">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>一言<rt>ひとこと</rt></ruby>つぶやく</div>
+          <div class="vocab-reading">ひとことつぶやく</div>
+        </div><button class="speak-btn" onclick="speakJP('ひとことつぶやく', this)"></button></div>
+        <div class="vocab-zh">嘟噥、自言自語</div>
+        <div class="vocab-tip">小聲對自己說，twitter 的「推文」也是這個字</div>
+        <div class="vocab-ex">彼は「疲れた」と一言つぶやいた。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-mouth" data-vocab="ささやく">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">ささやく</div>
+          <div class="vocab-reading">ささやく</div>
+        </div><button class="speak-btn" onclick="speakJP('ささやく', this)"></button></div>
+        <div class="vocab-zh">低聲私語、耳語</div>
+        <div class="vocab-tip">對他人小聲說話（つぶやく 是對自己）</div>
+        <div class="vocab-ex">耳元で何かをささやいた。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-mouth" data-vocab="口ずさむ">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>歌<rt>うた</rt></ruby>を<ruby>口<rt>くち</rt></ruby>ずさむ</div>
+          <div class="vocab-reading">うたをくちずさむ</div>
+        </div><button class="speak-btn" onclick="speakJP('うたをくちずさむ', this)"></button></div>
+        <div class="vocab-zh">輕聲哼歌</div>
+        <div class="vocab-tip">心情好時隨口哼唱</div>
+        <div class="vocab-ex">鼻歌で童謡を口ずさむ。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-mouth" data-vocab="むせる-煙">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>煙<rt>けむり</rt></ruby>にむせる</div>
+          <div class="vocab-reading">けむりにむせる</div>
+        </div><button class="speak-btn" onclick="speakJP('けむりにむせる', this)"></button></div>
+        <div class="vocab-zh">嗆到（煙、味）</div>
+        <div class="vocab-tip">外來刺激引起咳嗽</div>
+        <div class="vocab-ex">焼肉屋の煙にむせてしまった。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-mouth" data-vocab="むせる-食">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>食<rt>た</rt></ruby>べ<ruby>物<rt>もの</rt></ruby>でむせる</div>
+          <div class="vocab-reading">たべものでむせる</div>
+        </div><button class="speak-btn" onclick="speakJP('たべものでむせる', this)"></button></div>
+        <div class="vocab-zh">食物嗆到（吃進氣管）</div>
+        <div class="vocab-tip">和「煙にむせる」同字不同情境</div>
+        <div class="vocab-ex">急いで食べて、お茶でむせた。</div>
+        <div class="mastery"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 手 -->
+  <div class="card">
+    <div class="subsection-label label-hand">🟡 〈手〉系（18語）</div>
+    <div class="vocab-grid">
+
+      <div class="vocab-item body-hand" data-vocab="つねる">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">ほっぺたを<ruby>つねる<rt></rt></ruby></div>
+          <div class="vocab-reading">ほっぺたをつねる</div>
+        </div><button class="speak-btn" onclick="speakJP('ほっぺたをつねる', this)"></button></div>
+        <div class="vocab-zh">捏臉頰</div>
+        <div class="vocab-tip">「夢じゃないか確かめるため」常見台詞</div>
+        <div class="vocab-ex">夢じゃないかと自分のほっぺたをつねった。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-hand" data-vocab="むしる">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>草<rt>くさ</rt></ruby>をむしる</div>
+          <div class="vocab-reading">くさをむしる</div>
+        </div><button class="speak-btn" onclick="speakJP('くさをむしる', this)"></button></div>
+        <div class="vocab-zh">拔草、揪除</div>
+        <div class="vocab-tip">用力扯下，常與「草・髪」搭配</div>
+        <div class="vocab-ex">庭の雑草をむしる。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-hand" data-vocab="めくる">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">カレンダーをめくる</div>
+          <div class="vocab-reading">カレンダーをめくる</div>
+        </div><button class="speak-btn" onclick="speakJP('カレンダーをめくる', this)"></button></div>
+        <div class="vocab-zh">翻（紙、頁）</div>
+        <div class="vocab-tip">月份翻日曆、書頁、撲克牌都用</div>
+        <div class="vocab-ex">新しい月のカレンダーをめくる。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-hand" data-vocab="つまむ-塩">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>塩<rt>しお</rt></ruby>をつまむ</div>
+          <div class="vocab-reading">しおをつまむ</div>
+        </div><button class="speak-btn" onclick="speakJP('しおをつまむ', this)"></button></div>
+        <div class="vocab-zh">捏一小撮（鹽）</div>
+        <div class="vocab-tip">用兩指輕捏少量</div>
+        <div class="vocab-ex">塩をひとつまみ加える。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-hand" data-vocab="つまむ-鼻">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>鼻<rt>はな</rt></ruby>をつまむ</div>
+          <div class="vocab-reading">はなをつまむ</div>
+        </div><button class="speak-btn" onclick="speakJP('はなをつまむ', this)"></button></div>
+        <div class="vocab-zh">捏住鼻子</div>
+        <div class="vocab-tip">遇臭味、跳水前的動作</div>
+        <div class="vocab-ex">臭くて鼻をつまんだ。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-hand" data-vocab="摘む-花">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>花<rt>はな</rt></ruby>を<ruby>摘<rt>つ</rt></ruby>む</div>
+          <div class="vocab-reading">はなをつむ</div>
+        </div><button class="speak-btn" onclick="speakJP('はなをつむ', this)"></button></div>
+        <div class="vocab-zh">摘花、採摘</div>
+        <div class="vocab-tip">與「つまむ」同源但動作較大</div>
+        <div class="vocab-ex">野原で花を摘んで帰った。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-hand" data-vocab="摘む-才能">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>才能<rt>さいのう</rt></ruby>の<ruby>芽<rt>め</rt></ruby>を<ruby>摘<rt>つ</rt></ruby>む</div>
+          <div class="vocab-reading">さいのうのめをつむ</div>
+        </div><button class="speak-btn" onclick="speakJP('さいのうのめをつむ', this)"></button></div>
+        <div class="vocab-zh">扼殺才能（慣用）</div>
+        <div class="vocab-tip">同「摘む」但比喻把芽掐掉</div>
+        <div class="vocab-ex">過剰な批判は才能の芽を摘む。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-hand" data-vocab="さする">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>足<rt>あし</rt></ruby>をさする</div>
+          <div class="vocab-reading">あしをさする</div>
+        </div><button class="speak-btn" onclick="speakJP('あしをさする', this)"></button></div>
+        <div class="vocab-zh">輕撫、揉</div>
+        <div class="vocab-tip">輕柔來回摩擦舒緩痠痛</div>
+        <div class="vocab-ex">痛む足をさすってあげた。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-hand" data-vocab="いじる-髪">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>髪<rt>かみ</rt></ruby>の<ruby>毛<rt>け</rt></ruby>をいじる</div>
+          <div class="vocab-reading">かみのけをいじる</div>
+        </div><button class="speak-btn" onclick="speakJP('かみのけをいじる', this)"></button></div>
+        <div class="vocab-zh">玩弄頭髮（緊張動作）</div>
+        <div class="vocab-tip">いじる＝用指尖反覆觸碰</div>
+        <div class="vocab-ex">緊張すると髪の毛をいじってしまう。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-hand" data-vocab="いじる-庭">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>庭<rt>にわ</rt></ruby>をいじる</div>
+          <div class="vocab-reading">にわをいじる</div>
+        </div><button class="speak-btn" onclick="speakJP('にわをいじる', this)"></button></div>
+        <div class="vocab-zh">弄花弄草、整理庭園</div>
+        <div class="vocab-tip">同字不同義，作「打理庭院」用</div>
+        <div class="vocab-ex">休日は庭をいじるのが好きだ。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-hand" data-vocab="はたく">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>家具<rt>かぐ</rt></ruby>のほこりをはたく</div>
+          <div class="vocab-reading">かぐのほこりをはたく</div>
+        </div><button class="speak-btn" onclick="speakJP('かぐのほこりをはたく', this)"></button></div>
+        <div class="vocab-zh">拍掉灰塵</div>
+        <div class="vocab-tip">用毛撢輕拍</div>
+        <div class="vocab-ex">本棚のほこりをはたいた。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-hand" data-vocab="すくう">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>水<rt>みず</rt></ruby>をすくう</div>
+          <div class="vocab-reading">みずをすくう</div>
+        </div><button class="speak-btn" onclick="speakJP('みずをすくう', this)"></button></div>
+        <div class="vocab-zh">用手或勺撈</div>
+        <div class="vocab-tip">手心向上的舀水動作</div>
+        <div class="vocab-ex">両手で水をすくって飲む。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-hand" data-vocab="突く">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>杖<rt>つえ</rt></ruby>を<ruby>突<rt>つ</rt></ruby>く</div>
+          <div class="vocab-reading">つえをつく</div>
+        </div><button class="speak-btn" onclick="speakJP('つえをつく', this)"></button></div>
+        <div class="vocab-zh">拄拐杖</div>
+        <div class="vocab-tip">將細長物用力按下、撐住</div>
+        <div class="vocab-ex">祖父は杖を突いて歩いている。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-hand" data-vocab="くるむ">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>赤<rt>あか</rt></ruby>ちゃんをバスタオルでくるむ</div>
+          <div class="vocab-reading">あかちゃんをバスタオルでくるむ</div>
+        </div><button class="speak-btn" onclick="speakJP('あかちゃんをバスタオルでくるむ', this)"></button></div>
+        <div class="vocab-zh">包裹</div>
+        <div class="vocab-tip">用布料整個包覆起來</div>
+        <div class="vocab-ex">寒いので毛布でくるんであげた。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-hand" data-vocab="丸める-紙">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>紙<rt>かみ</rt></ruby>を<ruby>丸<rt>まる</rt></ruby>める</div>
+          <div class="vocab-reading">かみをまるめる</div>
+        </div><button class="speak-btn" onclick="speakJP('かみをまるめる', this)"></button></div>
+        <div class="vocab-zh">把紙揉成團</div>
+        <div class="vocab-tip">手把扁平物揉成球狀</div>
+        <div class="vocab-ex">下書きを丸めて捨てた。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-hand" data-vocab="丸める-体">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>体<rt>からだ</rt></ruby>を<ruby>丸<rt>まる</rt></ruby>める</div>
+          <div class="vocab-reading">からだをまるめる</div>
+        </div><button class="speak-btn" onclick="speakJP('からだをまるめる', this)"></button></div>
+        <div class="vocab-zh">蜷縮身體</div>
+        <div class="vocab-tip">同「丸める」但對象是身體</div>
+        <div class="vocab-ex">寒さで体を丸めて眠った。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-hand" data-vocab="擦る">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">マッチを<ruby>擦<rt>す</rt></ruby>る</div>
+          <div class="vocab-reading">マッチをする</div>
+        </div><button class="speak-btn" onclick="speakJP('マッチをする', this)"></button></div>
+        <div class="vocab-zh">劃火柴；摩擦</div>
+        <div class="vocab-tip">兩物面摩擦，「擦る」也讀作「こする」</div>
+        <div class="vocab-ex">マッチを擦って火をつけた。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-hand" data-vocab="指をさす">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>指<rt>ゆび</rt></ruby>をさす</div>
+          <div class="vocab-reading">ゆびをさす</div>
+        </div><button class="speak-btn" onclick="speakJP('ゆびをさす', this)"></button></div>
+        <div class="vocab-zh">用手指指、指責</div>
+        <div class="vocab-tip">引申義：點名指控</div>
+        <div class="vocab-ex">犯人を指さした。</div>
+        <div class="mastery"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 体 -->
+  <div class="card">
+    <div class="subsection-label label-body">🔴 〈体〉系（9語）</div>
+    <div class="vocab-grid">
+
+      <div class="vocab-item body-body" data-vocab="横になる">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>横<rt>よこ</rt></ruby>になる</div>
+          <div class="vocab-reading">よこになる</div>
+        </div><button class="speak-btn" onclick="speakJP('よこになる', this)"></button></div>
+        <div class="vocab-zh">躺下</div>
+        <div class="vocab-tip">不特別指方向，泛指「橫躺」</div>
+        <div class="vocab-ex">疲れたのでソファーで横になる。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-body" data-vocab="うつ伏せ">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">うつ<ruby>伏<rt>ぶ</rt></ruby>せになる</div>
+          <div class="vocab-reading">うつぶせになる</div>
+        </div><button class="speak-btn" onclick="speakJP('うつぶせになる', this)"></button></div>
+        <div class="vocab-zh">趴著</div>
+        <div class="vocab-tip">臉朝下，「俯臥」</div>
+        <div class="vocab-ex">マッサージでうつ伏せになる。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-body" data-vocab="仰向け">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>仰向<rt>あおむ</rt></ruby>けになる</div>
+          <div class="vocab-reading">あおむけになる</div>
+        </div><button class="speak-btn" onclick="speakJP('あおむけになる', this)"></button></div>
+        <div class="vocab-zh">仰躺</div>
+        <div class="vocab-tip">臉朝上，與うつ伏せ相反</div>
+        <div class="vocab-ex">仰向けになって天井を見た。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-body" data-vocab="反らす">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>体<rt>からだ</rt></ruby>を<ruby>反<rt>そ</rt></ruby>らす</div>
+          <div class="vocab-reading">からだをそらす</div>
+        </div><button class="speak-btn" onclick="speakJP('からだをそらす', this)"></button></div>
+        <div class="vocab-zh">後仰、彎腰（向後）</div>
+        <div class="vocab-tip">↔ 曲げる（前彎）</div>
+        <div class="vocab-ex">背中を反らして伸びをした。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-body" data-vocab="またがる-馬">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>馬<rt>うま</rt></ruby>にまたがる</div>
+          <div class="vocab-reading">うまにまたがる</div>
+        </div><button class="speak-btn" onclick="speakJP('うまにまたがる', this)"></button></div>
+        <div class="vocab-zh">跨上、跨坐</div>
+        <div class="vocab-tip">兩腿張開跨上去</div>
+        <div class="vocab-ex">馬にまたがって森を駆けた。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-body" data-vocab="またがる-期間">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp">3<ruby>年<rt>ねん</rt></ruby>にまたがる<ruby>計画<rt>けいかく</rt></ruby></div>
+          <div class="vocab-reading">3ねんにまたがるけいかく</div>
+        </div><button class="speak-btn" onclick="speakJP('さんねんにまたがるけいかく', this)"></button></div>
+        <div class="vocab-zh">橫跨（時間・地域）</div>
+        <div class="vocab-tip">＝わたる，常考換字題</div>
+        <div class="vocab-ex">3年にまたがる大プロジェクト。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-body" data-vocab="つかる">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>湯<rt>ゆ</rt></ruby>につかる</div>
+          <div class="vocab-reading">ゆにつかる</div>
+        </div><button class="speak-btn" onclick="speakJP('ゆにつかる', this)"></button></div>
+        <div class="vocab-zh">泡澡、浸泡</div>
+        <div class="vocab-tip">身體浸入液體</div>
+        <div class="vocab-ex">温泉にゆっくりつかる。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-body" data-vocab="くぐる">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>門<rt>もん</rt></ruby>をくぐる</div>
+          <div class="vocab-reading">もんをくぐる</div>
+        </div><button class="speak-btn" onclick="speakJP('もんをくぐる', this)"></button></div>
+        <div class="vocab-zh">穿過（低處）、鑽過</div>
+        <div class="vocab-tip">彎身通過低矮處</div>
+        <div class="vocab-ex">鳥居をくぐって境内に入る。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-body" data-vocab="よける">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>水<rt>みず</rt></ruby>たまりをよける</div>
+          <div class="vocab-reading">みずたまりをよける</div>
+        </div><button class="speak-btn" onclick="speakJP('みずたまりをよける', this)"></button></div>
+        <div class="vocab-zh">避開、躲避</div>
+        <div class="vocab-tip">為避碰撞而閃身</div>
+        <div class="vocab-ex">車をよけて道路を渡った。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-body" data-vocab="もがく">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>水中<rt>すいちゅう</rt></ruby>でもがく／あがく</div>
+          <div class="vocab-reading">すいちゅうでもがく／あがく</div>
+        </div><button class="speak-btn" onclick="speakJP('すいちゅうでもがく', this)"></button></div>
+        <div class="vocab-zh">掙扎</div>
+        <div class="vocab-tip">手腳亂動，多用負面情境</div>
+        <div class="vocab-ex">困難の中でもがき続けた。</div>
+        <div class="mastery"></div>
+      </div>
+
+      <div class="vocab-item body-body" data-vocab="さまよう">
+        <div class="vocab-top"><div>
+          <div class="vocab-jp"><ruby>山中<rt>さんちゅう</rt></ruby>をさまよう</div>
+          <div class="vocab-reading">さんちゅうをさまよう</div>
+        </div><button class="speak-btn" onclick="speakJP('さんちゅうをさまよう', this)"></button></div>
+        <div class="vocab-zh">徘徊、徬徨</div>
+        <div class="vocab-tip">物理上和心境上的迷路皆可</div>
+        <div class="vocab-ex">生死の境をさまよった。</div>
+        <div class="mastery"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== PART 2: GRAMMAR ===== -->
+  <div class="section-title">
+    <div class="icon icon-grammar">📐</div>
+    PART 2｜<ruby>文法<rt>ぶんぽう</rt></ruby>「こと」<ruby>系<rt>けい</rt></ruby><ruby>文型<rt>ぶんけい</rt></ruby>（5 種一次學會）
+  </div>
+
+  <div class="card">
+
+    <div class="grammar-pattern">
+      <div class="grammar-num">GRAMMAR 1</div>
+      <div class="grammar-title">〜ことのないように／〜ことのないよう</div>
+      <div class="grammar-form">V る + ことのないように</div>
+      <div class="grammar-meaning">為了不要..., 提醒避免某事發生</div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp"><ruby>災害<rt>さいがい</rt></ruby>が<ruby>来<rt>き</rt></ruby>ても<span class="hl">慌てることのないよう</span>、<ruby>日頃<rt>ひごろ</rt></ruby>から<ruby>準備<rt>じゅんび</rt></ruby>しておこう。</div>
+          <span class="zh">為了即使災害來臨也不會慌張，平常就要做好準備。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('災害が来ても慌てることのないよう、日頃から準備しておこう。', this)"></button>
+      </div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp">この<ruby>怪我<rt>けが</rt></ruby>が<ruby>悪化<rt>あっか</rt></ruby><span class="hl">することのないように</span>、しっかり<ruby>休<rt>やす</rt></ruby>んでください。</div>
+          <span class="zh">為了不讓這個傷惡化，請好好休息。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('この怪我が悪化することのないように、しっかり休んでください。', this)"></button>
+      </div>
+      <div class="tip-box">「〜ないように」加上「こと」變得更正式，常用於提醒、注意事項、規則。「よう」省略「に」也可以，書面感更強。</div>
+    </div>
+
+    <div class="grammar-pattern">
+      <div class="grammar-num">GRAMMAR 2 <span class="grammar-tag">硬</span></div>
+      <div class="grammar-title">〜ことなしに／〜ことなく</div>
+      <div class="grammar-form">V る + ことなしに（は）</div>
+      <div class="grammar-meaning">不... 就無法... ｜ 表「沒做 X 就...」，書面、硬</div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp"><ruby>今<rt>いま</rt></ruby>の<ruby>状況<rt>じょうきょう</rt></ruby>を<span class="hl">知ることなしに</span>、<ruby>未来<rt>みらい</rt></ruby>を<ruby>予測<rt>よそく</rt></ruby>することはできない。</div>
+          <span class="zh">不了解現況，就無法預測未來。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('今の状況を知ることなしに、未来を予測することはできない。', this)"></button>
+      </div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp"><ruby>過去<rt>かこ</rt></ruby>の<ruby>事例<rt>じれい</rt></ruby>を<span class="hl">見ることなしに</span>、<ruby>解決方法<rt>かいけつほうほう</rt></ruby>は<ruby>見<rt>み</rt></ruby>えてこないだろう。</div>
+          <span class="zh">不參考過去案例的話，看不見解決方法。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('過去の事例を見ることなしに、解決方法は見えてこないだろう。', this)"></button>
+      </div>
+      <div class="tip-box">＝「〜ないで」「〜ずに」的書面硬式表現。考試「換句話說」題很愛考。「ことなく」也是同義，但「ことなしに」更強調「沒做的話就（不行）」的條件感。</div>
+    </div>
+
+    <div class="grammar-pattern">
+      <div class="grammar-num">GRAMMAR 3</div>
+      <div class="grammar-title">〜のことだから</div>
+      <div class="grammar-form">N + のことだから</div>
+      <div class="grammar-meaning">既然是 X（這種人），肯定... ｜ 從某人性格特質做出推測</div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp">よくできる<span class="hl">彼のことだから</span>、<ruby>合格<rt>ごうかく</rt></ruby>は<ruby>間違<rt>まちが</rt></ruby>いないでしょう。</div>
+          <span class="zh">他這麼優秀，肯定會考上吧。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('よくできる彼のことだから、合格は間違いないでしょう。', this)"></button>
+      </div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp"><ruby>時間<rt>じかん</rt></ruby>に<ruby>厳<rt>きび</rt></ruby>しい<span class="hl">部長のことだから</span>、もう<ruby>会議室<rt>かいぎしつ</rt></ruby>にいるはずだ。</div>
+          <span class="zh">部長那麼準時，現在肯定已經在會議室了。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('時間に厳しい部長のことだから、もう会議室にいるはずだ。', this)"></button>
+      </div>
+      <div class="tip-box">後面必接「推量」（〜でしょう／〜はず／〜に違いない）。和「〜ことだから」（ことだし）長得像但語感不同——這個必須是「N の + ことだから」。</div>
+    </div>
+
+    <div class="grammar-pattern">
+      <div class="grammar-num">GRAMMAR 4</div>
+      <div class="grammar-title">〜ことだし／〜ことだから</div>
+      <div class="grammar-form">V／A／na(である)／N(である) + ことだし</div>
+      <div class="grammar-meaning">既然..., 那麼... ｜ 鬆口氣的「理由」，柔軟說法</div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp">もう<ruby>誰<rt>だれ</rt></ruby>も<span class="hl">来ないことだし</span>、<ruby>店<rt>みせ</rt></ruby>を<ruby>閉<rt>し</rt></ruby>めよう。</div>
+          <span class="zh">既然沒人來了，那就關店吧。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('もう誰も来ないことだし、店を閉めよう。', this)"></button>
+      </div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp"><ruby>全員<rt>ぜんいん</rt></ruby><span class="hl">そろったことだから</span>、<ruby>時間前<rt>じかんまえ</rt></ruby>だけれど<ruby>始<rt>はじ</rt></ruby>めましょう。</div>
+          <span class="zh">既然大家都到齊了，雖然還沒到時間但開始吧。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('全員そろったことだから、時間前だけれど始めましょう。', this)"></button>
+      </div>
+      <div class="tip-box">「ことだし」是輕鬆的「既然...就...」，後接邀約/決定/建議。注意和 GRAMMAR 3「<b>の</b>ことだから」差別：<br>・<b>N の</b> ことだから ＝ 推量（人的個性）<br>・V/A + <b>こと</b>だし／だから ＝ 理由（事情這樣）</div>
+    </div>
+
+    <div class="grammar-pattern">
+      <div class="grammar-num">GRAMMAR 5</div>
+      <div class="grammar-title">〜たことにする／〜ことになっている</div>
+      <div class="grammar-form">V た + ことにする ／ ことになっている</div>
+      <div class="grammar-meaning">當作...（其實不是） ｜ 事實的反向呈現／表面上是這樣</div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp">この<ruby>話<rt>はなし</rt></ruby>は<span class="hl">聞かなかったことにしてください</span>。</div>
+          <span class="zh">這件事請當作沒聽過。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('この話は聞かなかったことにしてください。', this)"></button>
+      </div>
+      <div class="grammar-example">
+        <div class="grammar-example-text">
+          <div class="jp"><ruby>彼<rt>かれ</rt></ruby>は、<ruby>大学<rt>だいがく</rt></ruby>を<span class="hl">卒業したことになっている</span>けれど、<ruby>実際<rt>じっさい</rt></ruby>は<ruby>中退<rt>ちゅうたい</rt></ruby>したらしい。</div>
+          <span class="zh">他表面上是大學畢業，但其實聽說是中途退學。</span>
+        </div>
+        <button class="speak-btn" onclick="speakJP('彼は、大学を卒業したことになっているけれど、実際は中退したらしい。', this)"></button>
+      </div>
+      <div class="tip-box">「ことにする」是自己的決定（當作沒...），「ことになっている」是社會/規則上認定（表面上是...）。差別在：する＝主動處理 ／ なっている＝被動既成。</div>
+    </div>
+
+  </div>
+
+  <!-- ===== PART 3: DRAMA ===== -->
+  <div class="section-title">
+    <div class="icon icon-drama">🎭</div>
+    PART 3｜<ruby>今日<rt>きょう</rt></ruby>の<ruby>語彙<rt>ごい</rt></ruby>と<ruby>文法<rt>ぶんぽう</rt></ruby>を<ruby>使<rt>つか</rt></ruby>った<ruby>情境劇<rt>じょうきょうげき</rt></ruby>
+  </div>
+
+  <!-- Scene 1: 病院 -->
+  <div class="drama-scene">
+    <div class="drama-header">
+      <div class="drama-header-left">
+        <span>🏥 Scene 1｜<ruby>病院<rt>びょういん</rt></ruby>の<ruby>夜勤<rt>やきん</rt></ruby></span>
+        <span class="tag">頭・目・口・体 系</span>
+      </div>
+      <button class="play-all-btn" onclick="playScene(this, 'scene1')">▶ 全部播放</button>
+    </div>
+    <div class="drama-body" id="scene1">
+
+      <div class="dialogue">
+        <div class="speaker">看護師<rt>かんごし</rt></div>
+        <div class="speech" data-speak="先生、佐藤さんの呼吸が浅くて、まばたきもほとんどしません。">
+          <ruby>先生<rt>せんせい</rt></ruby>、<ruby>佐藤<rt>さとう</rt></ruby>さんの<ruby>呼吸<rt>こきゅう</rt></ruby>が<ruby>浅<rt>あさ</rt></ruby>くて、<span class="vocab-hl">まばたき</span>もほとんどしません。
+          <span class="speech-zh">醫生，佐藤先生呼吸很淺，連眨眼也幾乎沒有。</span>
+        </div>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">医者<rt>いしゃ</rt></div>
+        <div class="speech" data-speak="仰向けにしたまま、足を軽くさすってあげてください。意識はある？">
+          <span class="vocab-hl">仰向け</span>にしたまま、<ruby>足<rt>あし</rt></ruby>を<ruby>軽<rt>かる</rt></ruby>く<span class="vocab-hl">さすって</span>あげてください。<ruby>意識<rt>いしき</rt></ruby>はある？
+          <span class="speech-zh">就讓他仰躺著，輕輕揉揉腳。意識還清楚嗎？</span>
+        </div>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">看護師<rt>かんごし</rt></div>
+        <div class="speech" data-speak="名前を呼ぶと、ゆっくりとうなずきます。でもさっき何かを一言つぶやいて、すぐ目をつぶってしまいました。">
+          <ruby>名前<rt>なまえ</rt></ruby>を<ruby>呼<rt>よ</rt></ruby>ぶと、ゆっくりと<span class="vocab-hl">うなずきます</span>。でもさっき<ruby>何<rt>なに</rt></ruby>かを<span class="vocab-hl">一言つぶやいて</span>、すぐ<span class="vocab-hl">目をつぶって</span>しまいました。
+          <span class="speech-zh">叫他名字會緩緩點頭。但剛才小聲嘟噥了什麼，馬上又閉上眼睛了。</span>
+        </div>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">医者<rt>いしゃ</rt></div>
+        <div class="speech" data-speak="強い佐藤さんのことだから、必ず回復するはずだ。容態が悪化することのないように、点滴を増やそう。">
+          <ruby>強<rt>つよ</rt></ruby>い<span class="grammar-hl">佐藤さんのことだから</span>、<ruby>必<rt>かなら</rt></ruby>ず<ruby>回復<rt>かいふく</rt></ruby>するはずだ。<ruby>容態<rt>ようだい</rt></ruby>が<span class="grammar-hl">悪化することのないように</span>、<ruby>点滴<rt>てんてき</rt></ruby>を<ruby>増<rt>ふ</rt></ruby>やそう。
+          <span class="speech-zh">堅強的佐藤先生，肯定會康復的。為了不讓病情惡化，把點滴量加大吧。</span>
+        </div>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">看護師<rt>かんごし</rt></div>
+        <div class="speech" data-speak="ご家族にも連絡しますか？">
+          ご<ruby>家族<rt>かぞく</rt></ruby>にも<ruby>連絡<rt>れんらく</rt></ruby>しますか？
+          <span class="speech-zh">要不要也聯絡家屬？</span>
+        </div>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">医者<rt>いしゃ</rt></div>
+        <div class="speech" data-speak="もう手は尽くしたことだし、家族が来てささやいてあげるのが一番だね。">
+          もう<ruby>手<rt>て</rt></ruby>は<ruby>尽<rt>つ</rt></ruby>くした<span class="grammar-hl">ことだし</span>、<ruby>家族<rt>かぞく</rt></ruby>が<ruby>来<rt>き</rt></ruby>て<span class="vocab-hl">ささやいて</span>あげるのが<ruby>一番<rt>いちばん</rt></ruby>だね。
+          <span class="speech-zh">既然該做的都做了，家屬來在他耳邊輕聲說說話最好了。</span>
+        </div>
+      </div>
+
+      <div class="tip-box">這幕病院場景一次用了「のことだから」「ことのないように」「ことだし」三個文型，加上頭目口体的觀察動作。語感重點：「のことだから」用在判斷對方個性（堅強的佐藤先生），「ことだし」是接邀約/決定（既然...那麼...）。兩個容易混，靠例句記！</div>
+    </div>
+  </div>
+
+  <!-- Scene 2: 警察 -->
+  <div class="drama-scene">
+    <div class="drama-header">
+      <div class="drama-header-left">
+        <span>🕵 Scene 2｜<ruby>警察<rt>けいさつ</rt></ruby>の<ruby>取<rt>と</rt></ruby>り<ruby>調<rt>しら</rt></ruby>べ</span>
+        <span class="tag">手 系 + 隱瞞文型</span>
+      </div>
+      <button class="play-all-btn" onclick="playScene(this, 'scene2')">▶ 全部播放</button>
+    </div>
+    <div class="drama-body" id="scene2">
+
+      <div class="dialogue">
+        <div class="speaker">刑事<rt>けいじ</rt></div>
+        <div class="speech" data-speak="あの夜、君はどこにいた？髪の毛をいじっても、目をつぶっても、答えてもらわないと困る。">
+          あの<ruby>夜<rt>よる</rt></ruby>、<ruby>君<rt>きみ</rt></ruby>はどこにいた？<span class="vocab-hl">髪の毛をいじっても</span>、<span class="vocab-hl">目をつぶっても</span>、<ruby>答<rt>こた</rt></ruby>えてもらわないと<ruby>困<rt>こま</rt></ruby>る。
+          <span class="speech-zh">那天晚上你在哪裡？玩弄頭髮也好、閉眼也好，你不回答我可不行。</span>
+        </div>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">容疑者<rt>ようぎしゃ</rt></div>
+        <div class="speech" data-speak="ほっぺたをつねっても夢じゃない…本当に覚えてないんです。">
+          <span class="vocab-hl">ほっぺたをつねっても</span><ruby>夢<rt>ゆめ</rt></ruby>じゃない…<ruby>本当<rt>ほんとう</rt></ruby>に<ruby>覚<rt>おぼ</rt></ruby>えてないんです。
+          <span class="speech-zh">就算捏臉頰也不是在做夢… 真的不記得了。</span>
+        </div>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">刑事<rt>けいじ</rt></div>
+        <div class="speech" data-speak="証拠を見ることなしに、否定はできないだろう。これが何だか、指をさして説明してくれ。">
+          <ruby>証拠<rt>しょうこ</rt></ruby>を<span class="grammar-hl">見ることなしに</span>、<ruby>否定<rt>ひてい</rt></ruby>はできないだろう。これが<ruby>何<rt>なん</rt></ruby>だか、<span class="vocab-hl">指をさして</span><ruby>説明<rt>せつめい</rt></ruby>してくれ。
+          <span class="speech-zh">不看證據就否定，可說不過去吧。這個是什麼，你用手指指給我看。</span>
+        </div>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">弁護士<rt>べんごし</rt></div>
+        <div class="speech" data-speak="依頼人は、その夜の十時には自宅にいたことになっています。">
+          <ruby>依頼人<rt>いらいにん</rt></ruby>は、その<ruby>夜<rt>よる</rt></ruby>の<ruby>十時<rt>じゅうじ</rt></ruby>には<ruby>自宅<rt>じたく</rt></ruby>にいた<span class="grammar-hl">ことになっています</span>。
+          <span class="speech-zh">委託人那天晚上十點，名義上是在自家。</span>
+        </div>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">刑事<rt>けいじ</rt></div>
+        <div class="speech" data-speak="ふん、あの抜け目ない君のことだから、もちろん偽のアリバイを準備しただろうね。">
+          ふん、あの<ruby>抜<rt>ぬ</rt></ruby>け<ruby>目<rt>め</rt></ruby>ない<span class="grammar-hl">君のことだから</span>、もちろん<ruby>偽<rt>にせ</rt></ruby>のアリバイを<ruby>準備<rt>じゅんび</rt></ruby>しただろうね。
+          <span class="speech-zh">哼，憑你那麼精明，當然準備了假的不在場證明吧。</span>
+        </div>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">容疑者<rt>ようぎしゃ</rt></div>
+        <div class="speech" data-speak="今の発言、聞かなかったことにしてもらえませんか…">
+          <ruby>今<rt>いま</rt></ruby>の<ruby>発言<rt>はつげん</rt></ruby>、<span class="grammar-hl">聞かなかったことにして</span>もらえませんか…
+          <span class="speech-zh">剛才那句話，能不能當作沒聽過…</span>
+        </div>
+      </div>
+
+      <div class="tip-box">這幕一次串了「ことなしに」「ことになっている」「のことだから」「聞かなかったことにする」四個文型，太好用了！警察詰問場景天然帶有「不...就...」（ことなしに）和「當作沒...」（ことにする）的語感，配上「君のことだから（依你的個性）」的諷刺感超立體。</div>
+    </div>
+  </div>
+
+  <!-- Scene 3: ヨガ -->
+  <div class="drama-scene">
+    <div class="drama-header">
+      <div class="drama-header-left">
+        <span>🧘 Scene 3｜<ruby>朝<rt>あさ</rt></ruby>のヨガ<ruby>教室<rt>きょうしつ</rt></ruby></span>
+        <span class="tag">体 系動作</span>
+      </div>
+      <button class="play-all-btn" onclick="playScene(this, 'scene3')">▶ 全部播放</button>
+    </div>
+    <div class="drama-body" id="scene3">
+
+      <div class="dialogue">
+        <div class="speaker">先生<rt>せんせい</rt></div>
+        <div class="speech" data-speak="では仰向けになって、ゆっくり体を反らしましょう。怪我をすることのないよう、無理は禁物です。">
+          では<span class="vocab-hl">仰向け</span>になって、ゆっくり<span class="vocab-hl">体を反らし</span>ましょう。<ruby>怪我<rt>けが</rt></ruby>を<span class="grammar-hl">することのないよう</span>、<ruby>無理<rt>むり</rt></ruby>は<ruby>禁物<rt>きんもつ</rt></ruby>です。
+          <span class="speech-zh">那麼請仰躺，慢慢把身體往後彎。為了不要受傷，請不要勉強。</span>
+        </div>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">生徒<rt>せいと</rt></div>
+        <div class="speech" data-speak="先生、もがいてしまいそうです…">
+          <ruby>先生<rt>せんせい</rt></ruby>、<span class="vocab-hl">もがいて</span>しまいそうです…
+          <span class="speech-zh">老師，我快撐不住要亂動了…</span>
+        </div>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">先生<rt>せんせい</rt></div>
+        <div class="speech" data-speak="呼吸を止めることなしに、ゆっくり戻して。次はうつ伏せになって、体を丸めましょう。">
+          <ruby>呼吸<rt>こきゅう</rt></ruby>を<span class="grammar-hl">止めることなしに</span>、ゆっくり<ruby>戻<rt>もど</rt></ruby>して。<ruby>次<rt>つぎ</rt></ruby>は<span class="vocab-hl">うつ伏せ</span>になって、<span class="vocab-hl">体を丸めましょう</span>。
+          <span class="speech-zh">不要停止呼吸，慢慢回到原位。接下來請趴下，把身體蜷起來。</span>
+        </div>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">生徒<rt>せいと</rt></div>
+        <div class="speech" data-speak="終わったら、湯につかってリラックスしたいです。">
+          <ruby>終<rt>お</rt></ruby>わったら、<span class="vocab-hl">湯につかって</span>リラックスしたいです。
+          <span class="speech-zh">結束後想泡個澡放鬆。</span>
+        </div>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">先生<rt>せんせい</rt></div>
+        <div class="speech" data-speak="初心者なことだし、今日はここまでにしましょう。お疲れさまでした。">
+          <ruby>初心者<rt>しょしんしゃ</rt></ruby>な<span class="grammar-hl">ことだし</span>、<ruby>今日<rt>きょう</rt></ruby>はここまでにしましょう。お<ruby>疲<rt>つか</rt></ruby>れさまでした。
+          <span class="speech-zh">既然是初學者，今天就到這裡吧。辛苦了。</span>
+        </div>
+      </div>
+
+      <div class="tip-box">瑜伽教室天然帶很多「体系動作」(仰向け、反らす、うつ伏せ、丸める、湯につかる)，搭配安全提醒語氣最自然。「ことのないよう（提醒）」「ことなしに（不...就無法）」「ことだし（既然...）」三個今天的文型在這幕全部複習一遍。</div>
+    </div>
+  </div>
+
+  <!-- ===== PART 4: SELF-CHECK ===== -->
+  <div class="section-title">
+    <div class="icon icon-check">🎯</div>
+    PART 4｜<ruby>自我<rt>じが</rt></ruby><ruby>検<rt>けん</rt></ruby><ruby>定<rt>てい</rt></ruby>（<ruby>任意<rt>にんい</rt></ruby>）
+  </div>
+
+  <div class="card">
+    <p style="font-size:0.92rem; color: var(--text); margin-bottom: 0.8rem;">
+      點上方「<b>👁 遮中文</b>」按鈕後，所有中文翻譯會被隱藏。再看一次單字、文法、情境劇，自己默想意思。滑鼠移到隱藏處可暫時顯示。
+    </p>
+    <p style="font-size:0.85rem; color: var(--muted); margin-bottom: 1rem;">
+      看完每個單字後，記得在卡片上點選🔵已會 / 🟡模糊 / 🔴不會。下次複習系統會優先排🔴的給你。
+    </p>
+    <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+      <button class="control-btn" onclick="toggleSelfCheck()">
+        👁 切換「遮中文」模式
+      </button>
+      <button class="control-btn" onclick="resetMastery()" style="border-color: var(--red); color: var(--red);">
+        ↻ 重置所有掌握度
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== PART 5: REVIEW SCHEDULE ===== -->
+  <div class="section-title">
+    <div class="icon icon-review">📅</div>
+    PART 5｜<ruby>復習<rt>ふくしゅう</rt></ruby><ruby>排程<rt>はいてい</rt></ruby>（<ruby>間隔<rt>かんかく</rt></ruby>反復）
+  </div>
+
+  <div class="card">
+    <p style="font-size:0.88rem; color: var(--text); margin-bottom: 1rem;">
+      記憶曲線設計：學完後在以下幾天回頭看一眼，每次 3-5 分鐘就好。看完點一下打 ✓。沒按時複習也沒關係，看到「該複習」標示再回來看一次即可。
+    </p>
+    <div class="review-grid" id="review-grid"></div>
+    <div class="tip-box" style="margin-top: 1rem;">「間隔反復」(Spaced Repetition) 比一次背完強百倍。Rong 是週末學習者，建議每個週末挑一兩篇舊教材重看 3-5 分鐘，當作熱身。首頁的「待複習」區塊會告訴你哪幾篇值得回看。</div>
+  </div>
+
+  <div class="footer">
+    JLPT N1 學習教材｜<b>W1D3</b>｜2026.05.16 製作｜<a href="index.html">← 回首頁</a>
+  </div>
+
+</div>
+
+<script>
+  // ============== TTS ==============
+  let jaVoice = null;
+  let currentBtn = null;
+
+  function getJapaneseVoices() {
+    return speechSynthesis.getVoices().filter(v =>
+      v.lang.startsWith('ja') && !/zh|chinese/i.test(v.name + v.lang)
+    );
+  }
+  function pickBestVoice(voices) {
+    return voices.find(v => /premium|enhanced|siri/i.test(v.name))
+        || voices.find(v => v.lang === 'ja-JP')
+        || voices.find(v => v.lang.startsWith('ja'))
+        || null;
+  }
+  function populateVoiceDropdown() {
+    const sel = document.getElementById('voice-select');
+    if (!sel) return;
+    const voices = getJapaneseVoices();
+    sel.innerHTML = '';
+    voices.forEach((v, i) => {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = v.name.replace(/^Apple\s*/i, '');
+      sel.appendChild(opt);
+    });
+    if (jaVoice) {
+      const idx = voices.findIndex(v => v.name === jaVoice.name);
+      if (idx >= 0) sel.value = idx;
+    }
+    sel.style.display = voices.length > 1 ? '' : 'none';
+  }
+  function updateVoiceStatus() {
+    const voices = getJapaneseVoices();
+    jaVoice = pickBestVoice(voices);
+    const statusText = document.getElementById('voice-status-text');
+    if (!statusText) return;
+    if (!window.speechSynthesis) {
+      statusText.textContent = '⚠ 此瀏覽器不支援語音';
+      return;
+    }
+    if (jaVoice) {
+      statusText.textContent = `🔊 ${jaVoice.name.replace(/^Apple\s*/i,'')}`;
+      populateVoiceDropdown();
+    } else {
+      statusText.innerHTML = '⚠ 找不到日文語音';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const sel = document.getElementById('voice-select');
+    if (sel) sel.addEventListener('change', () => {
+      const voices = getJapaneseVoices();
+      jaVoice = voices[parseInt(sel.value)] || jaVoice;
+      updateVoiceStatus();
+    });
+  });
+  if (window.speechSynthesis) {
+    speechSynthesis.onvoiceschanged = updateVoiceStatus;
+    updateVoiceStatus();
+  }
+  function makeUtter(text) {
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang  = 'ja-JP';
+    utter.rate  = 0.88;
+    utter.pitch = 1.0;
+    if (jaVoice) utter.voice = jaVoice;
+    return utter;
+  }
+  function speakJP(text, btn) {
+    if (!window.speechSynthesis) return;
+    if (currentBtn === btn && speechSynthesis.speaking) {
+      speechSynthesis.cancel();
+      btn.classList.remove('playing');
+      currentBtn = null; return;
+    }
+    speechSynthesis.cancel();
+    if (currentBtn) currentBtn.classList.remove('playing');
+    const utter = makeUtter(text);
+    currentBtn = btn;
+    btn.classList.add('playing');
+    utter.onend = utter.onerror = () => {
+      btn.classList.remove('playing');
+      if (currentBtn === btn) currentBtn = null;
+    };
+    speechSynthesis.speak(utter);
+  }
+  function playScene(btn, sceneId) {
+    if (!window.speechSynthesis) return;
+    if (btn.classList.contains('playing')) {
+      speechSynthesis.cancel();
+      btn.classList.remove('playing');
+      btn.textContent = '▶ 全部播放';
+      if (currentBtn) { currentBtn.classList.remove('playing'); currentBtn = null; }
+      document.getElementById(sceneId).querySelectorAll('.dialogue').forEach(d => d.style.opacity = '1');
+      return;
+    }
+    speechSynthesis.cancel();
+    if (currentBtn) { currentBtn.classList.remove('playing'); currentBtn = null; }
+    const scene = document.getElementById(sceneId);
+    const lines = Array.from(scene.querySelectorAll('.speech[data-speak]'))
+                       .map(el => el.dataset.speak).filter(Boolean);
+    if (!lines.length) return;
+    btn.classList.add('playing');
+    btn.textContent = '■ 停止';
+    let idx = 0;
+    function speakNext() {
+      const allLines = scene.querySelectorAll('.dialogue');
+      if (idx >= lines.length || !btn.classList.contains('playing')) {
+        btn.classList.remove('playing');
+        btn.textContent = '▶ 全部播放';
+        allLines.forEach(d => d.style.opacity = '1');
+        return;
+      }
+      allLines.forEach((d, i) => d.style.opacity = i === idx ? '1' : '0.35');
+      const utter = makeUtter(lines[idx]);
+      utter.onend  = () => { idx++; speakNext(); };
+      utter.onerror = () => {
+        btn.classList.remove('playing');
+        btn.textContent = '▶ 全部播放';
+        allLines.forEach(d => d.style.opacity = '1');
+      };
+      speechSynthesis.speak(utter);
+    }
+    speakNext();
+  }
+
+  // ============== Self-check toggle ==============
+  function toggleSelfCheck() {
+    document.body.classList.toggle('self-check');
+    const on = document.body.classList.contains('self-check');
+    const btn = document.getElementById('self-check-btn');
+    const icon = document.getElementById('self-check-icon');
+    const label = document.getElementById('self-check-label');
+    if (on) {
+      btn.classList.add('active');
+      icon.textContent = '👁‍🗨';
+      label.textContent = '顯示中文';
+    } else {
+      btn.classList.remove('active');
+      icon.textContent = '👁';
+      label.textContent = '遮中文（自我檢測）';
+    }
+  }
+
+  // ============== Mastery tracking ==============
+  const LESSON_ID = document.body.dataset.lessonId;
+  const MASTERY_KEY = `n1_mastery_${LESSON_ID}`;
+
+  function loadMastery() {
+    try { return JSON.parse(localStorage.getItem(MASTERY_KEY) || '{}'); }
+    catch(e) { return {}; }
+  }
+  function saveMastery(m) {
+    try { localStorage.setItem(MASTERY_KEY, JSON.stringify(m)); } catch(e) {}
+    // Also write to global vocab pool for 單字總表
+    pushToGlobalVocab(m);
+  }
+  function pushToGlobalVocab(m) {
+    try {
+      const allVocabs = JSON.parse(localStorage.getItem('n1_all_vocab') || '{}');
+      if (!allVocabs[LESSON_ID]) allVocabs[LESSON_ID] = {};
+      Object.keys(m).forEach(k => allVocabs[LESSON_ID][k] = m[k]);
+      localStorage.setItem('n1_all_vocab', JSON.stringify(allVocabs));
+    } catch(e) {}
+  }
+
+  function renderMastery() {
+    const mastery = loadMastery();
+    const items = document.querySelectorAll('.vocab-item[data-vocab]');
+    const counts = { known: 0, fuzzy: 0, unknown: 0 };
+    items.forEach(item => {
+      const vocab = item.dataset.vocab;
+      const level = mastery[vocab] || null;
+      const masteryEl = item.querySelector('.mastery');
+      if (!masteryEl) return;
+      masteryEl.innerHTML = `
+        <button class="mastery-dot ${level==='known'?'active':''}" data-level="known"   title="已會" aria-label="標記為已會"></button>
+        <button class="mastery-dot ${level==='fuzzy'?'active':''}" data-level="fuzzy"   title="模糊" aria-label="標記為模糊"></button>
+        <button class="mastery-dot ${level==='unknown'?'active':''}" data-level="unknown" title="不會" aria-label="標記為不會"></button>
+        <span class="mastery-label">${level ? (level==='known'?'已會':level==='fuzzy'?'模糊':'不會') : '未標記'}</span>
+      `;
+      if (level) counts[level]++;
+      masteryEl.querySelectorAll('.mastery-dot').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const newLevel = btn.dataset.level;
+          const cur = loadMastery();
+          if (cur[vocab] === newLevel) delete cur[vocab];
+          else cur[vocab] = newLevel;
+          saveMastery(cur);
+          renderMastery();
+        });
+      });
+    });
+    document.getElementById('mt-count-known').textContent = counts.known;
+    document.getElementById('mt-count-fuzzy').textContent = counts.fuzzy;
+    document.getElementById('mt-count-unknown').textContent = counts.unknown;
+    document.getElementById('mt-count-total').textContent = items.length;
+  }
+
+  function resetMastery() {
+    if (!confirm('確定要清除本堂的所有掌握度標記嗎？')) return;
+    localStorage.removeItem(MASTERY_KEY);
+    renderMastery();
+  }
+
+  // ============== Review schedule ==============
+  const REVIEW_KEY = `n1_review_${LESSON_ID}`;
+  const INTERVALS = [1, 3, 7, 14, 30];
+
+  function loadReview() {
+    try { return JSON.parse(localStorage.getItem(REVIEW_KEY) || '{}'); }
+    catch(e) { return {}; }
+  }
+  function saveReview(r) {
+    try { localStorage.setItem(REVIEW_KEY, JSON.stringify(r)); } catch(e) {}
+  }
+  function lessonDate() {
+    // Extract from LESSON_ID like "2026-05-16_W1D3"
+    const m = LESSON_ID.match(/^(\d{4}-\d{2}-\d{2})/);
+    return m ? new Date(m[1]) : new Date();
+  }
+  function fmtDate(d) {
+    const mm = String(d.getMonth()+1).padStart(2,'0');
+    const dd = String(d.getDate()).padStart(2,'0');
+    return `${mm}/${dd}`;
+  }
+  function renderReview() {
+    const grid = document.getElementById('review-grid');
+    if (!grid) return;
+    const baseDate = lessonDate();
+    const today = new Date(); today.setHours(0,0,0,0);
+    const review = loadReview();
+    grid.innerHTML = '';
+    INTERVALS.forEach(d => {
+      const target = new Date(baseDate);
+      target.setDate(target.getDate() + d);
+      target.setHours(0,0,0,0);
+      const key = `d${d}`;
+      const done = !!review[key];
+      const due = !done && (today.getTime() >= target.getTime());
+      const cell = document.createElement('div');
+      cell.className = 'review-cell' + (done ? ' done' : (due ? ' due' : ''));
+      cell.innerHTML = `
+        <div class="review-interval">D+${d}</div>
+        <div class="review-date">${fmtDate(target)}</div>
+        <div class="review-status">${done ? '✓ 已複習' : (due ? '該複習' : '尚未到期')}</div>
+      `;
+      cell.addEventListener('click', () => {
+        const cur = loadReview();
+        if (cur[key]) delete cur[key]; else cur[key] = new Date().toISOString();
+        saveReview(cur);
+        renderReview();
+      });
+      grid.appendChild(cell);
+    });
+  }
+
+  // ============== Init ==============
+  document.addEventListener('DOMContentLoaded', () => {
+    renderMastery();
+    renderReview();
+  });
+</script>
+</body>
+</html>

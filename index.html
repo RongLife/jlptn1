@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#2c3e6b">
+<meta name="theme-color" content="#BA8E7A">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="N1學習">
@@ -15,23 +15,28 @@
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap');
 
   :root {
-    --navy: #2c3e6b;
-    --blue: #4a7fd4;
-    --light-blue: #e8f0fe;
-    --green: #4caf7d;
-    --red: #e85d5d;
-    --yellow: #f5a623;
-    --bg: #f7f5f0;
-    --card: #fff;
-    --text: #2c2c2c;
-    --muted: #888;
-    --border: #e8e4dc;
+    /* 與教材內頁統一的米白＋大地色系 */
+    --primary:    #BA8E7A;   /* 深咖啡（主色，取代 navy/blue） */
+    --primary-lt: #D7A184;   /* 淺咖啡 */
+    --primary-dk: #8B5C44;   /* 更深咖啡（gradient 用）*/
+    --accent:     #7FA882;   /* 橄欖綠（grammar 強調）*/
+    --warn:       #C49A6C;   /* 琥珀（待複習提示）*/
+    --warn-bg:    #F5EAD8;   /* 琥珀淺底 */
+    --warn-dk:    #8B5C2C;   /* 琥珀深字 */
+    --red:        #C4755E;   /* 土紅 */
+    --bg:         #EFDFCC;   /* 米色背景 */
+    --card:       #FAF7F3;   /* 卡片底（米白）*/
+    --text:       #3D2B1F;   /* 深棕字 */
+    --muted:      #9A7B6C;   /* 棕灰 */
+    --border:     #D4C2AD;   /* 砂色框線 */
+    --sand:       #D4C2AD;
+    --cream:      #EFDFCC;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
@@ -40,10 +45,10 @@
 
   /* ── Header ── */
   .hero {
-    background: linear-gradient(150deg, #1a2a50 0%, #2c3e6b 50%, #4a7fd4 100%);
+    background: linear-gradient(150deg, #8B5C44 0%, #BA8E7A 50%, #D7A184 100%);
     color: white;
-    padding: 3rem 1.5rem 2rem;
-    padding-top: calc(3rem + env(safe-area-inset-top));
+    padding: 2.6rem 1.5rem 2rem;
+    padding-top: calc(2.6rem + env(safe-area-inset-top));
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -76,12 +81,14 @@
     margin-bottom: 1rem;
   }
   .hero h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
     letter-spacing: 0.02em;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.3rem;
   }
-  .hero-sub { font-size: 0.88rem; opacity: 0.7; }
+  .hero-sub { font-size: 0.85rem; opacity: 0.75; margin-bottom: 0.4rem; }
+  .hero-meta { font-size: 0.75rem; opacity: 0.6; }
+  .hero-pace { font-size: 0.72rem; opacity: 0.55; margin-top: 0.25rem; letter-spacing: 0.02em; }
 
   /* ── Stats ── */
   .stats {
@@ -97,24 +104,24 @@
   .stat {
     flex: 1;
     text-align: center;
-    padding: 1.1rem 0.5rem;
+    padding: 1rem 0.4rem;
     border-right: 1px solid var(--border);
   }
   .stat:last-child { border-right: none; }
   .stat-num {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    color: var(--navy);
+    color: var(--primary-dk);
     display: block;
     line-height: 1;
   }
-  .stat-label { font-size: 0.72rem; color: var(--muted); margin-top: 0.25rem; }
+  .stat-label { font-size: 0.7rem; color: var(--muted); margin-top: 0.3rem; letter-spacing: 0.04em; }
 
   /* ── Install Banner ── */
   .install-banner {
     display: none;
     margin: 0 1.2rem 1.2rem;
-    background: linear-gradient(90deg, #4a7fd4, #6c9ce8);
+    background: linear-gradient(90deg, #BA8E7A, #D7A184);
     border-radius: 12px;
     padding: 0.9rem 1.2rem;
     color: white;
@@ -126,7 +133,7 @@
   .install-banner-text strong { display: block; font-size: 0.92rem; }
   .install-btn {
     background: white;
-    color: var(--blue);
+    color: var(--primary-dk);
     border: none;
     border-radius: 8px;
     padding: 0.45rem 1rem;
@@ -145,22 +152,155 @@
   }
 
   /* ── Section ── */
-  .section { padding: 0 1.2rem 2rem; }
+  .section { padding: 0 1.2rem 1.5rem; }
   .section-title {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     color: var(--muted);
     text-transform: uppercase;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.7rem;
   }
 
+  /* ── 雙進度條 ── */
+  .progress-card {
+    background: var(--card);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    padding: 1rem 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  .progress-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+  }
+  .progress-label { font-size: 0.88rem; font-weight: 700; }
+  .progress-label .pct { color: var(--primary); font-size: 0.78rem; font-weight: 700; margin-left: 0.3rem; }
+  .progress-num { font-size: 0.8rem; color: var(--muted); }
+  .progress-bar {
+    height: 8px;
+    background: var(--bg);
+    border-radius: 50px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #BA8E7A, #D7A184);
+    border-radius: 50px;
+    transition: width 0.8s ease;
+  }
+  .progress-fill.grammar {
+    background: linear-gradient(90deg, #7FA882, #A8C2A6);
+  }
+  .progress-sub { font-size: 0.72rem; color: var(--muted); margin-top: 0.5rem; }
+
+  /* ── 待複習（提示，不要太強壓） ── */
+  .review-banner {
+    background: var(--warn-bg);
+    border-left: 4px solid var(--warn);
+    border-radius: 0 12px 12px 0;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+  .review-banner-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--warn-dk);
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.04em;
+  }
+  .review-due-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .review-due-card {
+    background: white;
+    border-radius: 10px;
+    padding: 0.6rem 0.9rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.6rem;
+    transition: transform 0.12s;
+  }
+  .review-due-card:active { transform: scale(0.98); }
+  .review-due-title { font-size: 0.85rem; font-weight: 700; }
+  .review-due-meta { font-size: 0.72rem; color: var(--muted); margin-top: 0.1rem; }
+  .review-due-tag {
+    background: #FAF0DD;
+    color: var(--warn-dk);
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.18rem 0.5rem;
+    border-radius: 50px;
+    white-space: nowrap;
+  }
+
+  /* ── 下一堂該學（橄欖綠 accent） ── */
+  .next-banner {
+    background: #EDF2E5;
+    border-left: 4px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+  .next-banner-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #4D7053;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.04em;
+  }
+  .next-banner-content { font-size: 0.88rem; color: var(--text); line-height: 1.5; }
+  .next-banner-content .week-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15rem 0.55rem;
+    border-radius: 50px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+  .next-banner-content .topic { font-weight: 700; }
+  .next-banner-content .topic-pair { font-size: 0.78rem; color: #6b5a4a; margin-top: 0.3rem; display: block; font-family: 'Noto Sans JP', sans-serif; }
+  .next-banner-content .hint { font-size: 0.72rem; color: var(--muted); margin-top: 0.4rem; display: block; }
+  .next-banner.completed {
+    background: #EDF2E5;
+    border-color: var(--accent);
+  }
+  .next-banner.completed .next-banner-title { color: #2D5236; }
+
+  /* ── Search ── */
+  .search-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.55rem 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.7rem;
+  }
+  .search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 0.88rem;
+    font-family: inherit;
+    background: transparent;
+    color: var(--text);
+  }
+  .search-icon { color: var(--muted); font-size: 0.9rem; }
+
   /* ── Lesson Cards ── */
-  .lesson-list { display: flex; flex-direction: column; gap: 0.75rem; }
+  .lesson-list { display: flex; flex-direction: column; gap: 0.6rem; }
 
   .lesson-card {
     background: var(--card);
-    border-radius: 14px;
+    border-radius: 12px;
     border: 1px solid var(--border);
     overflow: hidden;
     text-decoration: none;
@@ -173,92 +313,86 @@
 
   .lesson-date-bar {
     width: 5px;
-    background: linear-gradient(180deg, #4a7fd4, #2c3e6b);
+    background: linear-gradient(180deg, #D7A184, #BA8E7A);
     flex-shrink: 0;
   }
-  .lesson-content { padding: 1rem 1.1rem; flex: 1; }
+  .lesson-content { padding: 0.85rem 1rem; flex: 1; }
   .lesson-meta {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.25rem;
+    flex-wrap: wrap;
+    gap: 0.3rem;
   }
-  .lesson-date { font-size: 0.75rem; color: var(--muted); }
+  .lesson-date { font-size: 0.72rem; color: var(--muted); }
+  .lesson-week-badge {
+    background: var(--primary-dk);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.12rem 0.45rem;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
   .lesson-tags { display: flex; gap: 0.3rem; }
   .tag {
-    font-size: 0.68rem;
+    font-size: 0.66rem;
     font-weight: 700;
-    padding: 0.15rem 0.5rem;
+    padding: 0.13rem 0.45rem;
     border-radius: 50px;
   }
-  .tag-vocab { background: #fff3e0; color: #e65100; }
-  .tag-grammar { background: var(--light-blue); color: var(--blue); }
+  .tag-vocab { background: #F5EAD8; color: #8B5C44; }
+  .tag-grammar { background: #EDF2E5; color: #4D7053; }
   .lesson-title {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 700;
-    font-family: 'Noto Sans JP', sans-serif;
-    margin-bottom: 0.2rem;
+    font-family: 'Noto Sans JP', 'Noto Sans TC', sans-serif;
+    margin-bottom: 0.15rem;
+    color: var(--text);
   }
-  .lesson-subtitle { font-size: 0.8rem; color: var(--muted); }
+  .lesson-subtitle { font-size: 0.75rem; color: var(--muted); }
 
   .lesson-arrow {
     display: flex;
     align-items: center;
-    padding: 0 1rem;
+    padding: 0 0.9rem;
     color: var(--muted);
     font-size: 1.1rem;
   }
 
-  /* ── Empty state ── */
-  .empty {
+  /* Lesson card 中標示「該複習」徽章 */
+  .lesson-card .due-badge {
+    background: var(--warn);
+    color: white;
+    font-size: 0.62rem;
+    font-weight: 700;
+    padding: 0.12rem 0.4rem;
+    border-radius: 50px;
+    margin-left: 0.4rem;
+  }
+
+  /* ── Empty / loading ── */
+  .empty, .loading {
     text-align: center;
     color: var(--muted);
-    padding: 3rem 1rem;
-    font-size: 0.9rem;
+    padding: 2.5rem 1rem;
+    font-size: 0.88rem;
   }
   .empty .icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
-
-  /* ── Goal progress ── */
-  .goal-card {
-    background: var(--card);
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    padding: 1.2rem 1.4rem;
-    margin-bottom: 1.2rem;
-  }
-  .goal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; }
-  .goal-title { font-size: 0.9rem; font-weight: 700; }
-  .goal-pct { font-size: 1.1rem; font-weight: 700; color: var(--blue); }
-  .progress-bar {
-    height: 8px;
-    background: var(--bg);
-    border-radius: 50px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #4a7fd4, #6c9ce8);
-    border-radius: 50px;
-    transition: width 0.8s ease;
-  }
-  .goal-sub { font-size: 0.75rem; color: var(--muted); margin-top: 0.5rem; }
 
   /* ── Footer ── */
   footer {
     text-align: center;
     color: var(--muted);
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     padding: 1.5rem 1rem 2rem;
     border-top: 1px solid var(--border);
   }
 
-  /* ── Loading ── */
-  .loading {
-    text-align: center;
-    padding: 3rem;
-    color: var(--muted);
-    font-size: 0.9rem;
-  }
+  /* 月份分隔線（搜尋時隱藏） */
+  body.searching .month-label { display: none; }
+  body.searching .lesson-card.hidden { display: none; }
 </style>
 </head>
 <body>
@@ -266,21 +400,23 @@
 <div class="hero">
   <div class="hero-badge">JLPT N1</div>
   <h1>日本語 N1</h1>
-  <div class="hero-sub">Rong の学習ノート｜目標：年内合格 🎯</div>
+  <div class="hero-sub">Rong の学習ノート｜目標：12月合格 🎯</div>
+  <div class="hero-meta" id="hero-meta">距考試 — 天</div>
+  <div class="hero-pace" id="hero-pace">每週末 2 堂 ・ 預計 10/24 跑完課本</div>
 </div>
 
 <div class="stats" id="stats">
   <div class="stat">
-    <span class="stat-num" id="stat-total">—</span>
-    <div class="stat-label">學習天數</div>
+    <span class="stat-num" id="stat-vocab">—</span>
+    <div class="stat-label">累計單字</div>
   </div>
   <div class="stat">
-    <span class="stat-num" id="stat-this-month">—</span>
-    <div class="stat-label">本月</div>
+    <span class="stat-num" id="stat-grammar">—</span>
+    <div class="stat-label">累計文法</div>
   </div>
   <div class="stat">
-    <span class="stat-num" id="stat-streak">—</span>
-    <div class="stat-label">連續天數</div>
+    <span class="stat-num" id="stat-week">—</span>
+    <div class="stat-label">本週學習</div>
   </div>
 </div>
 
@@ -295,19 +431,44 @@
   <button class="dismiss-btn" id="dismiss-btn">✕</button>
 </div>
 
+<!-- 主要區塊 -->
 <div class="section">
-  <div class="goal-card">
-    <div class="goal-header">
-      <span class="goal-title">🎯 N1 目標進度</span>
-      <span class="goal-pct" id="goal-pct">0%</span>
+
+  <!-- 課本進度（兩條） -->
+  <div class="progress-card">
+    <div class="progress-row">
+      <div class="progress-label">📖 N1 語彙課本 <span class="pct" id="goi-pct">0%</span></div>
+      <div class="progress-num" id="goi-num">0 / 48</div>
     </div>
     <div class="progress-bar">
-      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      <div class="progress-fill" id="goi-fill" style="width:0%"></div>
     </div>
-    <div class="goal-sub" id="goal-sub">計算中…</div>
+    <div class="progress-sub" id="goi-sub">已學語彙 0 個 ・ 剩 48 日</div>
   </div>
 
+  <div class="progress-card">
+    <div class="progress-row">
+      <div class="progress-label">📐 N1 必考文法 <span class="pct" id="bunpou-pct">0%</span></div>
+      <div class="progress-num" id="bunpou-num">0 / 48</div>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill grammar" id="bunpou-fill" style="width:0%"></div>
+    </div>
+    <div class="progress-sub" id="bunpou-sub">已學文型 0 個 ・ 剩 48 個</div>
+  </div>
+
+  <!-- 今天該複習（紅） -->
+  <div id="review-section"></div>
+
+  <!-- 下一堂該學（藍） -->
+  <div id="next-section"></div>
+
+  <!-- 學習記錄 -->
   <div class="section-title">學習記錄</div>
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="search" id="search-input" placeholder="搜尋教材、單字、文法...">
+  </div>
   <div class="lesson-list" id="lesson-list">
     <div class="loading">載入中…</div>
   </div>
@@ -328,11 +489,8 @@ const dismissBtn    = document.getElementById('dismiss-btn');
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   deferredPrompt = e;
-  if (!localStorage.getItem('pwa-dismissed')) {
-    installBanner.classList.add('show');
-  }
+  if (!localStorage.getItem('pwa-dismissed')) installBanner.classList.add('show');
 });
-
 installBtn.addEventListener('click', async () => {
   if (!deferredPrompt) return;
   deferredPrompt.prompt();
@@ -340,80 +498,268 @@ installBtn.addEventListener('click', async () => {
   if (outcome === 'accepted') installBanner.classList.remove('show');
   deferredPrompt = null;
 });
-
 dismissBtn.addEventListener('click', () => {
   installBanner.classList.remove('show');
   localStorage.setItem('pwa-dismissed', '1');
 });
 
-// ── Service Worker ────────────────────────────────────────────
+// ── Service Worker ───────────────────────────────────────────
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 
-// ── Load Lessons ─────────────────────────────────────────────
-async function loadLessons() {
-  let lessons = [];
+// ── Constants ────────────────────────────────────────────────
+const REVIEW_INTERVALS = [1, 3, 7, 14, 30];
+const EXAM_DATE = new Date('2026-12-06');
+
+// ── Helpers ──────────────────────────────────────────────────
+function daysBetween(a, b) {
+  const ms = b.setHours(0,0,0,0) - a.setHours(0,0,0,0);
+  return Math.round(ms / 86400000);
+}
+function fmtDate(d) {
+  return `${d.getMonth()+1}/${d.getDate()}`;
+}
+
+// ── 載入 curriculum + lessons ────────────────────────────────
+async function loadAll() {
+  let curriculum = null, lessons = [];
   try {
-    const res = await fetch('lessons.json?t=' + Date.now());
-    lessons = await res.json();
+    const [cRes, lRes] = await Promise.all([
+      fetch('curriculum.json?t=' + Date.now()),
+      fetch('lessons.json?t=' + Date.now())
+    ]);
+    curriculum = await cRes.json();
+    lessons = await lRes.json();
   } catch(e) {
     document.getElementById('lesson-list').innerHTML =
-      '<div class="empty"><div class="icon">📚</div>還沒有教材，快去學習吧！</div>';
+      '<div class="empty"><div class="icon">📚</div>載入失敗，請檢查網路</div>';
     return;
   }
 
-  // Sort newest first
   lessons.sort((a, b) => b.date.localeCompare(a.date));
 
-  // Stats
-  document.getElementById('stat-total').textContent = lessons.length;
-  const thisMonth = new Date().toISOString().slice(0,7);
-  const monthCount = lessons.filter(l => l.date.startsWith(thisMonth)).length;
-  document.getElementById('stat-this-month').textContent = monthCount;
+  // ── Hero meta ──
+  const daysLeft = Math.max(0, daysBetween(new Date(), new Date(EXAM_DATE)));
+  document.getElementById('hero-meta').textContent =
+    `距 12/6 考試還有 ${daysLeft} 天`;
 
-  // Streak calc
-  const dates = lessons.map(l => l.date).sort();
-  let streak = 0, today = new Date().toISOString().slice(0,10);
-  for (let i = dates.length - 1; i >= 0; i--) {
-    const diff = (new Date(today) - new Date(dates[i])) / 86400000;
-    if (diff <= streak + 1) streak++;
-    else break;
+  // ── Stats ──
+  // 累計單字（從 localStorage 抓）
+  let totalVocab = 0;
+  try {
+    const allVocab = JSON.parse(localStorage.getItem('n1_all_vocab') || '{}');
+    const seen = new Set();
+    Object.values(allVocab).forEach(lesson => {
+      Object.keys(lesson).forEach(v => seen.add(v));
+    });
+    totalVocab = seen.size;
+  } catch(e) {}
+  // 如果 localStorage 還空（從未在教材上標掌握度），用每課估算
+  if (totalVocab === 0) {
+    // 粗估：每堂 30 字（也就是 30 × 已學日數）
+    totalVocab = lessons.length * 30;
   }
-  document.getElementById('stat-streak').textContent = streak;
+  document.getElementById('stat-vocab').textContent = totalVocab;
 
-  // Goal: assume ~240 study days from Apr 2026 to Dec 2026
-  const start = new Date('2026-04-01'), end = new Date('2026-12-01');
-  const total = Math.round((end - start) / 86400000);
-  const done  = lessons.length;
-  const pct   = Math.min(100, Math.round(done / total * 100));
-  document.getElementById('goal-pct').textContent = pct + '%';
-  document.getElementById('progress-fill').style.width = pct + '%';
-  const daysLeft = Math.max(0, Math.round((end - new Date()) / 86400000));
-  document.getElementById('goal-sub').textContent =
-    `已學 ${done} 天，距考試還有約 ${daysLeft} 天，加油！`;
+  // 累計文法 = 已學日數 × 4-5（每堂平均文法數）
+  // 但更準確的是看 curriculum 對應該日有幾個文型 — 平均 5/天
+  document.getElementById('stat-grammar').textContent = lessons.length * 5;
 
-  // Render cards
+  // 本週學習天數（從週一算起）
+  const todayD = new Date();
+  const dow = (todayD.getDay() + 6) % 7; // 週一=0
+  const weekStart = new Date(todayD);
+  weekStart.setDate(weekStart.getDate() - dow);
+  weekStart.setHours(0,0,0,0);
+  const thisWeekDates = new Set();
+  lessons.forEach(l => {
+    const d = new Date(l.date); d.setHours(0,0,0,0);
+    if (d.getTime() >= weekStart.getTime()) thisWeekDates.add(l.date);
+  });
+  document.getElementById('stat-week').textContent = thisWeekDates.size;
+
+  // ── 課本進度條 ──
+  const learnedWD = new Set(
+    lessons.filter(l => l.weekDay).map(l => l.weekDay)
+  );
+  // 統計 D1-D6（D7 是實戰問題，先不算進度，但顯示時可以提及）
+  const studyDays = [];
+  curriculum.weeks.forEach(w => {
+    w.days.forEach(d => {
+      if (d.day <= 6) studyDays.push(`W${w.week}D${d.day}`);
+    });
+  });
+  const totalDays = studyDays.length; // 48
+  const goiDone = studyDays.filter(wd => learnedWD.has(wd)).length;
+  const bunpouDone = goiDone; // 因為兩本同步學
+  const goiPct = Math.round(goiDone / totalDays * 100);
+  document.getElementById('goi-pct').textContent = goiPct + '%';
+  document.getElementById('goi-fill').style.width = goiPct + '%';
+  document.getElementById('goi-num').textContent = `${goiDone} / ${totalDays}`;
+  document.getElementById('goi-sub').textContent =
+    `已學語彙日 ${goiDone} 個 ・ 剩 ${totalDays - goiDone} 日`;
+
+  const bunpouPct = Math.round(bunpouDone / totalDays * 100);
+  document.getElementById('bunpou-pct').textContent = bunpouPct + '%';
+  document.getElementById('bunpou-fill').style.width = bunpouPct + '%';
+  document.getElementById('bunpou-num').textContent = `${bunpouDone} / ${totalDays}`;
+  document.getElementById('bunpou-sub').textContent =
+    `已學文型 ${bunpouDone * 4} 個（約） ・ 剩 ${totalDays - bunpouDone} 日`;
+
+  // ── 今天該複習 ──
+  renderReviewSection(lessons);
+
+  // ── 下一堂該學 ──
+  renderNextSection(curriculum, lessons);
+
+  // ── 學習記錄 ──
+  renderLessonList(lessons);
+
+  // ── 最後更新 ──
+  if (lessons.length) {
+    document.getElementById('last-updated').textContent =
+      '最後更新：' + lessons[0].date;
+  }
+
+  // ── 搜尋 ──
+  setupSearch();
+}
+
+// ── 今天該複習區塊 ───────────────────────────────────────────
+function renderReviewSection(lessons) {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const dueItems = [];
+
+  lessons.forEach(lesson => {
+    const lessonId = lesson.weekDay
+      ? `${lesson.date}_${lesson.weekDay}`
+      : lesson.date;
+    const key = `n1_review_${lessonId}`;
+    let reviewState = {};
+    try { reviewState = JSON.parse(localStorage.getItem(key) || '{}'); }
+    catch(e) {}
+    const base = new Date(lesson.date);
+    base.setHours(0,0,0,0);
+    // 找出最緊急的一個未完成複習
+    for (const d of REVIEW_INTERVALS) {
+      const target = new Date(base);
+      target.setDate(target.getDate() + d);
+      target.setHours(0,0,0,0);
+      const dkey = `d${d}`;
+      if (today.getTime() >= target.getTime() && !reviewState[dkey]) {
+        dueItems.push({ lesson, interval: d, target });
+        break;
+      }
+    }
+  });
+
+  const sec = document.getElementById('review-section');
+  if (!dueItems.length) { sec.innerHTML = ''; return; }
+
+  let html = `
+    <div class="review-banner">
+      <div class="review-banner-title">🔔 待複習 ・ ${dueItems.length} 篇</div>
+      <div class="review-due-list">
+  `;
+  dueItems.forEach(({lesson, interval, target}) => {
+    html += `
+      <a class="review-due-card" href="${lesson.file}">
+        <div>
+          <div class="review-due-title">${escape(lesson.title)}</div>
+          <div class="review-due-meta">${lesson.date} 學 ・ D+${interval} 複習</div>
+        </div>
+        <div class="review-due-tag">該複習</div>
+      </a>
+    `;
+  });
+  html += `</div></div>`;
+  sec.innerHTML = html;
+}
+
+// ── 下一堂該學區塊 ───────────────────────────────────────────
+function renderNextSection(curriculum, lessons) {
+  // 找出最高 W#D# (其中 day 1-6)
+  let maxIdx = 0; // week*7+day
+  lessons.forEach(l => {
+    if (l.weekDay && l.day && l.day <= 6) {
+      const idx = l.week * 7 + l.day;
+      if (idx > maxIdx) maxIdx = idx;
+    }
+  });
+  // 將 maxIdx 解析成 week/day
+  let nextWeek, nextDay;
+  if (maxIdx === 0) {
+    nextWeek = 1; nextDay = 1;
+  } else {
+    let w = Math.floor(maxIdx / 7);
+    let d = maxIdx % 7;
+    d += 1;
+    if (d > 6) { w += 1; d = 1; }
+    nextWeek = w; nextDay = d;
+  }
+
+  const sec = document.getElementById('next-section');
+  if (nextWeek > 8) {
+    sec.innerHTML = `
+      <div class="next-banner completed">
+        <div class="next-banner-title">🏆 課本全部學完！</div>
+        <div class="next-banner-content">
+          恭喜跑完 48 個學習日 ・ 接下來進入「實戰問題＋模擬考」階段
+        </div>
+      </div>
+    `;
+    return;
+  }
+  const week = curriculum.weeks.find(w => w.week === nextWeek);
+  const day  = week.days.find(d => d.day === nextDay);
+  sec.innerHTML = `
+    <div class="next-banner">
+      <div class="next-banner-title">📘 下一堂該學</div>
+      <div class="next-banner-content">
+        <span class="week-tag">W${nextWeek} D${nextDay}</span>
+        <span class="topic">${escape(week.themeGoi)}</span>
+        <span class="topic-pair">語彙：${escape(day.goi)}　／　文法：${escape(day.bunpou)}</span>
+        <span class="hint">傳今天的課本照片給 Claude 即可開始</span>
+      </div>
+    </div>
+  `;
+}
+
+// ── 學習記錄列表 ─────────────────────────────────────────────
+function renderLessonList(lessons) {
   const list = document.getElementById('lesson-list');
   if (!lessons.length) {
     list.innerHTML = '<div class="empty"><div class="icon">📚</div>還沒有教材，快去學習吧！</div>';
     return;
   }
-
   list.innerHTML = '';
-
-  // Group by month
+  // 算出有哪些 lesson 該複習
+  const today = new Date(); today.setHours(0,0,0,0);
+  const dueSet = new Set();
+  lessons.forEach(lesson => {
+    const lessonId = lesson.weekDay ? `${lesson.date}_${lesson.weekDay}` : lesson.date;
+    const key = `n1_review_${lessonId}`;
+    let r = {};
+    try { r = JSON.parse(localStorage.getItem(key) || '{}'); } catch(e){}
+    const base = new Date(lesson.date); base.setHours(0,0,0,0);
+    for (const d of REVIEW_INTERVALS) {
+      const t = new Date(base); t.setDate(t.getDate() + d); t.setHours(0,0,0,0);
+      if (today.getTime() >= t.getTime() && !r[`d${d}`]) { dueSet.add(lesson.file); break; }
+    }
+  });
+  // 按月份分組
   const byMonth = {};
   lessons.forEach(l => {
     const m = l.date.slice(0,7);
     if (!byMonth[m]) byMonth[m] = [];
     byMonth[m].push(l);
   });
-
   Object.keys(byMonth).sort().reverse().forEach(month => {
     const label = document.createElement('div');
-    label.className = 'section-title';
-    label.style.marginTop = '1rem';
+    label.className = 'section-title month-label';
+    label.style.marginTop = '0.8rem';
+    label.style.marginBottom = '0.4rem';
     const [y, m] = month.split('-');
     label.textContent = `${y}年${parseInt(m)}月`;
     list.appendChild(label);
@@ -422,39 +768,56 @@ async function loadLessons() {
       const a = document.createElement('a');
       a.className = 'lesson-card';
       a.href = lesson.file;
+      a.dataset.search = (lesson.title + ' ' + (lesson.weekDay || '') + ' ' + lesson.date).toLowerCase();
 
-      const dayStr = lesson.date.slice(8);
-      const weekdays = ['日','一','二','三','四','五','六'];
-      const wd = weekdays[new Date(lesson.date).getDay()];
+      const wd = ['日','一','二','三','四','五','六'][new Date(lesson.date).getDay()];
+      const dayStr = parseInt(lesson.date.slice(8));
       const tags = (lesson.tags || []).map(t => {
         const cls = t === '語彙' ? 'tag-vocab' : 'tag-grammar';
         return `<span class="tag ${cls}">${t}</span>`;
       }).join('');
+      const weekBadge = lesson.weekDay
+        ? `<span class="lesson-week-badge">${lesson.weekDay}</span>` : '';
+      const dueBadge = dueSet.has(lesson.file)
+        ? `<span class="due-badge">該複習</span>` : '';
 
       a.innerHTML = `
         <div class="lesson-date-bar"></div>
         <div class="lesson-content">
           <div class="lesson-meta">
-            <span class="lesson-date">${parseInt(dayStr)}日（${wd}）</span>
+            <span class="lesson-date">${dayStr}日（${wd}） ${weekBadge}${dueBadge}</span>
             <div class="lesson-tags">${tags}</div>
           </div>
-          <div class="lesson-title">${lesson.title}</div>
-          <div class="lesson-subtitle">${lesson.subtitle || ''}</div>
+          <div class="lesson-title">${escape(lesson.title)}</div>
+          <div class="lesson-subtitle">${escape(lesson.subtitle || '')}</div>
         </div>
         <div class="lesson-arrow">›</div>
       `;
       list.appendChild(a);
     });
   });
-
-  // Last updated
-  if (lessons.length) {
-    document.getElementById('last-updated').textContent =
-      '最後更新：' + lessons[0].date;
-  }
 }
 
-loadLessons();
+// ── 搜尋 ─────────────────────────────────────────────────────
+function setupSearch() {
+  const input = document.getElementById('search-input');
+  input.addEventListener('input', () => {
+    const q = input.value.toLowerCase().trim();
+    document.body.classList.toggle('searching', q.length > 0);
+    document.querySelectorAll('.lesson-card').forEach(card => {
+      const hit = card.dataset.search.includes(q);
+      card.classList.toggle('hidden', !hit);
+    });
+  });
+}
+
+function escape(s) {
+  return String(s || '').replace(/[&<>"']/g, c => ({
+    '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+  }[c]));
+}
+
+loadAll();
 </script>
 </body>
 </html>
