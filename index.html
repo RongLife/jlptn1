@@ -734,6 +734,10 @@ function renderLessonList(lessons) {
     return;
   }
   list.innerHTML = '';
+  // 依時間先後給每則一個序號（最舊 = 第 1 則）
+  const seqMap = {};
+  [...lessons].sort((a, b) => a.date.localeCompare(b.date))
+              .forEach((l, i) => { seqMap[l.file] = i + 1; });
   // 算出有哪些 lesson 該複習
   const today = new Date(); today.setHours(0,0,0,0);
   const dueSet = new Set();
@@ -770,8 +774,7 @@ function renderLessonList(lessons) {
       a.href = lesson.file;
       a.dataset.search = (lesson.title + ' ' + (lesson.weekDay || '') + ' ' + lesson.date).toLowerCase();
 
-      const wd = ['日','一','二','三','四','五','六'][new Date(lesson.date).getDay()];
-      const dayStr = parseInt(lesson.date.slice(8));
+      const seq = seqMap[lesson.file] || 0;
       const tags = (lesson.tags || []).map(t => {
         const cls = t === '語彙' ? 'tag-vocab' : 'tag-grammar';
         return `<span class="tag ${cls}">${t}</span>`;
@@ -785,7 +788,7 @@ function renderLessonList(lessons) {
         <div class="lesson-date-bar"></div>
         <div class="lesson-content">
           <div class="lesson-meta">
-            <span class="lesson-date">${dayStr}日（${wd}） ${weekBadge}${dueBadge}</span>
+            <span class="lesson-date">第 ${seq} 則 ${weekBadge}${dueBadge}</span>
             <div class="lesson-tags">${tags}</div>
           </div>
           <div class="lesson-title">${escape(lesson.title)}</div>

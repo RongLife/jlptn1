@@ -347,6 +347,28 @@
     padding-top: 1.5rem;
     border-top: 1px solid var(--border);
   }
+
+  /* 浮動回首頁按鈕 */
+  .home-fab {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    bottom: calc(1rem + env(safe-area-inset-bottom));
+    z-index: 9999;
+    background: #BA8E7A;
+    color: #fff;
+    border-radius: 50px;
+    padding: 0.7rem 1.15rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(61,43,31,0.32);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: transform 0.12s;
+  }
+  .home-fab:active { transform: scale(0.95); }
 </style>
 </head>
 <body>
@@ -1125,5 +1147,7 @@
     speakNext();
   }
 </script>
+
+<a class="home-fab" href="index.html" aria-label="回首頁">🏠 首頁</a>
 </body>
 </html>
